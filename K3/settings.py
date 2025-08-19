@@ -90,7 +90,7 @@ DATABASES = {
         'OPTIONS': {
             'charset': 'utf8mb4',
     }
-}
+}}
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'  # Change to your actual view name
