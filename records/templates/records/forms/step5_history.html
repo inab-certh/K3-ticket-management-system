@@ -1,0 +1,140 @@
+{% load form_tags %}
+
+<input type="hidden" name="current_step" value="5">
+<h4 class="mb-3">Βήμα 5: Άλλα Προβλήματα Υγείας – Συνoδά Νοσήματα & Αναπηρία</h4>
+
+<div class="card p-4 mb-4">
+  <!-- 2 columns: comorbidities (left), BMI info (right) -->
+  <div class="row mb-2">
+    <!-- Comorbidities: left column -->
+    <div class="col-md-7">
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label class="form-label">Αρτηριακές παθήσεις</label>
+          <input type="checkbox" name="arterial_disease" id="arterial_disease">
+          <label for="arterial_disease" class="ms-2">Ναι</label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Καρδιαγγειακά νοσήματα</label>
+          <input type="checkbox" name="cardiovascular_disease" id="cardiovascular_disease">
+          <label for="cardiovascular_disease" class="ms-2">Ναι</label>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label class="form-label">ΧΑΠ</label>
+          <input type="checkbox" name="copd" id="copd">
+          <label for="copd" class="ms-2">Ναι</label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Σακχαρώδης διαβήτης</label>
+          <input type="checkbox" name="diabetes" id="diabetes">
+          <label for="diabetes" class="ms-2">Ναι</label>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label class="form-label">Ψυχιατρικά νοσήματα</label>
+          <input type="checkbox" name="psychiatric_disorder" id="psychiatric_disorder">
+          <label for="psychiatric_disorder" class="ms-2">Ναι</label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Κινητικά προβλήματα</label>
+          <input type="checkbox" name="mobility_issues" id="mobility_issues">
+          <label for="mobility_issues" class="ms-2">Ναι</label>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <label class="form-label">Νεφροπάθεια</label>
+          <input type="checkbox" name="nephropathy" id="nephropathy">
+          <label for="nephropathy" class="ms-2">Ναι</label>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Άλλο</label>
+          <input type="text" class="form-control" name="other_conditions" placeholder="Περιγραφή άλλου νοσήματος">
+        </div>
+      </div>
+    </div>
+    <!-- BMI info: right column -->
+    <div class="col-md-5">
+      <div class="mb-2">
+        <label class="form-label">Βάρος (kg)</label>
+        <input type="number" step="0.1" min="0" class="form-control" name="weight" id="weight">
+      </div>
+      <div class="mb-2">
+        <label class="form-label">Ύψος (m)</label>
+        <input type="number" step="0.01" min="0" class="form-control" name="height" id="height">
+      </div>
+      <div class="mb-2">
+        <label class="form-label">BMI</label>
+        <input type="number" step="0.01" class="form-control" name="bmi" id="bmi" readonly>
+      </div>
+      <div>
+        <label class="form-label">Κατηγορία δείκτη BMI</label>
+        <input type="text" class="form-control" name="bmi_category" id="bmi_category" readonly>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+
+  <!-- Disability fields as full-width below -->
+  <div class="row mb-2">
+    <div class="col-md-2">
+      <label class="form-label">Αναπηρία</label>
+      <input type="checkbox" name="disability" id="disability">
+      <label for="disability" class="ms-2">Ναι</label>
+    </div>
+    <div class="col-md-2" id="certified-disability-group" style="display:none;">
+      <label class="form-label">Πιστοποιημένη Αναπηρία</label>
+      <input type="checkbox" name="certified_disability" id="certified_disability">
+      <label for="certified_disability" class="ms-2">Ναι</label>
+    </div>
+    <div class="col-md-2" id="disability-percentage-group" style="display:none;">
+      <label class="form-label">Ποσοστό</label>
+      <input type="number" class="form-control" name="disability_percentage" min="0" max="100">
+    </div>
+    <div class="col-md-3" id="kepa-expiry-group" style="display:none;">
+      <label class="form-label">Λήξη ΚΕΠΑ</label>
+      <input type="date" class="form-control" name="kepa_expiry">
+    </div>
+    <div class="col-md-3" id="kepa-check-group" style="display:none;">
+      <label class="form-label">Έλεγχος ΛΗΞΗΣ ΚΕΠΑ</label>
+      <input type="checkbox" name="kepa_check" id="kepa_check">
+      <label for="kepa_check" class="ms-2">Ναι</label>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateBMI() {
+  const weight = parseFloat(document.getElementById('weight').value.replace(',', '.'));
+  const height = parseFloat(document.getElementById('height').value.replace(',', '.'));
+  const bmiInput = document.getElementById('bmi');
+  const bmiCatInput = document.getElementById('bmi_category');
+  let bmi = '';
+  let category = '';
+  if (weight > 0 && height > 0) {
+    bmi = (weight / (height * height)).toFixed(2);
+    if (bmi < 18.5) category = 'Λιποβαρής';
+    else if (bmi < 25) category = 'Φυσιολογικό βάρος';
+    else if (bmi < 30) category = 'Υπέρβαρος';
+    else if (bmi < 35) category = 'Παχύσαρκος Ι';
+    else if (bmi < 40) category = 'Παχύσαρκος ΙΙ';
+    else category = 'Παχύσαρκος ΙΙΙ';
+  }
+  bmiInput.value = bmi;
+  bmiCatInput.value = category;
+}
+document.getElementById('weight').addEventListener('input', updateBMI);
+document.getElementById('height').addEventListener('input', updateBMI);
+
+// Disability show/hide
+document.getElementById('disability').addEventListener('change', function() {
+  const show = this.checked;
+  document.getElementById('certified-disability-group').style.display = show ? '' : 'none';
+  document.getElementById('disability-percentage-group').style.display = show ? '' : 'none';
+  document.getElementById('kepa-expiry-group').style.display = show ? '' : 'none';
+  document.getElementById('kepa-check-group').style.display = show ? '' : 'none';
+});
+</script>
