@@ -1,0 +1,155 @@
+{% load form_tags %}
+
+<h2 class="visually-hidden">Επιπλέον Στοιχεία Ωφελούμενου</h2>
+
+<!-- Display Basic Info -->
+<div class="row mb-4">
+  <div class="col-md-1">
+    <label class="form-label">ID </label>
+    <input type="text" class="form-control" value="{{ beneficiary_id }}" readonly>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Όνομα</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.first_name.value }}" readonly>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Επώνυμο</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.last_name.value }}" readonly>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Φύλο</label>
+    {{ step2_form.gender|add_class:"form-select" }}
+  </div>
+
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Έτος Γέννησης</label>
+    {{ step2_form.birth_year|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+	<label class="form-label">Ηλικία</label>
+	<input type="text" class="form-control" id="ageField" readonly>
+  </div>
+
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Οικ. Κατάσταση</label>
+    {{ step2_form.marital_status|add_class:"form-select" }}
+  </div>
+
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Αριθμός Παιδιών</label>
+    {{ step2_form.num_children|add_class:"form-control" }}
+  </div>
+</div>
+
+<div class="row" id="childrenDetails" style="display: none;">
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Ανήλικα Παιδιά</label>
+    {{ step2_form.minor_children|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Φοιτητές</label>
+    {{ step2_form.student_children|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Χωρίς Υποχρέωση Στρατού</label>
+    {{ step2_form.no_military_obligation|add_class:"form-select" }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Υπηκοότητα</label>
+    {{ step2_form.citizenship|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Ιθαγένεια</label>
+    {{ step2_form.nationality|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">ΑΜΚΑ</label>
+    {{ step2_form.health_id|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">ΑΦΜ</label>
+    {{ step2_form.vat|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Α.Δ.Τ.</label>
+    {{ step2_form.id_card|add_class:"form-control" }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <label class="form-label">Διεύθυνση</label>
+    {{ step2_form.address|add_class:"form-control" }}
+  </div>
+  <div class="col-md-3 mb-3">
+    <label class="form-label">Πόλη</label>
+    {{ step2_form.city|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Τ.Κ.</label>
+    {{ step2_form.postal_code|add_class:"form-control" }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Σταθερό</label>
+    {{ step2_form.landline|add_class:"form-control" }}
+  </div>
+  <div class="col-md-2 mb-3">
+    <label class="form-label">Κινητό</label>
+    {{ step2_form.mobile|add_class:"form-control" }}
+  </div>
+  <div class="col-md-3 mb-3">
+    <label class="form-label">Email</label>
+    {{ step2_form.email|add_class:"form-control" }}
+  </div>
+</div>
+
+<div class="form-check mb-3">
+  <input class="form-check-input" type="checkbox" id="third_contact" name="third_contact" value="yes" {% if third_contact %}checked{% endif %} onchange="toggleContactForm()">
+  <label class="form-check-label" for="third_contact">
+    Υπάρχει 3ο άτομο επικοινωνίας;
+  </label>
+</div>
+
+
+<div id="contact-form-wrapper" style="{% if not third_contact %}display:none;{% endif %}">
+  {% include 'partials/contact_form.html' with contact_form=contact_form %}
+</div>
+
+<script>
+function toggleContactForm() {
+  const show = document.getElementById("third_contact").checked;
+  console.log('Third contact selected:', show);
+  document.getElementById("contact-form-wrapper").style.display = show ? "block" : "none";
+}
+
+function toggleChildrenDetails() {
+  const num = parseInt(document.getElementById("id_num_children").value || "0");
+  document.getElementById("childrenDetails").style.display = num > 0 ? "flex" : "none";
+}
+
+function calculateAge() {
+  const birthYear = parseInt(document.getElementById("id_birth_year").value);
+  const ageField = document.getElementById("ageField");
+  ageField.value = !isNaN(birthYear) ? new Date().getFullYear() - birthYear : '';
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  toggleChildrenDetails();
+  calculateAge();
+  toggleContactForm();
+
+  document.getElementById("id_num_children").addEventListener("input", toggleChildrenDetails);
+  document.getElementById("id_birth_year").addEventListener("input", calculateAge);
+  document.getElementById("third_contact").addEventListener("change", toggleContactForm);
+});
+</script>
+

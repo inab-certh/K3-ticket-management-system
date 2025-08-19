@@ -1,0 +1,40 @@
+<!-- templates/requests/request_detail.html -->
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Αίτημα: {{ request }}</h2>
+  <p><b>Δομή:</b> {{ request.beneficiary.structure }}</p>
+  <p><b>Όνομα:</b> {{ request.beneficiary }}</p>
+  <p><b>Κατηγορία:</b> {{ request.category }}</p>
+  <p><b>Κατάσταση:</b> {{ request.get_status_display }}</p>
+  <p><b>Έκβαση:</b> {{ request.outcome }}</p>
+
+  <h4>Ενέργειες</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th><th>Ημερομηνία</th><th>Τύπος</th><th>Φορέας</th><th>Όνομα επικοινωνίας</th><th>Θέση</th><th>Τηλ.</th><th>e-mail</th><th>Αποτέλεσμα</th><th>Ενέργεια</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for action in request.actions.all %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ action.date }}</td>
+        <td>{{ action.get_action_type_display }}</td>
+        <td>{{ action.org_name }}</td>
+        <td>{{ action.contact_name }}</td>
+        <td>{{ action.contact_position }}</td>
+        <td>{{ action.contact_phone }}</td>
+        <td>{{ action.contact_email }}</td>
+        <td>{{ action.result }}</td>
+        <td>
+          <a href="{% url 'action_edit' action.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'action_create' request.pk %}" class="btn btn-success">Προσθήκη ενέργειας</a>
+</div>
+{% endblock %}

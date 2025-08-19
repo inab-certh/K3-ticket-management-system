@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}Νέο Αίτημα{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'request_list' %}">Λίστα Αιτήσεων</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Νέο Αίτημα</li>
+    </ol>
+  </nav>
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4">Νέο Αίτημα</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Beneficiary info (not editable, just shown) -->
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label class="form-label">ID Ωφελούμενου</label>
+          <input type="text" class="form-control" value="{{ beneficiary.id }}" disabled>
+          <input type="hidden" name="beneficiary_id" value="{{ beneficiary.id }}">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label class="form-label">Όνομα</label>
+          <input type="text" class="form-control" value="{{ beneficiary.first_name }}" disabled>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label class="form-label">Επώνυμο</label>
+          <input type="text" class="form-control" value="{{ beneficiary.last_name }}" disabled>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label class="form-label">Δομή</label>
+          <input type="text" class="form-control" value="{{ beneficiary.structure }}" disabled>
+        </div>
+      </div>
+
+      <!-- Request ID (shown, auto-calculated) -->
+      <div class="mb-4">
+        <span class="badge bg-info text-dark">Α/Α Αιτήματος: {{ request_number }}</span>
+      </div>
+
+      <!-- Request type -->
+      <div class="col-md-6 mb-3">
+    <label class="form-label">Αίτημα</label>
+    <select name="request_type" class="form-select" required>
+      <option value="" disabled selected>Επιλέξτε...</option>
+      <option value="Αναζήτηση Φαρμάκων">Αναζήτηση Φαρμάκων</option>
+      <option value="Απαλλαγές/Παροχές">Απαλλαγές/Παροχές</option>
+      <option value="Αποζημίωση Αναλώσιμων">Αποζημίωση Αναλώσιμων</option>
+      <option value="Δημιουργία/Ενημέρωση Φακέλου ΚΕΠΑ">Δημιουργία/Ενημέρωση Φακέλου ΚΕΠΑ</option>
+      <option value="Διαδικασίες εντός του Νοσοκομείου">Διαδικασίες εντός του Νοσοκομείου</option>
+      <option value="Δωρεάν Φιλοξενεία για Θεραπείες">Δωρεάν Φιλοξενεία για Θεραπείες</option>
+      <option value="Εισαγωγή στην 3βάθμια εκπαίδευση">Εισαγωγή στην 3βάθμια εκπαίδευση</option>
+      <option value="Ενημέρωση για εισηγητικό φάκελο">Ενημέρωση για εισηγητικό φάκελο</option>
+      <option value="Ενημέρωση για Επιδόματα">Ενημέρωση για Επιδόματα</option>
+      <option value="Εξετάσεις για Βιοδείκτες">Εξετάσεις για Βιοδείκτες</option>
+      <option value="Εξοδα Μετακίνισης">Εξοδα Μετακίνησης</option>
+      <option value="Εργασιακά Δικαιώματα">Εργασιακά Δικαιώματα</option>
+      <option value="Κατ'οίκον φροντίδα">Κατ'οίκον φροντίδα</option>
+      <option value="Κλινικές Εξωτερικού">Κλινικές Εξωτερικού</option>
+      <option value="Οικονομική Ενίσχυση">Οικονομική Ενίσχυση</option>
+      <option value="Παροχές μέσω ΕΟΠΥΥ">Παροχές μέσω ΕΟΠΥΥ</option>
+      <option value="Υπηρεσίες Ανακουφιστικής Φροντίδας">Υπηρεσίες Ανακουφιστικής Φροντίδας</option>
+      <option value="Ψυχολογική Υποστήριξη">Ψυχολογική Υποστήριξη</option>
+      <option value="Άλλο">Άλλο</option>
+      <option value="Έξοδα Κηδείας">Έξοδα Κηδείας</option>
+    </select>
+</div>
+
+
+      <div class="d-flex justify-content-end mt-4">
+        <button type="submit" class="btn btn-success px-4">Καταχώρηση</button>
+        <a href="{% url 'request_list' %}" class="btn btn-secondary ms-2">Ακύρωση</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

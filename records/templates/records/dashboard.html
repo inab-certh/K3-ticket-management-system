@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Αρχική{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <h1 class="h4">Καλώς ήρθατε στο Σύστημα Κ3</h1>
+  <p class="mb-4">Αυτή είναι η αρχική σας σελίδα. Εδώ μπορείτε να παρακολουθείτε τη συνολική εικόνα.</p>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-xl-4 mb-4">
+      <div class="card border-0 shadow">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="icon-shape icon-shape-primary rounded me-3">
+              <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a8 8 0 11-0.001 16.001A8 8 0 0110 2zm0 3a1 1 0 00-1 1v4H7a1 1 0 000 2h3a1 1 0 001-1V6a1 1 0 00-1-1z" />
+              </svg>
+            </div>
+            <div>
+              <h5 class="mb-1">Εγγραφές</h5>
+              <h6 class="fw-bold mb-0">42 συνολικές</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more cards, charts or tables here as needed -->
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,34 @@
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+
+# Environment variables / secrets
+.env
+
+# Django SQLite DB (if using)
+*.sqlite3
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs (optional)
+.vscode/
+.idea/
+
+# Node modules
+node_modules/
+
+# Vendor libraries (if they're downloaded dependencies)
+static/vendor/
+
+# Compiled/minified files (optional - if you generate these)
+static/css/*.min.css
+static/js/*.min.js
