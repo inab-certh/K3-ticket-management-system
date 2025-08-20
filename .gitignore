@@ -36,3 +36,5 @@ static/vendor/
 static/css/*.min.css
 static/js/*.min.js"K3/settings.py" 
 "K3/settings.py" 
+*.env 
+.env* 
