@@ -952,7 +952,7 @@
     "code": "C78",
     "label": "Δευτεροπαθές νεόπλασμα οργάνων αναπνευστικού και πεπτικού",
     "category": 1,
-    "subcategory": null,
+    "subcategory": 3,
     "is_active": true,
     "is_common": true,
     "notes": ""
@@ -963,9 +963,9 @@
   "pk": 36,
   "fields": {
     "code": "C80",
-    "label": "Κακοήθες νεόπλασμα χωρίς καθορισμένη εντόπιση",
+    "label": "Χωρίς καθορισμένη εντόπιση",
     "category": 1,
-    "subcategory": null,
+    "subcategory": 3,
     "is_active": true,
     "is_common": true,
     "notes": ""
