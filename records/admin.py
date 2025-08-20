@@ -75,11 +75,11 @@ class NeoplasmInline(admin.TabularInline):
 class TherapyInline(admin.TabularInline):
     model = Therapy
     extra = 0
-    fields = ("therapy_type", "hospital_name", "start_date")
+    fields = ("therapy_type", "hospital_name", "start_date")  # Changed from therapy_type_id
     show_change_link = True
     
     # Use custom form if available
-    if TherapyForm:
+    if 'TherapyForm' in locals():  # Better way to check if TherapyForm exists
         form = TherapyForm
 
 class RequestInline(admin.TabularInline):
@@ -606,7 +606,7 @@ class NeoplasmAdmin(admin.ModelAdmin):
 
 @admin.register(Therapy)
 class TherapyAdmin(admin.ModelAdmin):
-    list_display = ("neoplasm_info", "therapy_type", "hospital_name", "start_date")
+    list_display = ("neoplasm_info", "get_therapy_type_display", "hospital_name", "start_date")
     list_filter = ("therapy_type", "start_date", "neoplasm__icd10_category")
     search_fields = ("neoplasm__person__last_name", "neoplasm__person__first_name", "hospital_name")
     date_hierarchy = 'start_date'
@@ -664,6 +664,11 @@ class TherapyAdmin(admin.ModelAdmin):
             )
         return "-"
     neoplasm_info.short_description = "Ωφελούμενος & Νεόπλασμα"
+    
+    def get_therapy_type_display(self, obj):
+        """Display the human-readable therapy type"""
+        return obj.get_therapy_type_display()
+    get_therapy_type_display.short_description = "Είδος Θεραπείας"
     
     fieldsets = (
         ('Βασικά Στοιχεία', {
@@ -841,11 +846,11 @@ class DocumentAdmin(admin.ModelAdmin):
 #    list_filter = ['is_required_for_requests']
 #    search_fields = ['name']
 
-@admin.register(TherapyType)
-class TherapyTypeAdmin(admin.ModelAdmin):
-    list_display = ["name", "therapy_category"]
-    list_filter = ["therapy_category"]
-    search_fields = ["name"]
+#@admin.register(TherapyType)
+#class TherapyTypeAdmin(admin.ModelAdmin):
+#    list_display = ["name", "therapy_category"]
+#    list_filter = ["therapy_category"]
+#    search_fields = ["name"]
 
 # ========== ADMIN SITE CUSTOMIZATION ==========
 
