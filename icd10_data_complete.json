@@ -1,0 +1,2287 @@
+[
+{
+  "model": "records.icd10category",
+  "pk": 1,
+  "fields": {
+    "code_range": "C00-C97",
+    "name": "Κακοήθη νεοπλάσματα",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 2,
+  "fields": {
+    "code_range": "D10-D36",
+    "name": "Καλοήθη νεοπλάσματα",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 3,
+  "fields": {
+    "code_range": "D37-D48",
+    "name": "Νεοπλάσματα με αβέβαιη ή άγνωστη συμπεριφορά",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 4,
+  "fields": {
+    "code_range": "D00-D09",
+    "name": "Νεοπλάσματα in situ [ενδοεπιθηλιακά]",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Αίμα, Λεμφικό",
+    "description": "Λεμφικού, αιμοποιητικού και σχετικών ιστών",
+    "code_range_start": "C81",
+    "code_range_end": "C97!",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Αναπνευστικό",
+    "description": "Αναπνευστικού συστήματος και άλλων ενδοθωρακικών οργάνων",
+    "code_range_start": "C30",
+    "code_range_end": "C39",
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Ασαφώς καθοριζόμενα",
+    "description": "Ασαφώς καθοριζόμενων, δευτεροπαθών και μη καθορισμένων εντοπίσεων",
+    "code_range_start": "C76",
+    "code_range_end": "C80",
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "Γεννητικά όργανα Ανδρικά",
+    "description": "Ανδρικών γεννητικών οργάνων",
+    "code_range_start": "C60",
+    "code_range_end": "C63",
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Γεννητικά όργανα Γυναικεία",
+    "description": "Γυναικείων γεννητικών οργάνων",
+    "code_range_start": "C51",
+    "code_range_end": "C58",
+    "sort_order": 5
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "name": "Εγκέφαλος-Οφθαλμός",
+    "description": "Οφθαλμού, εγκεφάλου και άλλων τμημάτων κεντρικού νευρικού συστήματος",
+    "code_range_start": "C69",
+    "code_range_end": "C72",
+    "sort_order": 6
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "name": "Ενδοκρινείς αδένες",
+    "description": "Θυρεοειδούς και άλλων ενδοκρινών αδένων",
+    "code_range_start": "C73",
+    "code_range_end": "C75",
+    "sort_order": 7
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "name": "Μαλακά μόρια",
+    "description": "Μεσοθηλιακού ιστού και μαλακών μορίων",
+    "code_range_start": "C45",
+    "code_range_end": "C49",
+    "sort_order": 8
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "name": "Μαστός",
+    "description": "Μαστού [μαζικού αδένα]",
+    "code_range_start": "C50",
+    "code_range_end": "C50",
+    "sort_order": 9
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "name": "Οστά-Δέρμα",
+    "description": "Οστών και αρθρικών χόνδρων-Μελάνωμα και άλλα δέρματος",
+    "code_range_start": "C40",
+    "code_range_end": "C44",
+    "sort_order": 10
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 11,
+  "fields": {
+    "category": 1,
+    "name": "Ουροποιητικό",
+    "description": "Οργάνων ουροποιητικού συστήματος",
+    "code_range_start": "C64",
+    "code_range_end": "C68",
+    "sort_order": 11
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "name": "Πεπτικό",
+    "description": "Οργάνων πεπτικού συστήματος",
+    "code_range_start": "C15",
+    "code_range_end": "C26",
+    "sort_order": 12
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 13,
+  "fields": {
+    "category": 1,
+    "name": "Στόμα-Χείλος-Φάρυγγας",
+    "description": "Χείλους, στοματικής κοιλότητας και φάρυγγα",
+    "code_range_start": "C00",
+    "code_range_end": "C14",
+    "sort_order": 13
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 15,
+  "fields": {
+    "category": 4,
+    "name": "Πεπτικό",
+    "description": "Subcategory for Πεπτικό",
+    "code_range_start": "D00",
+    "code_range_end": "D01",
+    "sort_order": 14
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 16,
+  "fields": {
+    "category": 4,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "D02",
+    "code_range_end": "D02",
+    "sort_order": 15
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 17,
+  "fields": {
+    "category": 4,
+    "name": "Μελάνωμα",
+    "description": "Subcategory for Μελάνωμα",
+    "code_range_start": "D03",
+    "code_range_end": "D03",
+    "sort_order": 16
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 18,
+  "fields": {
+    "category": 4,
+    "name": "Δέρμα",
+    "description": "Subcategory for Δέρμα",
+    "code_range_start": "D04",
+    "code_range_end": "D04",
+    "sort_order": 17
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 19,
+  "fields": {
+    "category": 4,
+    "name": "Μαστός",
+    "description": "Subcategory for Μαστός",
+    "code_range_start": "D05",
+    "code_range_end": "D05",
+    "sort_order": 18
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 20,
+  "fields": {
+    "category": 4,
+    "name": "Γεννητικά όργανα",
+    "description": "Subcategory for Γεννητικά όργανα",
+    "code_range_start": "D06",
+    "code_range_end": "D07",
+    "sort_order": 19
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 21,
+  "fields": {
+    "category": 4,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "D09",
+    "code_range_end": "D09",
+    "sort_order": 20
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 22,
+  "fields": {
+    "category": 2,
+    "name": "Στόμα-Φάρυγγας",
+    "description": "Subcategory for Στόμα-Φάρυγγας",
+    "code_range_start": "D10",
+    "code_range_end": "D11",
+    "sort_order": 21
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 23,
+  "fields": {
+    "category": 2,
+    "name": "Πεπτικό",
+    "description": "Subcategory for Πεπτικό",
+    "code_range_start": "D12",
+    "code_range_end": "D13",
+    "sort_order": 22
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 24,
+  "fields": {
+    "category": 2,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "D14",
+    "code_range_end": "D14",
+    "sort_order": 23
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 25,
+  "fields": {
+    "category": 2,
+    "name": "’λλα",
+    "description": "Subcategory for ’λλα",
+    "code_range_start": "D15",
+    "code_range_end": "D36",
+    "sort_order": 24
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 26,
+  "fields": {
+    "category": 2,
+    "name": "Δέρμα",
+    "description": "Subcategory for Δέρμα",
+    "code_range_start": "D22",
+    "code_range_end": "D23",
+    "sort_order": 25
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 27,
+  "fields": {
+    "category": 2,
+    "name": "Μαστός",
+    "description": "Subcategory for Μαστός",
+    "code_range_start": "D24",
+    "code_range_end": "D24",
+    "sort_order": 26
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 28,
+  "fields": {
+    "category": 2,
+    "name": "Γεννητικά όργανα",
+    "description": "Subcategory for Γεννητικά όργανα",
+    "code_range_start": "D25",
+    "code_range_end": "D29",
+    "sort_order": 27
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 29,
+  "fields": {
+    "category": 2,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "D30",
+    "code_range_end": "D30",
+    "sort_order": 28
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 30,
+  "fields": {
+    "category": 2,
+    "name": "Ενδοκρινείς",
+    "description": "Subcategory for Ενδοκρινείς",
+    "code_range_start": "D31",
+    "code_range_end": "D35",
+    "sort_order": 29
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 31,
+  "fields": {
+    "category": 2,
+    "name": "Νευρικό σύστημα",
+    "description": "Subcategory for Νευρικό σύστημα",
+    "code_range_start": "D32",
+    "code_range_end": "D33",
+    "sort_order": 30
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 32,
+  "fields": {
+    "category": 3,
+    "name": "Στόμα-Πεπτικό",
+    "description": "Subcategory for Στόμα-Πεπτικό",
+    "code_range_start": "D37",
+    "code_range_end": "D37",
+    "sort_order": 31
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 33,
+  "fields": {
+    "category": 3,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "D38",
+    "code_range_end": "D38",
+    "sort_order": 32
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 34,
+  "fields": {
+    "category": 3,
+    "name": "Γεννητικά",
+    "description": "Subcategory for Γεννητικά",
+    "code_range_start": "D39",
+    "code_range_end": "D40",
+    "sort_order": 33
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 35,
+  "fields": {
+    "category": 3,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "D41",
+    "code_range_end": "D41",
+    "sort_order": 34
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 36,
+  "fields": {
+    "category": 3,
+    "name": "Νευρικό",
+    "description": "Subcategory for Νευρικό",
+    "code_range_start": "D42",
+    "code_range_end": "D43",
+    "sort_order": 35
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 37,
+  "fields": {
+    "category": 3,
+    "name": "Ενδοκρινείς",
+    "description": "Subcategory for Ενδοκρινείς",
+    "code_range_start": "D44",
+    "code_range_end": "D44",
+    "sort_order": 36
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 38,
+  "fields": {
+    "category": 3,
+    "name": "Αίμα",
+    "description": "Subcategory for Αίμα",
+    "code_range_start": "D45",
+    "code_range_end": "D47",
+    "sort_order": 37
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 39,
+  "fields": {
+    "category": 3,
+    "name": "’λλα",
+    "description": "Subcategory for ’λλα",
+    "code_range_start": "D48",
+    "code_range_end": "D48",
+    "sort_order": 38
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 1,
+  "fields": {
+    "code": "C81",
+    "label": "Hodgkin νόσος Λέμφωμα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 2,
+  "fields": {
+    "code": "C82",
+    "label": "Μη-Hodgkin θυλακιώδες λέμφωμα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 3,
+  "fields": {
+    "code": "C83",
+    "label": "Μη-Hodgkin μη θυλακιώδες λέμφωμα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 4,
+  "fields": {
+    "code": "C90",
+    "label": "Πολλαπλούν μυέλωμα και κακοήθη πλασματοκυτταρικά νεοπλάσματα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 5,
+  "fields": {
+    "code": "C91",
+    "label": "Λεμφική [λεμφογενής] λευχαιμία",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 6,
+  "fields": {
+    "code": "C92",
+    "label": "Μυελογενής λευχαιμία",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 7,
+  "fields": {
+    "code": "C50",
+    "label": "Μαστού",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 8,
+  "fields": {
+    "code": "C15",
+    "label": "Οισοφάγου",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 9,
+  "fields": {
+    "code": "C16",
+    "label": "Στομάχου",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 10,
+  "fields": {
+    "code": "C18",
+    "label": "Παχέος εντέρου [κόλου]",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 11,
+  "fields": {
+    "code": "C20",
+    "label": "Ορθού",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 12,
+  "fields": {
+    "code": "C22",
+    "label": "Ηπατος και ενδοηπατικών χοληφόρων πόρων",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 13,
+  "fields": {
+    "code": "C25",
+    "label": "Παγκρέατος",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 14,
+  "fields": {
+    "code": "C32",
+    "label": "Λάρυγγα",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 15,
+  "fields": {
+    "code": "C34",
+    "label": "Βρόγχου και πνεύμονα",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 16,
+  "fields": {
+    "code": "C64",
+    "label": "Νεφρού, εκτός νεφρικής πυέλου",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 17,
+  "fields": {
+    "code": "C67",
+    "label": "Ουροδόχου κύστης",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 18,
+  "fields": {
+    "code": "C53",
+    "label": "Τραχήλου μήτρας",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 19,
+  "fields": {
+    "code": "C56",
+    "label": "Ωοθήκης",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 20,
+  "fields": {
+    "code": "C61",
+    "label": "Προστάτη",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 21,
+  "fields": {
+    "code": "C71",
+    "label": "Εγκεφάλου",
+    "category": 1,
+    "subcategory": 6,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 22,
+  "fields": {
+    "code": "C43",
+    "label": "Κακόηθες μελάνωμα δέρματος",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 23,
+  "fields": {
+    "code": "C44",
+    "label": "’λλα δέρματος",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 24,
+  "fields": {
+    "code": "D12",
+    "label": "Κόλου, ορθού, πρωκτού και πρωκτικού σωλήνα",
+    "category": 2,
+    "subcategory": 23,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 25,
+  "fields": {
+    "code": "D24",
+    "label": "Μαστού [μαζικού αδένα]",
+    "category": 2,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 26,
+  "fields": {
+    "code": "D25",
+    "label": "Λειομύωμα μήτρας",
+    "category": 2,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 27,
+  "fields": {
+    "code": "D27",
+    "label": "Ωοθήκης",
+    "category": 2,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 28,
+  "fields": {
+    "code": "D30",
+    "label": "Οργάνων ουροποιητικού",
+    "category": 2,
+    "subcategory": 29,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 29,
+  "fields": {
+    "code": "D33",
+    "label": "Εγκεφάλου και άλλων τμημάτων κεντρικού νευρικού συστήματος",
+    "category": 2,
+    "subcategory": 31,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 30,
+  "fields": {
+    "code": "D34",
+    "label": "Θυρεοειδούς αδένα",
+    "category": 2,
+    "subcategory": 30,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 31,
+  "fields": {
+    "code": "D37",
+    "label": "Στοματικής κοιλότητας και οργάνων πεπτικού",
+    "category": 3,
+    "subcategory": 32,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 32,
+  "fields": {
+    "code": "D45",
+    "label": "Αληθής πολυκυτταραιμία",
+    "category": 3,
+    "subcategory": 38,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 33,
+  "fields": {
+    "code": "D46",
+    "label": "Μυελοδυσπλαστικά σύνδρομα",
+    "category": 3,
+    "subcategory": 38,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 34,
+  "fields": {
+    "code": "D47",
+    "label": "Λεμφικού, αιμοποιητικού και σχετικών ιστών",
+    "category": 3,
+    "subcategory": 38,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 35,
+  "fields": {
+    "code": "C78",
+    "label": "Δευτεροπαθές νεόπλασμα οργάνων αναπνευστικού και πεπτικού",
+    "category": 1,
+    "subcategory": null,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 36,
+  "fields": {
+    "code": "C80",
+    "label": "Κακοήθες νεόπλασμα χωρίς καθορισμένη εντόπιση",
+    "category": 1,
+    "subcategory": null,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 37,
+  "fields": {
+    "code": "C00",
+    "label": "Χείλους",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 38,
+  "fields": {
+    "code": "C01",
+    "label": "Βάσης γλώσσας",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 39,
+  "fields": {
+    "code": "C02",
+    "label": "’λλων και μη καθορισμένων τμημάτων γλώσσας",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 40,
+  "fields": {
+    "code": "C03",
+    "label": "Ούλων",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 41,
+  "fields": {
+    "code": "C04",
+    "label": "Εδάφους στόματος",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 42,
+  "fields": {
+    "code": "C05",
+    "label": "Υπερώας",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 43,
+  "fields": {
+    "code": "C06",
+    "label": "’λλων και μη καθορισμένων τμημάτων στόματος",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 44,
+  "fields": {
+    "code": "C07",
+    "label": "Παρωτίδας",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 45,
+  "fields": {
+    "code": "C08",
+    "label": "’λλων και μη καθορισμένων μεγάλων σιελογόνων αδένων",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 46,
+  "fields": {
+    "code": "C09",
+    "label": "Αμυγδαλής",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 47,
+  "fields": {
+    "code": "C10",
+    "label": "Στοματοφάρυγγα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 48,
+  "fields": {
+    "code": "C11",
+    "label": "Ρινοφάρυγγα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 49,
+  "fields": {
+    "code": "C12",
+    "label": "Απιοειδούς κόλπου",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 50,
+  "fields": {
+    "code": "C13",
+    "label": "Υποφάρυγγα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 51,
+  "fields": {
+    "code": "C14",
+    "label": "’λλων και ασαφώς καθορισμένων εντοπίσεων χείλους στοματικής κοιλότητας και φάρυγγα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 52,
+  "fields": {
+    "code": "C17",
+    "label": "Λεπτού εντέρου",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 53,
+  "fields": {
+    "code": "C19",
+    "label": "Ορθοσιγμοειδούς συμβολής",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 54,
+  "fields": {
+    "code": "C21",
+    "label": "Πρωκτού και πρωκτικού σωλήνα",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 55,
+  "fields": {
+    "code": "C23",
+    "label": "Χοληδόχου κύστης",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 56,
+  "fields": {
+    "code": "C24",
+    "label": "’λλων και μη καθορισμένων τμημάτων χοληφόρων πόρων",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 57,
+  "fields": {
+    "code": "C26",
+    "label": "’λλων και ασαφώς καθορισμένων οργάνων πεπτικού",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 58,
+  "fields": {
+    "code": "C30",
+    "label": "Ρινικής κοιλότητας και μέσου ωτός",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 59,
+  "fields": {
+    "code": "C31",
+    "label": "Επικουρικών [παραρρινίων] κόλπων",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 60,
+  "fields": {
+    "code": "C33",
+    "label": "Τραχείας",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 61,
+  "fields": {
+    "code": "C37",
+    "label": "Θύμου αδένα",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 62,
+  "fields": {
+    "code": "C38",
+    "label": "Καρδιάς, μεσοπλευρίου και υπεζωκότα",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 63,
+  "fields": {
+    "code": "C39",
+    "label": "Αλλων και ασαφώς καθορισμένων εντοπίσεων αναπνευστικού συστήματος, άλλων ενδοθωρακικών οργάνων",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 64,
+  "fields": {
+    "code": "C40",
+    "label": "Οστών και αρθρικών χόνδρων άκρων",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 65,
+  "fields": {
+    "code": "C41",
+    "label": "Οστών και αρθρικών χόνδρων άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 66,
+  "fields": {
+    "code": "C45",
+    "label": "Μεσοθηλίωμα",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 67,
+  "fields": {
+    "code": "C46",
+    "label": "Σάρκωμα Kaposi",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 68,
+  "fields": {
+    "code": "C47",
+    "label": "Περιφερικών νεύρων και αυτόνομου νευρικού συστήματος",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 69,
+  "fields": {
+    "code": "C48",
+    "label": "Οπισθοπεριτοναίου και περιτοναίου",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 70,
+  "fields": {
+    "code": "C49",
+    "label": "’λλου συνδετικού και μαλακών μορίων",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 71,
+  "fields": {
+    "code": "C51",
+    "label": "Αιδοίου",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 72,
+  "fields": {
+    "code": "C52",
+    "label": "Κόλπου",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 73,
+  "fields": {
+    "code": "C54",
+    "label": "Σώματος μήτρας",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 74,
+  "fields": {
+    "code": "C55",
+    "label": "Μήτρας μη καθορισμένου τμήματος",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 75,
+  "fields": {
+    "code": "C57",
+    "label": "’λλων και μη καθορισμένων γυναικείων γεννητικών οργάνων",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 76,
+  "fields": {
+    "code": "C58",
+    "label": "Πλακούντα",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 77,
+  "fields": {
+    "code": "C60",
+    "label": "Πέους",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 78,
+  "fields": {
+    "code": "C62",
+    "label": "Όρχεος",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 79,
+  "fields": {
+    "code": "C63",
+    "label": "’λλων και μη καθορισμένων ανδρικών γεννητικών οργάνων",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 80,
+  "fields": {
+    "code": "C65",
+    "label": "Νεφρικής πυέλου",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 81,
+  "fields": {
+    "code": "C66",
+    "label": "Ουρητήρα",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 82,
+  "fields": {
+    "code": "C68",
+    "label": "’λλων και μη καθορισμένων οργάνων ουροποιητικού",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 83,
+  "fields": {
+    "code": "C69",
+    "label": "Οφθαλμού και παραρτημάτων",
+    "category": 1,
+    "subcategory": 6,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 84,
+  "fields": {
+    "code": "C70",
+    "label": "Μηνίγγων",
+    "category": 1,
+    "subcategory": 6,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 85,
+  "fields": {
+    "code": "C72",
+    "label": "Νωτιαίου μυελού κρανιακών νεύρων και άλλων τμημάτων κεντρικού νευρικού συστήματος",
+    "category": 1,
+    "subcategory": 6,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 86,
+  "fields": {
+    "code": "C73",
+    "label": "Θυρεοειδούς αδένα",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 87,
+  "fields": {
+    "code": "C74",
+    "label": "Επινεφριδίου",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 88,
+  "fields": {
+    "code": "C75",
+    "label": "’λλων ενδοκρινών αδένων και σχετικών δομών",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 89,
+  "fields": {
+    "code": "C76",
+    "label": "Ασαφώς καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 90,
+  "fields": {
+    "code": "C77",
+    "label": "Δευτεροπαθές και μη καθορισμένο λεμφαδένων",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 91,
+  "fields": {
+    "code": "C79",
+    "label": "Δευτεροπαθές άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 92,
+  "fields": {
+    "code": "C84",
+    "label": "Λέμφωμα από ώριμα Τ/ΝΚ κύτταρα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 93,
+  "fields": {
+    "code": "C85",
+    "label": "’λλα και μη καθορισμένου τύπου μη-Hodgkin λέμφωμα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 94,
+  "fields": {
+    "code": "C88",
+    "label": "Κακοήθη ανοσοϋπερπλαστικά νοσήματα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 95,
+  "fields": {
+    "code": "C93",
+    "label": "Μονοκυτταρική λευχαιμία",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 96,
+  "fields": {
+    "code": "C94",
+    "label": "’λλες λευχαιμίες καθορισμένου κυτταρικού τύπου",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 97,
+  "fields": {
+    "code": "C95",
+    "label": "Λευχαιμία μη καθορισμένου κυτταρικού τύπου",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 98,
+  "fields": {
+    "code": "C96",
+    "label": "’λλα και μη καθορισμένα κακοήθη νεοπλάσματα λεμφικού αιμοποιητικού και σχετικών ιστών",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 99,
+  "fields": {
+    "code": "D00",
+    "label": "Στοματικής κοιλότητας οισοφάγου και στομάχου",
+    "category": 4,
+    "subcategory": 15,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 100,
+  "fields": {
+    "code": "D01",
+    "label": "’λλων και μη καθορισμένων οργάνων πεπτικού",
+    "category": 4,
+    "subcategory": 15,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 101,
+  "fields": {
+    "code": "D02",
+    "label": "Μέσου ωτός και αναπνευστικού συστήματος",
+    "category": 4,
+    "subcategory": 16,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 102,
+  "fields": {
+    "code": "D03",
+    "label": "Μελάνωμα δέρματος",
+    "category": 4,
+    "subcategory": 17,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 103,
+  "fields": {
+    "code": "D04",
+    "label": "Δέρματος",
+    "category": 4,
+    "subcategory": 18,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 104,
+  "fields": {
+    "code": "D05",
+    "label": "Μαστού",
+    "category": 4,
+    "subcategory": 19,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 105,
+  "fields": {
+    "code": "D06",
+    "label": "Τραχήλου μήτρας",
+    "category": 4,
+    "subcategory": 20,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 106,
+  "fields": {
+    "code": "D07",
+    "label": "’λλων και μη καθορισμένων γεννητικών οργάνων",
+    "category": 4,
+    "subcategory": 20,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 107,
+  "fields": {
+    "code": "D09",
+    "label": "’λλων και μη καθορισμένων εντοπίσεων",
+    "category": 4,
+    "subcategory": 21,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 108,
+  "fields": {
+    "code": "D10",
+    "label": "Στόματος και φάρυγγα",
+    "category": 2,
+    "subcategory": 22,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 109,
+  "fields": {
+    "code": "D11",
+    "label": "Μεγάλων σιελογόνων αδένων",
+    "category": 2,
+    "subcategory": 22,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 110,
+  "fields": {
+    "code": "D13",
+    "label": "’λλων και ασαφώς καθορισμένων τμημάτων πεπτικού",
+    "category": 2,
+    "subcategory": 23,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 111,
+  "fields": {
+    "code": "D14",
+    "label": "Μέσου ωτός και αναπνευστικού",
+    "category": 2,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 112,
+  "fields": {
+    "code": "D15",
+    "label": "’λλων και μη καθορισμένων ενδοθωρακικών οργάνων",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 113,
+  "fields": {
+    "code": "D16",
+    "label": "Οστών και αρθρικών χόνδρων",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 114,
+  "fields": {
+    "code": "D17",
+    "label": "Λιπώδους ιστού",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 115,
+  "fields": {
+    "code": "D18",
+    "label": "Αιμαγγειωμάτων και λεμφαγγειωμάτων οποιασδήποτε εντόπισης",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 116,
+  "fields": {
+    "code": "D19",
+    "label": "Μεσοθηλιακού ιστού",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 117,
+  "fields": {
+    "code": "D20",
+    "label": "Μαλακών μορίων οπισθοπεριτοναίου και περιτοναίου",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 118,
+  "fields": {
+    "code": "D21",
+    "label": "’λλου συνδετικού και μαλακών μορίων",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 119,
+  "fields": {
+    "code": "D22",
+    "label": "Μελανωματώδεις σπίλοι",
+    "category": 2,
+    "subcategory": 26,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 120,
+  "fields": {
+    "code": "D23",
+    "label": "’λλα δέρματος",
+    "category": 2,
+    "subcategory": 26,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 121,
+  "fields": {
+    "code": "D26",
+    "label": "Μήτρας",
+    "category": 2,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 122,
+  "fields": {
+    "code": "D28",
+    "label": "’λλων και μη καθορισμένων γυναικείων γεννητικών οργάνων",
+    "category": 2,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 123,
+  "fields": {
+    "code": "D29",
+    "label": "Ανδρικών γεννητικών οργάνων",
+    "category": 2,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 124,
+  "fields": {
+    "code": "D31",
+    "label": "Οφθαλμού και παραρτημάτων",
+    "category": 2,
+    "subcategory": 30,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 125,
+  "fields": {
+    "code": "D32",
+    "label": "Μηνίγγων",
+    "category": 2,
+    "subcategory": 31,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 126,
+  "fields": {
+    "code": "D35",
+    "label": "’λλων και μη καθορισμένων ενδοκρινών αδένων",
+    "category": 2,
+    "subcategory": 30,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 127,
+  "fields": {
+    "code": "D36",
+    "label": "’λλων και μη καθορισμένων εντοπίσεων",
+    "category": 2,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 128,
+  "fields": {
+    "code": "D38",
+    "label": "Μέσου ωτός οργάνων αναπνευστικού συστήματος και ενδοθωρακικών οργάνων",
+    "category": 3,
+    "subcategory": 33,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 129,
+  "fields": {
+    "code": "D39",
+    "label": "Γυναικείων γεννητικών οργάνων",
+    "category": 3,
+    "subcategory": 34,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 130,
+  "fields": {
+    "code": "D40",
+    "label": "Ανδρικών γεννητικών οργάνων",
+    "category": 3,
+    "subcategory": 34,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 131,
+  "fields": {
+    "code": "D41",
+    "label": "Ουροποιητικού συστήματος",
+    "category": 3,
+    "subcategory": 35,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 132,
+  "fields": {
+    "code": "D42",
+    "label": "Μηνίγγων",
+    "category": 3,
+    "subcategory": 36,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 133,
+  "fields": {
+    "code": "D43",
+    "label": "Εγκεφάλου και κεντρικού νευρικού συστήματος",
+    "category": 3,
+    "subcategory": 36,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 134,
+  "fields": {
+    "code": "D44",
+    "label": "Ενδοκρινών αδένων",
+    "category": 3,
+    "subcategory": 37,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 135,
+  "fields": {
+    "code": "D48",
+    "label": "’λλων και μη καθορισμένων εντοπίσεων",
+    "category": 3,
+    "subcategory": 39,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 136,
+  "fields": {
+    "code": "C97",
+    "label": "Πρωτοπαθή πολλαπλών εντοπίσεων",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 137,
+  "fields": {
+    "code": "C97!",
+    "label": "Με ανεξάρτητες πρωτοπαθείς πολλαπλές εντοπίσεις",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+}
+]
