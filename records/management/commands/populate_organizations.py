@@ -9,21 +9,55 @@ class Command(BaseCommand):
         
         # K3 Centers
         centers = [
-            ('K3 Αθήνα', 'Κεντρικό γραφείο Αθήνας', '210-1234567', 'athens@k3.gr'),
-            ('K3 Θεσσαλονίκη', 'Παράρτημα Θεσσαλονίκης', '2310-123456', 'thessaloniki@k3.gr'),
+            {
+                'name': 'ΑΘΗΝΑ',
+                'code': '1',
+                'address': 'Κωστή Παλαμά 13, 3ος όροφος',
+                'municipality': 'ΑΘΗΝΑΙΩΝ',
+                'phone': '2105221424',
+                'email': 'info@kapa3.gr',
+                'is_active': True
+            },
+            {
+                'name': 'ΘΕΣΣΑΛΟΝΙΚΗ',
+                'code': '2', 
+                'address': 'Θεαγένειο Νοσοκομείο, στην είσοδο',
+                'municipality': 'ΘΕΣΣΑΛΟΝΙΚΗΣ',
+                'phone': '6982003282',
+                'email': None,  # No email provided
+                'is_active': True
+            },
+            {
+                'name': 'ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ',
+                'code': '3',
+                'address': 'Πανεπιστημιακό Νοσοκομείο Αλεξανδρούπολης 1ο κτήριο, 1ος όροφος στην Ογκολογική Κλινική-Βραχεία Νοσηλεία',
+                'municipality': 'ΑΛΕΞΑΝΔΡΟΥΠΟΛΗΣ', 
+                'phone': '6976599184',
+                'email': 'k3alex@kapa3.gr',
+                'is_active': True
+            },
         ]
         
-        for name, address, phone, email in centers:
+        for center_data in centers:
             center, created = Center.objects.get_or_create(
-                name=name,
+                name=center_data['name'],
                 defaults={
-                    'address': address,
-                    'phone': phone,
-                    'email': email,
+                    'code': center_data['code'],
+                    'address': center_data['address'],
+                    'municipality': center_data['municipality'],
+                    'phone': center_data['phone'],
+                    'email': center_data['email'],
+                    'is_active': center_data['is_active'],
                 }
             )
             if created:
-                self.stdout.write(f'Created center: {center}')
+                self.stdout.write(
+                    self.style.SUCCESS(f'Created center: {center.name} (Code: {center.code})')
+                )
+            else:
+                self.stdout.write(
+                    self.style.WARNING(f'Center already exists: {center.name}')
+                )
         
         # External organizations
         orgs = [

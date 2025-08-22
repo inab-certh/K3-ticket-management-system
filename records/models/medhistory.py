@@ -34,8 +34,8 @@ class MedicalHistory(TimeStampedModel):
             raise ValidationError("Όταν έχει γίνει έλεγχος ΚΕΠΑ, ορίστε και ημερομηνία λήξης.")
     
     class Meta:
-        verbose_name = "Ιατρικό Ιστορικό"
-        verbose_name_plural = "Ιατρικά Ιστορικά"
+        verbose_name = "Αναπηρία & ΚΕΠΑ"
+        verbose_name_plural = "Αναπηρία & ΚΕΠΑ"
 
 
 class Neoplasm(TimeStampedModel):
@@ -73,7 +73,7 @@ class Neoplasm(TimeStampedModel):
     metastasis = models.BooleanField(default=False, verbose_name="Μεταστάσεις")
     surgery = models.BooleanField(default=False, verbose_name="Χειρουργική επέμβαση")
     surgery_hospital = models.CharField(max_length=255, blank=True, null=True, verbose_name="Νοσοκομείο Χειρουργείου")
-    scheduled_treatment = models.TextField(blank=True, null=True, verbose_name="Προγραμματισμένη θεραπεία")
+    scheduled_surgery = models.BooleanField(default=False, verbose_name="Προγραμματισμένη")
 
     def __str__(self):
         category_name = self.icd10_category.name if self.icd10_category else "Κατηγορία"
@@ -97,8 +97,8 @@ class Neoplasm(TimeStampedModel):
             raise ValidationError("Αν έχει γίνει χειρουργείο, πρέπει να δηλωθεί το νοσοκομείο.")
 
     class Meta:
-        verbose_name = "Νεόπλασμα"
-        verbose_name_plural = "Νεοπλάσματα"
+        verbose_name = "Νεόπλασμα & Θεραπεία"
+        verbose_name_plural = "Νεοπλάσματα & Θεραπείες"
         unique_together = ("person", "icd10_category", "icd10_code")
 
 
@@ -123,8 +123,8 @@ class Therapy(TimeStampedModel):
         choices=THERAPY_TYPES
     )
     hospital_name = models.CharField(max_length=255, blank=True, null=True, verbose_name="Νοσοκομείο")
-    start_date = models.DateField(blank=True, null=True, verbose_name="Ημερομηνία Έναρξης")
-    notes = models.TextField(blank=True, null=True, verbose_name="Σχόλια")
+    #start_date = models.DateField(blank=True, null=True, verbose_name="Ημερομηνία Έναρξης")
+    #notes = models.TextField(blank=True, null=True, verbose_name="Σχόλια")
 
     class Meta:
         verbose_name = "Θεραπεία"
@@ -133,8 +133,8 @@ class Therapy(TimeStampedModel):
         
     def __str__(self):
         therapy_name = self.get_therapy_type_display()
-        date_info = f" ({self.start_date})" if self.start_date else ""
-        return f"{therapy_name}{date_info}"
+        return f"{therapy_name}"
+        
         
         
 

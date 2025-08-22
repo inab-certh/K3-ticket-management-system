@@ -6,10 +6,10 @@ class NamedLookup(models.Model):
     """Base class for all lookup tables"""
     name = models.CharField("Όνομα", max_length=200, unique=True)
     name_en = models.CharField("English Name", max_length=200, blank=True)  # For international use
-    code = models.CharField("Κωδικός", max_length=20, blank=True, unique=True)
+    code = models.CharField("Κωδικός", max_length=40, blank=True, unique=True)
     is_active = models.BooleanField("Ενεργό", default=True)
     sort_order = models.IntegerField("Σειρά", default=0)  # For custom ordering
-    notes = models.TextField("Σημειώσεις", blank=True)
+    #notes = models.TextField("Σημειώσεις", blank=True)
     
     class Meta:
         abstract = True
@@ -63,8 +63,8 @@ class RequestStatus(NamedLookup):
                                  help_text="Hex color for UI display")
     
     class Meta:
-        verbose_name = "Κατάσταση αιτήματος"
-        verbose_name_plural = "Καταστάσεις αιτημάτων"
+        verbose_name = "Κατηγορία αιτήματος"
+        verbose_name_plural = "Κατηγορίες αιτημάτων"
 
     # Based on your Excel:
     # - Εκκρεμεί, κοινοποίηση αποτελέσματος

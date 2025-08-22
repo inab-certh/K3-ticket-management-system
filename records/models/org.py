@@ -6,7 +6,7 @@ from .lookups import Municipality
 class Center(TimeStampedModel):
     """Organization/Structure handling a request - K3 Centers"""
     name = models.CharField("Όνομα", max_length=160, unique=True)
-    code = models.CharField("Κωδικός", max_length=20, blank=True, unique=True)
+    #code = models.CharField("Κωδικός", max_length=20, blank=True, unique=True)
     address = models.CharField("Διεύθυνση", max_length=240, blank=True)
     municipality = models.ForeignKey(Municipality, on_delete=models.SET_NULL, 
                                    null=True, blank=True, verbose_name="Δήμος")
