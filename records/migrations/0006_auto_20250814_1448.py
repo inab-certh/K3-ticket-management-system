@@ -6,7 +6,6 @@ def create_default_centers(apps, schema_editor):
     centers = [
         {'name': 'ΑΘΗΝΑ', 'code': 'ATH', 'is_active': True},
         {'name': 'ΘΕΣΣΑΛΟΝΙΚΗ', 'code': 'THE', 'is_active': True},
-        {'name': 'ΠΑΤΡΑ', 'code': 'PAT', 'is_active': True},
     ]
     
     for center_data in centers:
@@ -17,7 +16,7 @@ def create_default_centers(apps, schema_editor):
 
 def remove_default_centers(apps, schema_editor):
     Center = apps.get_model('records', 'Center')
-    Center.objects.filter(name__in=['ΑΘΗΝΑ', 'ΘΕΣΣΑΛΟΝΙΚΗ', 'ΠΑΤΡΑ']).delete()
+    Center.objects.filter(name__in=['ΑΘΗΝΑ', 'ΘΕΣΣΑΛΟΝΙΚΗ']).delete()
 
 class Migration(migrations.Migration):
     dependencies = [

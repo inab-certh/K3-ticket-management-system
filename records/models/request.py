@@ -62,22 +62,7 @@ class Request(TimeStampedModel):
     @property
     def get_category_choices(self):
         return RequestTag._meta.get_field('category').choices
-    
-    primary_category = models.CharField("Κύρια κατηγορία", max_length=50, 
-                                      choices=[
-                                          ('kepa', 'ΚΕΠΑ'),
-                                          ('benefits', 'Επιδόματα/Παροχές'),
-                                          ('disability', 'Αναπηρία'),
-                                          ('work', 'Εργασιακά'),
-                                          ('education', 'Εκπαίδευση'),
-                                          ('medical', 'Ιατρικές Υπηρεσίες'),
-                                          ('psychosocial', 'Ψυχοκοινωνική Υποστήριξη'),
-                                          ('transport', 'Μετακίνηση'),
-                                          ('accommodation', 'Φιλοξενία'),
-                                          ('financial', 'Οικονομική Υποστήριξη'),
-                                          ('administrative', 'Διοικητικές Διαδικασίες'),
-                                      ])
-    
+      
     category = models.ForeignKey(RequestCategory, on_delete=models.PROTECT, 
                                 null=True, blank=True, verbose_name="Κατηγορία")
     # From Excel: Communication details
@@ -125,7 +110,7 @@ class Request(TimeStampedModel):
     # Assignment and outcome
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                    related_name="assigned_requests", verbose_name="Ανατέθηκε στον/στην")
-    outcome = models.CharField("Έκβαση αιτήματος", max_length=500, blank=True)
+    #outcome = models.CharField("Έκβαση αιτήματος", max_length=500, blank=True)
     
     # Audit fields
     created_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, 
@@ -141,7 +126,7 @@ class Request(TimeStampedModel):
             models.Index(fields=["person", "created_at"]),
             models.Index(fields=["assigned_to", "status"]),
             models.Index(fields=["priority", "created_at"]),
-            models.Index(fields=["primary_category"]),
+            models.Index(fields=["category"]),
         ]
         verbose_name = "Αίτημα"
         verbose_name_plural = "Αιτήματα"
@@ -181,14 +166,14 @@ class Request(TimeStampedModel):
     
     def save(self, *args, **kwargs):
         # Auto-set primary_category based on most common tag category
-        if not self.primary_category and self.pk:
+        if not self.category and self.pk:
             # Only after the object is saved (so tags can be accessed)
             tags = self.tags.all()
             if tags:
                 # Get the most common category among selected tags
                 categories = [tag.category for tag in tags]
                 if categories:
-                    self.primary_category = max(set(categories), key=categories.count)
+                    self.category = max(set(categories), key=categories.count)
         
         # Auto-set closed_date when status changes to closed
         if self.status and hasattr(self.status, 'is_closed') and self.status.is_closed and not self.closed_date:

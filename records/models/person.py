@@ -79,13 +79,17 @@ class Person(TimeStampedModel):
                               validators=[MinValueValidator(0.5), MaxValueValidator(2.5)])
     
     # Administrative (from Excel structure)
-    STRUCTURE_CHOICES = [
-        ('ΑΘΗΝΑ', 'ΑΘΗΝΑ'),
-        ('ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ', 'ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ'),
-        ('ΘΕΣΣΑΛΟΝΙΚΗ', 'ΘΕΣΣΑΛΟΝΙΚΗ'),
-    ]
+    #STRUCTURE_CHOICES = [        ('ΑΘΗΝΑ', 'ΑΘΗΝΑ'),        ('ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ', 'ΑΛΕΞΑΝΔΡΟΥΠΟΛΗ'),        ('ΘΕΣΣΑΛΟΝΙΚΗ', 'ΘΕΣΣΑΛΟΝΙΚΗ'),    ]
 
-    structure = models.CharField("Δομή", max_length=50, blank=True)
+    #structure = models.CharField("Δομή", max_length=50, blank=True)
+    center = models.ForeignKey(
+        Center, 
+        on_delete=models.CASCADE, 
+        verbose_name="Δομή/Κέντρο",
+        related_name='people',
+        null=True, 
+        blank=True
+    )
     registration_number = models.IntegerField("Αριθμός εγγραφής", unique=True, null=True, blank=True)
     KNOWLEDGE_SOURCE = [
         ('other_patient', 'Άλλον ασθενή'),

@@ -49,7 +49,7 @@ class Action(TimeStampedModel):
                               verbose_name="Ωφελούμενος")
     
     # Action details
-    action_type = models.CharField("Τύπος ενέργειας", max_length=20, choices=ACTION_TYPES)
+    action_type = models.CharField("Τύπος ενέργειας", max_length=20, choices=ACTION_TYPES, blank=True, null=True)
     
     # For calls and emails
     direction = models.CharField("Κατεύθυνση", max_length=10, choices=DIRECTION_CHOICES, blank=True, null=True)
