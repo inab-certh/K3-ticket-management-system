@@ -31,6 +31,7 @@ Deprecated==1.2.14
 distlib==0.3.8
 Django==4.2.9
 django-crispy-forms==2.1
+django-extensions==4.1
 docdata==0.0.3
 et-xmlfile==1.1.0
 exceptiongroup==1.2.0
@@ -41,6 +42,7 @@ fonttools==4.49.0
 fqdn==1.5.1
 fsspec==2024.2.0
 gensim==4.3.2
+git-filter-repo==2.47.0
 greenlet==3.0.3
 huggingface-hub==0.29.3
 idna==3.4
