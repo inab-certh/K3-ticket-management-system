@@ -57,12 +57,20 @@ class ContactPersonInline(admin.TabularInline):
     model = ContactPerson
     extra = 1
     fields = ('last_name', 'first_name', 'relation', 'address', 'city', 'postal_code', 'municipality', 'landline', 'mobile', 'email', 'is_primary')
+    autocomplete_fields = ['municipality']
 
 class MedicalHistoryInline(admin.StackedInline):
     model = MedicalHistory
     extra = 0
     can_delete = True
     max_num = 1
+    fields = (
+        ('disability', 'certified_disability', 'disability_percentage'),
+        ('kepa_check', 'kepa_expiry'),
+    )
+    
+    class Media:
+        js = ('assets/js/conditional_fields.js',)
 
 class ComorbidityInline(admin.StackedInline):
     model = Comorbidity
@@ -86,17 +94,6 @@ class ComorbidityInline(admin.StackedInline):
         }),
     )
 
-class NeoplasmInline(admin.TabularInline):
-    model = Neoplasm
-    extra = 1
-    show_change_link = True
-    # Include all the cascading fields
-    fields = ('icd10_category', 'icd10_subcategory', 'icd10_code', 'localization', 'metastasis', 'surgery')
-    
-    # Add the JavaScript
-    class Media:
-        js = ('assets/js/neoplasm_cascading.js',)
-
 class TherapyInline(admin.TabularInline):
     model = Therapy
     extra = 0
@@ -107,12 +104,7 @@ class TherapyInline(admin.TabularInline):
     if 'TherapyForm' in locals():  # Better way to check if TherapyForm exists
         form = TherapyForm
 
-class RequestInline(admin.TabularInline):
-    model = Request
-    extra = 0
-    fields = ('category', 'status', 'submission_date', 'assigned_to')
-    readonly_fields = ('category', 'submission_date')
-    
+   
 class ActionInline(admin.TabularInline):
     model = Action
     extra = 0
@@ -168,133 +160,312 @@ class DocumentInline(admin.TabularInline):
         return qs
 
 # ========== MAIN ADMIN CLASSES ==========
-
+# Updated PersonAdminForm
 class PersonAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not self.instance.pk:  # New instance
+        
+        # Auto-increment registration number for new instances
+        if not self.instance.pk:
             last_person = Person.objects.aggregate(
                 max_reg=models.Max('registration_number')
             )['max_reg']
             self.fields['registration_number'].initial = (last_person or 0) + 1
         
-        # Fix the center field - use IDs, not names!
-        from records.models import Center
+        # Set up center field properly
         self.fields['center'].queryset = Center.objects.filter(is_active=True)
-        # Don't override the widget - let Django handle it automatically
-    
+        
+        # Organize field help texts
+        self.fields['birth_year'].help_text = "Εισάγετε το έτος γέννησης (π.χ. 1980)"
+        self.fields['amka'].help_text = "11-ψήφιο ΑΜΚΑ"
+        self.fields['vat'].help_text = "9-ψήφιο ΑΦΜ"
+        self.fields['id_card'].help_text = "8-ψήφιο αριθμό ταυτότητας"
+        
     class Media:
-        js = ('assets/js/conditional_fields.js',)        
-            
+        js = ('assets/js/conditional_fields.js', 'assets/js/cascading_dropdowns.js')
+        
+    class Meta:
+        model = Person
+        fields = '__all__'
 
+def request_management(self, obj):
+    """Enhanced request management interface"""
+    if not obj.pk:
+        return format_html('<em>Αποθηκεύστε πρώτα τον ωφελούμενο για να προσθέσετε αιτήματα</em>')
+    
+    try:
+        requests = obj.requests.select_related(
+            'status', 'category', 'assigned_to'
+        ).prefetch_related('tags', 'actions').order_by('-created_at')
+    except AttributeError:
+        requests = Request.objects.filter(person=obj).select_related(
+            'status', 'category', 'assigned_to'
+        ).prefetch_related('tags', 'actions').order_by('-created_at')
+    
+    if not requests.exists():
+        # No requests - show add button
+        add_url = reverse('admin:records_request_add') + f'?person={obj.id}'
+        return format_html(
+            '<div style="text-align: center; padding: 20px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px;">'
+            '<p style="color: #6c757d; margin-bottom: 15px;"><em>Δεν υπάρχουν αιτήματα</em></p>'
+            '<a href="{}" target="_blank" '
+            'style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; '
+            'text-decoration: none; border-radius: 6px; font-weight: bold;">'
+            '➕ Προσθήκη πρώτου αιτήματος</a>'
+            '</div>', add_url
+        )
+    
+    # Group requests by status
+    from collections import defaultdict
+    status_groups = defaultdict(list)
+    
+    for request in requests:
+        status_name = request.status.name if request.status else "Χωρίς κατάσταση"
+        status_groups[status_name].append(request)
+    
+    # Build the display
+    status_sections = []
+    
+    for status_name, status_requests in status_groups.items():
+        count = len(status_requests)
+        
+        # Determine status color
+        status_colors = {
+            'Νέο': '#007bff',
+            'Σε εξέλιξη': '#ffc107', 
+            'Αναμονή': '#fd7e14',
+            'Ολοκληρωμένο': '#28a745',
+            'Ακυρώθηκε': '#dc3545',
+            'Κλειστό': '#6c757d'
+        }
+        status_color = status_colors.get(status_name, '#6c757d')
+        
+        # Status header with count
+        header = format_html(
+            '<div style="background: {}; color: white; padding: 8px 12px; margin: 8px 0 4px 0; '
+            'border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">'
+            '<strong>{}</strong>'
+            '<span style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-size: 12px;">{}</span>'
+            '</div>',
+            status_color, status_name, count
+        )
+        
+        # Individual requests in this status
+        request_cards = []
+        for request in status_requests:
+            # Priority indicator
+            priority_colors = {1: '#dc3545', 2: '#ffc107', 3: '#28a745'}
+            priority_color = priority_colors.get(request.priority, '#6c757d')
+            priority_name = dict(request.PRIORITY_CHOICES).get(request.priority, 'Μέτρια')
+            
+            # Tags display
+            tags = list(request.tags.all()[:3])
+            tags_display = ", ".join([tag.name for tag in tags])
+            if request.tags.count() > 3:
+                tags_display += f" (+{request.tags.count() - 3})"
+            if not tags_display:
+                tags_display = "Χωρίς ετικέτες"
+            
+            # Category
+            category_display = request.category.name if request.category else "Χωρίς κατηγορία"
+            
+            # Dates info
+            date_info = []
+            if request.submission_date:
+                date_info.append(f"📅 Υποβλήθηκε: {request.submission_date.strftime('%d/%m/%Y')}")
+            if request.due_date:
+                due_color = '#dc3545' if request.is_overdue else '#28a745'
+                date_info.append(f'<span style="color: {due_color};">⏰ Προθεσμία: {request.due_date.strftime("%d/%m/%Y")}</span>')
+            
+            date_html = '<br><small>' + ' • '.join(date_info) + '</small>' if date_info else ''
+            
+            # Assignment info
+            assignment_info = ""
+            if request.assigned_to:
+                assignment_info = f'<br><small style="color: #17a2b8;">👤 Ανατέθηκε σε: {request.assigned_to.get_full_name() or request.assigned_to.username}</small>'
+            
+            # Actions count
+            actions_count = request.actions.count() if hasattr(request, 'actions') else 0
+            actions_info = ""
+            if actions_count > 0:
+                actions_info = f'<br><small style="color: #6f42c1;">⚡ {actions_count} ενέργειες</small>'
+            
+            # Days open indicator
+            days_open = request.days_open
+            days_color = '#dc3545' if days_open > 30 else '#ffc107' if days_open > 14 else '#28a745'
+            
+            # Edit link
+            edit_url = reverse('admin:records_request_change', args=[request.id])
+            
+            # Card
+            card = format_html(
+                '<div style="margin: 4px 0; padding: 10px; background: white; border: 1px solid #e9ecef; border-radius: 4px;">'
+                '<div style="display: flex; justify-content: space-between; align-items: flex-start;">'
+                '<div style="flex: 1;">'
+                '<div style="display: flex; align-items: center; margin-bottom: 4px;">'
+                '<span style="background: {}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-right: 8px;">{}</span>'
+                '<span style="font-weight: bold; color: #495057;">{}</span>'
+                '</div>'
+                '<div style="font-size: 13px; color: #6c757d; margin-bottom: 4px;">🏷️ {}</div>'
+                '<div style="font-size: 12px; color: #6c757d;">📂 {}</div>'
+                '<div style="margin-top: 4px;">'
+                '<span style="background: {}; color: white; padding: 1px 4px; border-radius: 2px; font-size: 10px;">{} ημέρες ανοικτό</span>'
+                '</div>'
+                '{}'
+                '{}'
+                '{}'
+                '</div>'
+                '<a href="{}" target="_blank" '
+                'style="padding: 6px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; margin-left: 10px;">'
+                '✏️ Επεξεργασία</a>'
+                '</div>'
+                '</div>',
+                priority_color, priority_name,
+                category_display,
+                tags_display,
+                category_display,
+                days_color, days_open,
+                date_html,
+                assignment_info,
+                actions_info,
+                edit_url
+            )
+            request_cards.append(card)
+        
+        # Combine header and cards
+        status_section = header + ''.join(request_cards)
+        status_sections.append(status_section)
+    
+    # Add new request button
+    add_url = reverse('admin:records_request_add') + f'?person={obj.id}'
+    add_button = format_html(
+        '<div style="margin: 15px 0; text-align: center;">'
+        '<a href="{}" target="_blank" '
+        'style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; '
+        'text-decoration: none; border-radius: 4px; font-weight: bold;">'
+        '➕ Προσθήκη νέου αιτήματος</a>'
+        '</div>', add_url
+    )
+    
+    # Summary at the top
+    total_requests = requests.count()
+    status_count = len(status_groups)
+    
+    # Calculate some stats
+    open_requests = requests.exclude(status__is_closed=True).count() if hasattr(requests.first().status, 'is_closed') else 0
+    overdue_requests = sum(1 for r in requests if r.is_overdue)
+    
+    summary = format_html(
+        '<div style="background: #e3f2fd; padding: 10px; margin-bottom: 10px; border-radius: 4px; text-align: center;">'
+        '<strong>Σύνοψη:</strong> {} αιτήματα συνολικά • {} ανοικτά • {} εκπρόθεσμα • {} καταστάσεις'
+        '</div>',
+        total_requests, open_requests, overdue_requests, status_count
+    )
+    
+    return format_html(summary + ''.join(status_sections) + add_button)
+    
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     form = PersonAdminForm
 
-    list_display = ('full_name','center', 'age_display', 'gender', 'municipality_display', 'mobile', 'neoplasm_count','request_count')
-    list_filter = ('gender', 'center','marital_status', 'municipality__regional_unit__region', 'created_at', 'insurance_status', 'status')
+    list_display = (
+        'full_name', 'center', 'age_display', 'gender', 
+        'municipality_display', 'mobile', 'insurance_status',
+        'neoplasm_count', 'request_count'
+    )
+    
+    list_filter = (
+        'gender', 'center', 'marital_status', 'insurance_status', 'status',
+        'municipality__regional_unit__region', 'created_at'
+    )
+    
     search_fields = ('last_name', 'first_name', 'amka', 'mobile', 'email')
-    readonly_fields = ('created_at', 'updated_at', 'calculated_age', 'bmi', 'bmi_category', 'neoplasm_links')
+    
+    readonly_fields = (
+        'created_at', 'updated_at', 'calculated_age', 'bmi', 'bmi_category',
+        'neoplasm_management', 'request_management', 'registration_number'
+    )
     
     fieldsets = (
         ('Βασικά Στοιχεία', {
             'fields': (
                 ('last_name', 'first_name'),
                 ('father_name', 'mother_name'),
-                ('birth_year', 'calculated_age', 'gender'),
-                ('marital_status', 'children_count', 'minors', 'students', 'no_military_service'),
+                ('birth_year', 'calculated_age'),
+                ('gender', 'marital_status'),
+                ('children_count', 'minors', 'students', 'no_military_service'),
             )
         }),
-        ('Ταυτότητα', {
+        ('Ταυτότητα & Υπηκοότητα', {
             'fields': (
                 ('nationality', 'citizenship'),
-                ('vat', 'amka', 'id_card'),
+                ('vat', 'amka'),
+                'id_card',
             )
         }),
-        ('Επικοινωνία', {
+        ('Επικοινωνία & Διεύθυνση', {
             'fields': (
-                ('mobile', 'landline', 'email'),
+                ('mobile', 'landline'),
+                'email',
                 'address',
                 ('city', 'postal_code'),
-                ('region', 'regional_unit', 'municipality'),  # Updated this line
+                ('region', 'regional_unit', 'municipality'),
             )
         }),
-        ('Διαχείριση', {
+        ('Ασφάλιση & Συντάξεις', {
             'fields': (
-                ('registration_number', 'center', 'knowledge_source'),
-                ('created_at', 'updated_at'),
+                ('insurance_status', 'insurance_provider'),
+                'special_funds',
+                ('widow_pension', 'disability_pension'),
+            )
+        }),
+        ('Εργασιακά Στοιχεία', {
+            'fields': (
+                'status',
+                # Unemployment fields (shown conditionally)
+                ('unemployment_card', 'unemployment_registration_date'),
+                # Employment fields (shown conditionally)
+                ('profession', 'specialization'),
+                ('employment_type', 'employer_name'),
+                ('employer_legal_form', 'hire_date'),
+                ('work_schedule', 'contract_type'),
             ),
-        }),
-        ('Ασφάλιση & Απασχόληση', {
-            'fields': (
-                ('insurance_status', 'insurance_provider', 'special_funds'), 
-                ('status', 'widow_pension', 'disability_pension'),
-                ('unemployment_card', 'unemployment_registration_date'),  # Only show when unemployed
-                ('profession', 'specialization'),                          # Only show when employed
-                ('employment_type', 'employer_name'),                      # Only show when employed
-                ('employer_legal_form', 'hire_date'),                      # Only show when employed
-                ('work_schedule', 'contract_type'),                        # Only show when employed
-            )
-        }),
-        ('Διαχείριση Νεοπλασμάτων', {
-            'fields': ('neoplasm_links',),
-            'description': 'Χρησιμοποιήστε τους συνδέσμους παρακάτω για να διαχειριστείτε τα νεοπλάσματα του ωφελούμενου.'
+            'classes': ('collapse',)
         }),
         ('Φυσικά Χαρακτηριστικά', {
             'fields': (
                 ('weight', 'height'),
                 ('bmi', 'bmi_category'),
             ),
+            'classes': ('collapse',)
+        }),
+        ('Διαχειριστικά', {
+            'fields': (
+                ('registration_number', 'center'),
+                'knowledge_source',
+                ('created_at', 'updated_at'),
+            )
+        }),
+        ('Νεοπλάσματα', {
+            'fields': ('neoplasm_management',),
+            'description': 'Διαχείριση νεοπλασμάτων του ωφελούμενου'
+        }),
+        ('Αιτήματα', {
+            'fields': ('request_management',),
+            'description': 'Διαχείριση αιτημάτων του ωφελούμενου'
         }),
     )
-      
+    
+    # Remove RequestInline from inlines - now it's handled by request_management
     inlines = [
-        ContactPersonInline,          # First - Contact persons
-        NeoplasmInline,              # Fourth - Neoplasms (uncomment this)
-        MedicalHistoryInline,        # Then medical history
-        ComorbidityInline,           # Then comorbidities
-        RequestInline,               # Then requests
-        DocumentInline               # Finally documents
+        ContactPersonInline,
+        MedicalHistoryInline,
+        ComorbidityInline,
+        DocumentInline
     ]
     
-    def neoplasm_count(self, obj):
-        try:
-        # Try to use the reverse relationship
-            neoplasms = obj.neoplasms.all()
-        except AttributeError:
-            # If relationship doesn't exist, query directly
-            neoplasms = Neoplasm.objects.filter(person=obj)
-        
-        count = neoplasms.count()
-        if count > 0:
-            # Create a link to filtered neoplasm list
-            url = reverse('admin:records_neoplasm_changelist') + f'?person__id__exact={obj.id}'
-            # Get category breakdown for tooltip
-            from collections import defaultdict
-            categories = defaultdict(int)
-            for neoplasm in neoplasms:
-                category_name = neoplasm.icd10_category.name if neoplasm.icd10_category else "Άλλα"
-                categories[category_name] += 1
-            
-            breakdown = ", ".join([f"{cat}: {count}" for cat, count in categories.items()])
-            
-            return format_html(
-                '<a href="{}" style="color: #417690; font-weight: bold;" title="{}">'
-                '📋 {} νεοπλάσματα</a>', 
-                url, breakdown, count
-            )
-        else:
-            # Create "Add Neoplasm" link
-            add_url = reverse('admin:records_neoplasm_add') + f'?person={obj.id}'
-            return format_html(
-                '<a href="{}" style="color: #28a745; font-weight: bold;" title="Προσθήκη νέου νεοπλάσματος">'
-                '➕ Προσθήκη</a>', 
-                add_url
-            )
-    neoplasm_count.short_description = "Νεοπλάσματα"
-    
     class Media:
-        js = ('assets/js/cascading_dropdowns.js',)  # We'll create this
+        js = ('assets/js/conditional_fields.js', 'assets/js/cascading_dropdowns.js')
     
     def get_urls(self):
         urls = super().get_urls()
@@ -337,47 +508,74 @@ class PersonAdmin(admin.ModelAdmin):
     municipality_display.short_description = "Περιοχή"
     
     def neoplasm_count(self, obj):
-        neoplasms = obj.neoplasms.all()
+        try:
+            neoplasms = obj.neoplasms.all()
+        except AttributeError:
+            neoplasms = Neoplasm.objects.filter(person=obj)
         
-        if not neoplasms.exists():
+        count = neoplasms.count()
+        if count > 0:
+            url = reverse('admin:records_neoplasm_changelist') + f'?person__id__exact={obj.id}'
+            return format_html(
+                '<a href="{}" style="color: #417690; font-weight: bold;">'
+                '📋 {} νεοπλάσματα</a>', 
+                url, count
+            )
+        else:
             add_url = reverse('admin:records_neoplasm_add') + f'?person={obj.id}'
             return format_html(
-                '<a href="{}" style="color: #28a745; font-weight: bold;" title="Προσθήκη νέου νεοπλάσματος">'
+                '<a href="{}" style="color: #28a745; font-weight: bold;">'
                 '➕ Προσθήκη</a>', 
                 add_url
             )
-        
-        # Group by category for count
-        from collections import defaultdict
-        categories = defaultdict(int)
-        
-        for neoplasm in neoplasms:
-            category_name = neoplasm.icd10_category.name if neoplasm.icd10_category else "Άλλα"
-            categories[category_name] += 1
-        
-        # Create summary text
-        total = neoplasms.count()
-        url = reverse('admin:records_neoplasm_changelist') + f'?person__id__exact={obj.id}'
-        
-        # Show category breakdown in tooltip
-        breakdown = ", ".join([f"{cat}: {count}" for cat, count in categories.items()])
-        
-        return format_html(
-            '<a href="{}" style="color: #417690; font-weight: bold;" title="{}">'
-            '📋 {} νεοπλάσματα</a>', 
-            url, breakdown, total
-        )
-
     neoplasm_count.short_description = "Νεοπλάσματα"
     
-    def neoplasm_links(self, obj):
+    def request_count(self, obj):
+        try:
+            requests = obj.requests.all()
+        except AttributeError:
+            requests = Request.objects.filter(person=obj)
+        
+        count = requests.count()
+        if count > 0:
+            # Get status breakdown for tooltip
+            from collections import defaultdict
+            statuses = defaultdict(int)
+            for request in requests:
+                status_name = request.status.name if request.status else "Χωρίς κατάσταση"
+                statuses[status_name] += 1
+            
+            breakdown = ", ".join([f"{status}: {count}" for status, count in statuses.items()])
+            url = reverse('admin:records_request_changelist') + f'?person__id__exact={obj.id}'
+            
+            return format_html(
+                '<a href="{}" style="color: #007bff; font-weight: bold;" title="{}">'
+                '📋 {} αιτήματα</a>', 
+                url, breakdown, count
+            )
+        else:
+            add_url = reverse('admin:records_request_add') + f'?person={obj.id}'
+            return format_html(
+                '<a href="{}" style="color: #007bff; font-weight: bold;">'
+                '➕ Προσθήκη</a>', 
+                add_url
+            )
+    request_count.short_description = "Αιτήματα"
+    
+    def neoplasm_management(self, obj):
+        """Enhanced neoplasm management interface"""
         if not obj.pk:
             return format_html('<em>Αποθηκεύστε πρώτα τον ωφελούμενο για να προσθέσετε νεοπλάσματα</em>')
         
         try:
-            neoplasms = obj.neoplasms.all().order_by('-created_at')
+            neoplasms = obj.neoplasms.select_related(
+                'icd10_category', 'icd10_subcategory', 'icd10_code'
+            ).prefetch_related('therapies').order_by('-created_at')
         except AttributeError:
-            neoplasms = Neoplasm.objects.filter(person=obj).order_by('-created_at')
+            from .models import Neoplasm  # Make sure to import
+            neoplasms = Neoplasm.objects.filter(person=obj).select_related(
+                'icd10_category', 'icd10_subcategory', 'icd10_code'
+            ).prefetch_related('therapies').order_by('-created_at')
         
         if not neoplasms.exists():
             # No neoplasms - show add button
@@ -392,103 +590,95 @@ class PersonAdmin(admin.ModelAdmin):
                 '</div>', add_url
             )
         
-        # Group neoplasms by category
-        from collections import defaultdict
-        categories = defaultdict(list)
+        # Build comprehensive display
+        neoplasm_cards = []
         
         for neoplasm in neoplasms:
-            category = neoplasm.icd10_category
-            category_name = category.name if category else "Χωρίς κατηγορία"
-            categories[category_name].append(neoplasm)
-        
-        # Build the display
-        category_sections = []
-        
-        for category_name, category_neoplasms in categories.items():
-            count = len(category_neoplasms)
+            # Basic info
+            category_name = neoplasm.icd10_category.name if neoplasm.icd10_category else "Χωρίς κατηγορία"
+            code_info = f"{neoplasm.icd10_code.code}" if neoplasm.icd10_code else "Χωρίς κωδικό"
+            code_label = f"- {neoplasm.icd10_code.label}" if neoplasm.icd10_code else ""
+            location_info = f"📍 {neoplasm.localization}" if neoplasm.localization else ""
             
-            # Category header with count
-            header = (
-                f'<div style="background: #e3f2fd; padding: 8px 12px; margin: 8px 0 4px 0; '
-                f'border-left: 4px solid #1976d2; border-radius: 4px;">'
-                f'<strong style="color: #1976d2;">{category_name}</strong> '
-                f'<span style="background: #1976d2; color: white; padding: 2px 8px; '
-                f'border-radius: 12px; font-size: 12px; margin-left: 8px;">{count}</span>'
-                f'</div>'
+            # Status indicators
+            status_badges = []
+            if neoplasm.metastasis:
+                status_badges.append('<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px;">🔴 Μεταστάσεις</span>')
+            if neoplasm.surgery:
+                surgery_info = f" στο {neoplasm.surgery_hospital}" if neoplasm.surgery_hospital else ""
+                status_badges.append(f'<span style="background: #28a745; color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px;">✅ Χειρουργείο{surgery_info}</span>')
+            if neoplasm.scheduled_surgery:
+                status_badges.append('<span style="background: #ffc107; color: black; padding: 2px 6px; border-radius: 3px; font-size: 11px;">⏰ Προγραμματισμένο</span>')
+            
+            status_html = '<br>' + ' '.join(status_badges) if status_badges else ''
+            
+            # Therapies
+            therapies = neoplasm.therapies.all()
+            therapy_html = ""
+            if therapies.exists():
+                therapy_list = []
+                for therapy in therapies:
+                    therapy_name = therapy.get_therapy_type_display()
+                    hospital = f" ({therapy.hospital_name})" if therapy.hospital_name else ""
+                    therapy_list.append(f"💊 {therapy_name}{hospital}")
+                therapy_html = '<br><small style="color: #17a2b8;">' + '<br>'.join(therapy_list) + '</small>'
+            
+            # Edit link
+            edit_url = reverse('admin:records_neoplasm_change', args=[neoplasm.id])
+            
+            # Card
+            card = format_html(
+                '<div style="margin: 8px 0; padding: 12px; background: white; border-left: 4px solid #007bff; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">'
+                '<div style="display: flex; justify-content: space-between; align-items: flex-start;">'
+                '<div style="flex: 1;">'
+                '<div style="font-weight: bold; color: #007bff; margin-bottom: 4px;">{}</div>'
+                '<div style="font-size: 14px; color: #495057;">{} {}</div>'
+                '<div style="font-size: 12px; color: #6c757d; margin-top: 2px;">{}</div>'
+                '{}'
+                '{}'
+                '</div>'
+                '<a href="{}" target="_blank" '
+                'style="padding: 6px 12px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; margin-left: 10px;">'
+                '✏️ Επεξεργασία</a>'
+                '</div>'
+                '</div>',
+                category_name,
+                code_info, code_label,
+                location_info,
+                status_html,
+                therapy_html,
+                edit_url
             )
-            
-            # Individual neoplasms in this category
-            neoplasm_items = []
-            for neoplasm in category_neoplasms:
-                edit_url = reverse('admin:records_neoplasm_change', args=[neoplasm.id])
-                
-                # Build neoplasm info
-                code_info = f"{neoplasm.icd10_code.code}" if neoplasm.icd10_code else "Χωρίς κωδικό"
-                label_info = f"- {neoplasm.icd10_code.label}" if neoplasm.icd10_code else ""
-                location_info = f"📍 {neoplasm.localization}" if neoplasm.localization else ""
-                
-                # Status indicators
-                status_indicators = []
-                if neoplasm.metastasis:
-                    status_indicators.append('<span style="color: #dc3545;">🔴 Μεταστάσεις</span>')
-                if neoplasm.surgery:
-                    status_indicators.append('<span style="color: #28a745;">✅ Χειρουργείο</span>')
-                
-                status_text = " • ".join(status_indicators) if status_indicators else ""
-                
-                neoplasm_item = (
-                    f'<div style="margin: 4px 0; padding: 8px; background: white; '
-                    f'border: 1px solid #e9ecef; border-radius: 4px;">'
-                    f'<div style="display: flex; justify-content: space-between; align-items: center;">'
-                    f'<div>'
-                    f'<strong style="color: #495057;">{code_info}</strong> {label_info}<br>'
-                    f'<small style="color: #6c757d;">{location_info}</small>'
-                    f'{f"<br><small>{status_text}</small>" if status_text else ""}'
-                    f'</div>'
-                    f'<a href="{edit_url}" target="_blank" '
-                    f'style="padding: 4px 8px; background: #007bff; color: white; '
-                    f'text-decoration: none; border-radius: 4px; font-size: 12px;">✏️ Επεξεργασία</a>'
-                    f'</div>'
-                    f'</div>'
-                )
-                neoplasm_items.append(neoplasm_item)
-            
-            # Combine header and items
-            category_section = header + ''.join(neoplasm_items)
-            category_sections.append(category_section)
+            neoplasm_cards.append(card)
         
-        # Add "Add new" button
+        # Add new button and summary
         add_url = reverse('admin:records_neoplasm_add') + f'?person={obj.id}'
-        add_button = (
-            f'<div style="margin: 15px 0; text-align: center;">'
-            f'<a href="{add_url}" target="_blank" '
-            f'style="display: inline-block; padding: 8px 16px; background: #28a745; color: white; '
-            f'text-decoration: none; border-radius: 4px; font-weight: bold;">'
-            f'➕ Προσθήκη νέου νεοπλάσματος</a>'
-            f'</div>'
+        add_button = format_html(
+            '<div style="margin: 15px 0; text-align: center;">'
+            '<a href="{}" target="_blank" '
+            'style="display: inline-block; padding: 8px 16px; background: #28a745; color: white; '
+            'text-decoration: none; border-radius: 4px; font-weight: bold;">'
+            '➕ Προσθήκη νέου νεοπλάσματος</a>'
+            '</div>', add_url
         )
         
-        # Summary at the top
+        # Summary
         total_count = neoplasms.count()
-        category_count = len(categories)
-        summary = (
-            f'<div style="background: #fff3cd; padding: 10px; margin-bottom: 10px; '
-            f'border-left: 4px solid #ffc107; border-radius: 4px;">'
-            f'<strong>Σύνοψη:</strong> {total_count} νεοπλάσματα σε {category_count} κατηγορί{"ες" if category_count != 1 else "α"}'
-            f'</div>'
+        total_therapies = sum(n.therapies.count() for n in neoplasms)
+        summary = format_html(
+            '<div style="background: #e3f2fd; padding: 10px; margin-bottom: 10px; border-radius: 4px; text-align: center;">'
+            '<strong>Σύνοψη:</strong> {} νεοπλάσματα με {} θεραπείες συνολικά'
+            '</div>',
+            total_count, total_therapies
         )
         
-        return format_html(summary + ''.join(category_sections) + add_button)
+        return format_html(summary + ''.join(neoplasm_cards) + add_button)
 
-    neoplasm_links.short_description = "Διαχείριση νεοπλασμάτων"
-    
-    def request_count(self, obj):
-        count = obj.requests.count()
-        if count > 0:
-            url = reverse('admin:records_request_changelist') + f'?person__id__exact={obj.id}'
-            return format_html('<a href="{}">{} αιτήματα</a>', url, count)
-        return "0"
-    request_count.short_description = "Αιτήματα"
+    neoplasm_management.short_description = "Διαχείριση νεοπλασμάτων"
+
+    # Include the request_management method here
+    request_management = request_management
+
 
 
 @admin.register(Request)
@@ -1162,8 +1352,11 @@ class ActionAdmin(admin.ModelAdmin):
         js = ('assets/js/action_cascading.js',)
         
     fieldsets = (
+        ('Βασικά Στοιχεία', {
+            'fields': ('request', 'person_display')  # Show person as readonly display
+        }),
         ('Τύπος ενέργειας', {
-            'fields': ('request', 'action_type', 'direction', 'contact_type', 'referral_type')
+            'fields': ('action_type', 'direction', 'contact_type', 'referral_type')
         }),
         ('Λεπτομέρειες', {
             'fields': ('action_date', 'performed_by')
@@ -1176,7 +1369,41 @@ class ActionAdmin(admin.ModelAdmin):
             'fields': ('result', 'is_completed', 'requires_follow_up', 'follow_up_date')
         }),
     )
+    readonly_fields = ('person_display',)
+
+    def person_display(self, obj):
+        """Display the person from the request"""
+        if obj and obj.request and obj.request.person:
+            return str(obj.request.person)
+        elif hasattr(obj, '_request_person'):  # For new objects
+            return str(obj._request_person)
+        return "-"
+    person_display.short_description = "Ωφελούμενος"
     
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        
+        # Auto-populate from request parameter
+        if 'request' in request.GET and not obj:
+            try:
+                request_id = request.GET['request']
+                req = Request.objects.get(id=request_id)
+                form.base_fields['request'].initial = request_id
+                
+                # Make request readonly when pre-populated
+                form.base_fields['request'].widget.attrs['readonly'] = True
+            except Request.DoesNotExist:
+                pass
+        
+        return form
+    
+       
+    def save_model(self, request, obj, form, change):
+        """Auto-set person from request"""
+        if obj.request and not obj.person:
+            obj.person = obj.request.person
+        super().save_model(request, obj, form, change)
+        
     def action_display(self, obj):
         return str(obj)
     action_display.short_description = "Ενέργεια"
@@ -1269,46 +1496,48 @@ class CenterAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone', 'email']
     search_fields = ['name']
 
+class ExpiryStatusFilter(admin.SimpleListFilter):
+    title = 'Κατάσταση Λήξης'
+    parameter_name = 'expiry_status'
+    
+    def lookups(self, request, model_admin):
+        return (
+            ('expired', '⚠️ Έχει λήξει'),
+            ('expires_soon', '⏰ Λήγει σύντομα'),
+            ('active', '✅ Ενεργό'),
+            ('no_expiry', '➖ Χωρίς λήξη'),
+        )
+    
+    def queryset(self, request, queryset):
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        today = timezone.now().date()
+        
+        if self.value() == 'expired':
+            return queryset.filter(expiry_date__lt=today)
+        elif self.value() == 'expires_soon':
+            # Documents expiring within 30 days
+            soon = today + timedelta(days=30)
+            return queryset.filter(expiry_date__gte=today, expiry_date__lte=soon)
+        elif self.value() == 'active':
+            soon = today + timedelta(days=30)
+            return queryset.filter(expiry_date__gt=soon)
+        elif self.value() == 'no_expiry':
+            return queryset.filter(expiry_date__isnull=True)
+            
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ['person', 'document_type', 'title', 'is_verified', 'file_size_display', 'uploaded_by', 'created_at']
+    list_display = ['person', 'document_type', 'title', 'is_verified', 'created_at']
     list_filter = ['document_type', 'is_verified', 'created_at']
-    search_fields = ['person__last_name', 'person__first_name', 'title', 'description']
-    readonly_fields = ['file_size', 'original_filename', 'verified_at', 'created_at', 'updated_at']
-    
-    def file_size_display(self, obj):
-        if obj.file_size:
-            if obj.file_size < 1024:
-                return f"{obj.file_size} B"
-            elif obj.file_size < 1024*1024:
-                return f"{obj.file_size/1024:.1f} KB"
-            else:
-                return f"{obj.file_size/(1024*1024):.1f} MB"
-        return "-"
-    file_size_display.short_description = "Μέγεθος"
-    
-    fieldsets = (
-        ('Βασικά Στοιχεία', {
-            'fields': ('person', 'request', 'document_type', 'title', 'description')
-        }),
-        ('Αρχείο', {
-            'fields': ('file', 'original_filename', 'file_size')
-        }),
-        ('Επαλήθευση', {
-            'fields': ('is_verified', 'verified_by', 'verified_at'),
-        }),
-        ('Metadata', {
-            'fields': ('uploaded_by', 'created_at', 'updated_at'),
-            'classes': ('collapse',)
-        }),
-    )
+    search_fields = ['person__last_name', 'person__first_name', 'title']
 
 @admin.register(DocumentType)
 class DocumentTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'is_required_for_requests', 'description']
+    list_display = ['name', 'is_required_for_requests']
     list_filter = ['is_required_for_requests']
     search_fields = ['name', 'description']
-
+    list_editable = ['is_required_for_requests']
 
 #@admin.register(DocumentType)
 #class DocumentTypeAdmin(admin.ModelAdmin):
