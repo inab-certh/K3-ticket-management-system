@@ -27,7 +27,7 @@ class Command(BaseCommand):
         subcategories_created = {}
         
         try:
-            with open(csv_file, 'r', encoding='utf-8') as file:
+            with open(csv_file, 'r', encoding='windows-1253') as file:
                 reader = csv.DictReader(file)
                 
                 for row in reader:

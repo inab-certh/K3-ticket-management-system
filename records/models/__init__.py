@@ -1,7 +1,7 @@
 from .person import Person, ContactPerson
 from .medhistory import MedicalHistory, Neoplasm, Therapy, Comorbidity
 from .request import Request, RequestTag, RequestAttachment
-from .actions import Action, ActionAttachment
+from .actions import Action
 from .org import Center, ExternalOrganization, Contact
 from .document import Document, DocumentType
 from .icd10 import ICD10Code, ICD10Category, ICD10Subcategory  # Import from icd10.py

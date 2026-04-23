@@ -24,9 +24,13 @@
     <main class="content flex-grow-1 d-flex flex-column">
       <!-- Navbar -->
       {% include "includes/navigation.html" %}
+	  
+		<!-- Breadcrumbs -->
+{% block breadcrumbs %}{% endblock %}
 
       <!-- Page Content -->
       <div class="flex-grow-1">
+	    
         {% block content %}{% endblock %}
       </div>
 
@@ -36,6 +40,24 @@
   </div>
 
   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% if messages %}
+		<div class="px-4 pt-3">
+		  {% for message in messages %}
+		  <script>
+			Swal.fire({
+			  toast: true,
+			  position: 'top-end',
+			  icon: '{% if message.tags == "error" %}error{% elif message.tags == "warning" %}warning{% else %}success{% endif %}',
+			  title: '{{ message|escapejs }}',
+			  showConfirmButton: false,
+			  timer: 3000,
+			  timerProgressBar: true,
+			});
+		  </script>
+		  {% endfor %}
+		</div>
+		{% endif %}
   <script src="/static/assets/js/volt.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   {% block javascripts %}{% endblock %}

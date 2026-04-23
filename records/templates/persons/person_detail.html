@@ -1,0 +1,419 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}{{ person }} - K3{% endblock %}
+
+{% block stylesheets %}
+<style>
+.person-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #c0392b 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: white;
+}
+.person-header h2,
+.person-header p,
+.person-header a {
+    color: white !important;
+}
+
+.info-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #c0392b;;
+}
+
+.info-card h5 {
+    color: #c0392b;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.info-value {
+    color: #495057;
+    font-weight: 500;
+}
+
+.badge-custom {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.contact-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #28a745;
+}
+
+.contact-card.primary {
+    border-left-color: #007bff;
+    background: #e3f2fd;
+}
+
+.btn-action {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="py-4">
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+        <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+            <li class="breadcrumb-item">
+                <a href="{% url 'dashboard' %}">
+                    <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                    </svg>
+                </a>
+            </li>
+            <li class="breadcrumb-item"><a href="{% url 'person_list' %}">Ωφελούμενοι</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ person.last_name }} {{ person.first_name }}</li>
+        </ol>
+    </nav>
+
+    <!-- Person Header -->
+    <div class="person-header">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-user-circle fa-3x"></i>
+                    </div>
+                    <div>
+                        <h2 class="mb-1">{{ person.last_name }} {{ person.first_name }}
+							{% if not person.has_open_requests %}
+								<span class="badge bg-secondary ms-2" style="font-size: 0.65rem; vertical-align: middle;">Χωρίς ανοικτά αιτήματα</span>
+							{% endif %}
+						</h2>
+                        <p class="mb-1">
+                            {% if person.calculated_age %}
+                                {{ person.calculated_age }} ετών
+                            {% endif %}
+                            {% if person.gender %}
+                                • {{ person.get_gender_display }}
+                            {% endif %}
+                            {% if person.amka %}
+                                • ΑΜΚΑ: {{ person.amka }}
+                            {% endif %}
+                        </p>
+                        <p class="mb-0 opacity-75">
+                            <i class="fas fa-id-badge me-2"></i>
+                            Αριθμός εγγραφής: {{ person.registration_number|default:"—" }}
+                            {% if person.center %}
+                                • {{ person.center.name }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="d-flex flex-column flex-md-row gap-2">
+                    <a href="{% url 'person_update' person.pk %}" class="btn btn-light btn-action">
+                        <i class="fas fa-edit me-2"></i>Επεξεργασία
+                    </a>
+                    {% if person.requests.exists %}
+                        <a href="{% url 'request_create' %}?person={{ person.pk }}" class="btn btn-success btn-action">
+                            <i class="fas fa-plus me-2"></i>Νέο Αίτημα
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Left Column -->
+    <div class="col-lg-8">
+        <!-- Basic Information -->
+        <div class="info-card">
+            <h5><i class="fas fa-user me-2"></i>Βασικά Στοιχεία</h5>
+            <div class="info-row">
+                <span class="info-label">Επώνυμο:</span>
+                <span class="info-value">{{ person.last_name }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Όνομα:</span>
+                <span class="info-value">{{ person.first_name }}</span>
+            </div>
+            {% if person.father_name %}
+            <div class="info-row">
+                <span class="info-label">Πατρώνυμο:</span>
+                <span class="info-value">{{ person.father_name }}</span>
+            </div>
+            {% endif %}
+            {% if person.mother_name %}
+            <div class="info-row">
+                <span class="info-label">Μητρώνυμο:</span>
+                <span class="info-value">{{ person.mother_name }}</span>
+            </div>
+            {% endif %}
+            <div class="info-row">
+                <span class="info-label">Έτος γέννησης:</span>
+                <span class="info-value">{{ person.birth_date|default:"—" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Οικογενειακή κατάσταση:</span>
+                <span class="info-value">{{ person.get_marital_status_display|default:"—" }}</span>
+            </div>
+            {% if person.children_count > 0 %}
+            <div class="info-row">
+                <span class="info-label">Τέκνα:</span>
+                <span class="info-value">
+                    {{ person.children_count }} συνολικά
+                    {% if person.minors %} • {{ person.minors }} ανήλικα{% endif %}
+                    {% if person.students %} • {{ person.students }} φοιτητές{% endif %}
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Contact Information -->
+        <div class="info-card">
+            <h5><i class="fas fa-phone me-2"></i>Στοιχεία Επικοινωνίας</h5>
+            <div class="info-row">
+                <span class="info-label">Κινητό:</span>
+                <span class="info-value">
+                    {% if person.mobile %}
+                        <a href="tel:{{ person.mobile }}">{{ person.mobile }}</a>
+                    {% else %}
+                        —
+                    {% endif %}
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Σταθερό:</span>
+                <span class="info-value">
+                    {% if person.landline %}
+                        <a href="tel:{{ person.landline }}">{{ person.landline }}</a>
+                    {% else %}
+                        —
+                    {% endif %}
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span class="info-value">
+                    {% if person.email %}
+                        <a href="mailto:{{ person.email }}">{{ person.email }}</a>
+                    {% else %}
+                        —
+                    {% endif %}
+                </span>
+            </div>
+            {% if person.address or person.city %}
+            <div class="info-row">
+                <span class="info-label">Διεύθυνση:</span>
+                <span class="info-value">
+                    {% if person.address %}{{ person.address }}{% endif %}
+                    {% if person.city %}{% if person.address %}, {% endif %}{{ person.city }}{% endif %}
+                    {% if person.postal_code %} {{ person.postal_code }}{% endif %}
+                </span>
+            </div>
+            {% endif %}
+            {% if person.municipality %}
+            <div class="info-row">
+                <span class="info-label">Περιοχή:</span>
+                <span class="info-value">{{ person.municipality.name }}, {{ person.municipality.regional_unit.region.name }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Insurance & Employment -->
+        <div class="info-card">
+            <h5><i class="fas fa-shield-alt me-2"></i>Ασφάλιση & Εργασία</h5>
+            <div class="info-row">
+                <span class="info-label">Κατάσταση Ασφάλισης:</span>
+                <span class="info-value">
+                    <span class="badge badge-custom 
+                        {% if person.insurance_status == 'insured' %}bg-success
+                        {% elif person.insurance_status == 'uninsured' %}bg-danger
+                        {% else %}bg-warning{% endif %}">
+                        {{ person.get_insurance_status_display }}
+                    </span>
+                </span>
+            </div>
+            {% if person.insurance_provider %}
+            <div class="info-row">
+                <span class="info-label">Φορέας Ασφάλισης:</span>
+                <span class="info-value">{{ person.get_insurance_provider_display }}</span>
+            </div>
+            {% endif %}
+            {% if person.status %}
+            <div class="info-row">
+                <span class="info-label">Εργασιακή Κατάσταση:</span>
+                <span class="info-value">{{ person.get_status_display }}</span>
+            </div>
+            {% endif %}
+            {% if person.profession %}
+            <div class="info-row">
+                <span class="info-label">Επάγγελμα:</span>
+                <span class="info-value">{{ person.profession }}{% if person.specialization %} ({{ person.specialization }}){% endif %}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Physical Characteristics -->
+        {% if person.weight or person.height %}
+        <div class="info-card">
+            <h5><i class="fas fa-ruler me-2"></i>Φυσικά Χαρακτηριστικά</h5>
+            {% if person.weight %}
+            <div class="info-row">
+                <span class="info-label">Βάρος:</span>
+                <span class="info-value">{{ person.weight }} kg</span>
+            </div>
+            {% endif %}
+            {% if person.height %}
+            <div class="info-row">
+                <span class="info-label">Ύψος:</span>
+                <span class="info-value">{{ person.height }} m</span>
+            </div>
+            {% endif %}
+            {% if person.bmi %}
+            <div class="info-row">
+                <span class="info-label">BMI:</span>
+                <span class="info-value">{{ person.bmi }} ({{ person.bmi_category }})</span>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+        <!-- Contact Persons -->
+        <div class="info-card">
+            <h5><i class="fas fa-users me-2"></i>Άτομα Επικοινωνίας</h5>
+            {% if contact_persons %}
+                {% for contact in contact_persons %}
+                <div class="contact-card {% if contact.is_primary %}primary{% endif %}">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <strong>{{ contact.last_name }} {{ contact.first_name }}</strong>
+                            {% if contact.is_primary %}
+                                <span class="badge bg-primary ms-2">Κύρια επαφή</span>
+                            {% endif %}
+                            <br>
+                            <small class="text-muted">{{ contact.get_relation_display }}</small>
+                        </div>
+                    </div>
+                    {% if contact.mobile or contact.landline %}
+                    <div class="mt-2">
+                        {% if contact.mobile %}
+                            <div><i class="fas fa-mobile-alt me-2"></i>{{ contact.mobile }}</div>
+                        {% endif %}
+                        {% if contact.landline %}
+                            <div><i class="fas fa-phone me-2"></i>{{ contact.landline }}</div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if contact.email %}
+                    <div class="mt-1">
+                        <i class="fas fa-envelope me-2"></i>{{ contact.email }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-user-friends fa-2x mb-3"></i>
+                    <p>Δεν έχουν οριστεί άτομα επικοινωνίας</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Recent Requests -->
+        <div class="info-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Πρόσφατα Αιτήματα</h5>
+                <a href="{% url 'request_create' %}?person={{ person.pk }}" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-plus"></i> Νέο
+                </a>
+            </div>
+            {% if recent_requests %}
+                {% for request in recent_requests %}
+                <div class="border-bottom pb-2 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <strong>{{ request.subject|default:"Αίτημα" }} #{{ forloop.counter }}</strong>
+                        <small class="text-muted">{% if request.submission_date %}{{ request.submission_date|date:"d/m/Y" }}{% else %}{{ request.created_at|date:"d/m/Y" }}{% endif %}</small>
+                    </div>
+                    <small class="text-muted">{{ request.status.name|default:"—" }}</small>
+                    <div>
+                        <a href="{% url 'request_detail' request.pk %}" class="btn btn-sm btn-outline-primary mt-1">
+                            Προβολή
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-clipboard fa-2x mb-3"></i>
+                    <p>Δεν υπάρχουν αιτήματα</p>
+                    <a href="{% url 'request_create' %}?person={{ person.pk }}" class="btn btn-sm btn-primary">
+                        Δημιουργία πρώτου αιτήματος
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Administrative Info -->
+        <div class="info-card">
+            <h5><i class="fas fa-cog me-2"></i>Διαχειριστικά</h5>
+            <div class="info-row">
+                <span class="info-label">Ημ. Εγγραφής:</span>
+                <span class="info-value">{{ person.created_at|date:"d/m/Y H:i" }}</span>
+            </div>
+            {% if person.knowledge_source %}
+            <div class="info-row">
+                <span class="info-label">Γνώση Κ3 από:</span>
+                <span class="info-value">{{ person.get_knowledge_source_display }}</span>
+            </div>
+            {% endif %}
+            {% if person.updated_at != person.created_at %}
+            <div class="info-row">
+                <span class="info-label">Τελ. Ενημέρωση:</span>
+                <span class="info-value">{{ person.updated_at|date:"d/m/Y H:i" }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,65 +1,143 @@
 <!-- templates/requests/request_list.html -->
 {% extends "layouts/base.html" %}
-
 {% block title %}Αιτήματα{% endblock %}
-
-
 {% block content %}
-<div class="py-4">
-<nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
-      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Λίστα Αιτήσεων</li>
-    </ol>
-  </nav>
-  <h2>Αιτήματα</h2>
-  <form method="get" class="row g-2 mb-3">
+<div class="container-fluid py-4">
+  <div class="row mb-3">
     <div class="col">
-      <input type="text" name="q" class="form-control" placeholder="Αναζήτηση επωνύμου" value="{{ request.GET.q }}">
+      <h2 class="h4 mb-0">Αιτήματα</h2>
+      <p class="text-muted mb-0">Διαχείριση αιτημάτων ωφελούμενων</p>
     </div>
-    <div class="col">
-      <select name="status" class="form-select">
-        <option value="">Όλες οι καταστάσεις</option>
-        {% for val, name in requests.model.K3RequestStatus.choices %}
-          <option value="{{ val }}" {% if request.GET.status == val %}selected{% endif %}>{{ name }}</option>
-        {% endfor %}
-      </select>
+    <div class="col-auto">
+      <a href="{% url 'request_create' %}" class="btn btn-primary">+ Νέο Αίτημα</a>
     </div>
-    <div class="col">
-      <button type="submit" class="btn btn-primary">Φίλτρο</button>
+  </div>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="get" class="row g-2 mb-3">
+        <div class="col-md-3">
+          <input type="text" name="q" class="form-control"
+                 placeholder="Αναζήτηση ωφελούμενου" value="{{ current_filters.q }}">
+        </div>
+        <div class="col-md-2">
+          <select name="status" class="form-select">
+            <option value="">Όλες οι καταστάσεις</option>
+            {% for s in statuses %}
+              <option value="{{ s.id }}" {% if current_filters.status == s.id|stringformat:"s" %}selected{% endif %}>
+                {{ s.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select name="priority" class="form-select">
+            <option value="">Όλες οι προτεραιότητες</option>
+            {% for val, label in priorities %}
+              <option value="{{ val }}" {% if current_filters.priority == val|stringformat:"s" %}selected{% endif %}>
+                {{ label }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select name="tag" class="form-select">
+            <option value="">Όλες οι ετικέτες</option>
+            {% for tag in tags %}
+              <option value="{{ tag.id }}" {% if current_filters.tag == tag.id|stringformat:"s" %}selected{% endif %}>
+                {{ tag.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select name="assigned" class="form-select">
+            <option value="">Όλοι οι χρήστες</option>
+            {% for u in users %}
+              <option value="{{ u.id }}" {% if current_filters.assigned == u.id|stringformat:"s" %}selected{% endif %}>
+                {{ u.get_full_name|default:u.username }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-1 d-flex align-items-center gap-2">
+          <div class="form-check mb-0">
+            <input class="form-check-input" type="checkbox" name="overdue" value="1" id="overdueCheck"
+                   {% if current_filters.overdue %}checked{% endif %}>
+            <label class="form-check-label small" for="overdueCheck">Εκπρόθεσμα</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-outline-secondary">Φίλτρα</button>
+          <a href="{% url 'request_list' %}" class="btn btn-link">Καθαρισμός</a>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="text-muted">Ωφελούμενος</th>
+              <th class="text-muted">Κατάσταση</th>
+              <th class="d-none d-lg-table-cell text-muted">Ετικέτες</th>
+              <th class="text-muted">Προτεραιότητα</th>
+              <th class="d-none d-md-table-cell text-muted">Ημ. Υποβολής</th>
+              <th class="d-none d-lg-table-cell text-muted">Ανατέθηκε</th>
+              <th class="d-none d-lg-table-cell text-muted">Ενέργειες</th>
+              <th class="text-muted"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for req in requests %}
+            <tr {% if req.status.is_closed %}class="text-muted"{% endif %}>
+              <td>
+                <a href="{% url 'person_detail' req.person.id %}" class="fw-semibold text-decoration-none">
+                  {{ req.person }}
+                </a>
+              </td>
+              <td>
+                <span class="badge
+                  {% if req.status.is_closed %}bg-secondary
+                  {% elif req.is_overdue %}bg-danger
+                  {% else %}bg-primary{% endif %}">
+                  {{ req.status }}
+                </span>
+              </td>
+              <td class="d-none d-lg-table-cell">
+                {% for tag in req.tags.all|slice:":2" %}
+                  <span class="badge bg-light text-dark border me-1">{{ tag.name }}</span>
+                {% endfor %}
+                {% if req.tags.count > 2 %}
+                  <small class="text-muted">+{{ req.tags.count|add:"-2" }}</small>
+                {% endif %}
+              </td>
+              <td>
+                <span class="{% if req.priority == 1 %}text-danger fw-bold{% elif req.priority == 2 %}text-warning fw-bold{% else %}text-success{% endif %}">
+                  {{ req.priority_display }}
+                </span>
+              </td>
+              <td class="d-none d-md-table-cell">{{ req.submission_date|date:"d/m/Y"|default:"—" }}</td>
+              <td class="d-none d-lg-table-cell">
+                {% if req.assigned_to %}{{ req.assigned_to.get_full_name|default:req.assigned_to.username }}{% else %}—{% endif %}
+              </td>
+              <td class="d-none d-lg-table-cell">
+                <small class="text-muted">{{ req.number_of_actions }} ενέργειες</small>
+              </td>
+              <td>
+                <a href="{% url 'request_detail' req.id %}" class="btn btn-sm btn-outline-primary">Προβολή</a>
+                {% if not req.status.is_closed %}
+                  <a href="{% url 'request_update' req.id %}" class="btn btn-sm btn-outline-secondary">Επεξεργασία</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8" class="text-center text-muted py-4">Δεν βρέθηκαν αιτήματα.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-	<div class="col-auto ms-auto">
-      <a href="{% url 'new_request' %}" class="btn btn-success">+ Νέο αίτημα</a>
-    </div>
-  </form>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>ΔΟΜΗ</th>
-        <th>Επωνυμο</th>
-        <th>Ονομα</th>
-        <th>Κατηγορια</th>
-        <th>Εκβαση</th>
-        <th>Ενεργειες</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for req in requests %}
-      <tr onclick="window.location='{% url 'request_detail' req.id %}'" style="cursor:pointer">
-        <td>{{ req.beneficiary.structure }}</td>
-        <td>{{ req.beneficiary.last_name }}</td>
-        <td>{{ req.beneficiary.first_name }}</td>
-        <td>{{ req.category }}</td>
-        <td>{{ req.outcome }}</td>
-        <td>{{ req.actions.count }}</td>
-      </tr>
-	  {% empty %}
-      <tr>
-        <td colspan="6" class="text-center text-muted">Δεν υπάρχουν αιτήματα.</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% include "partials/pagination.html" %}
+  </div>
 </div>
 {% endblock %}

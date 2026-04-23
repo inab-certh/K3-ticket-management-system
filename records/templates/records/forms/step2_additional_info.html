@@ -1,5 +1,13 @@
-{% load form_tags %}
-
+{% load form_extras %}
+{% if step2_form.errors %}
+<div class="alert alert-danger">
+  {% for field, errors in step2_form.errors.items %}
+    {% for error in errors %}
+      <div>{{ field }}: {{ error }}</div>
+    {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
 <h2 class="visually-hidden">Επιπλέον Στοιχεία Ωφελούμενου</h2>
 
 <!-- Display Basic Info -->
@@ -40,22 +48,22 @@
 
   <div class="col-md-2 mb-3">
     <label class="form-label">Αριθμός Παιδιών</label>
-    {{ step2_form.num_children|add_class:"form-control" }}
+    {{ step2_form.children_count|add_class:"form-control" }}
   </div>
 </div>
 
 <div class="row" id="childrenDetails" style="display: none;">
   <div class="col-md-2 mb-3">
     <label class="form-label">Ανήλικα Παιδιά</label>
-    {{ step2_form.minor_children|add_class:"form-control" }}
+    {{ step2_form.minors|add_class:"form-control" }}
   </div>
   <div class="col-md-2 mb-3">
     <label class="form-label">Φοιτητές</label>
-    {{ step2_form.student_children|add_class:"form-control" }}
+    {{ step2_form.students|add_class:"form-control" }}
   </div>
   <div class="col-md-2 mb-3">
     <label class="form-label">Χωρίς Υποχρέωση Στρατού</label>
-    {{ step2_form.no_military_obligation|add_class:"form-select" }}
+    {{ step2_form.no_military_service|add_class:"form-select" }}
   </div>
 </div>
 
@@ -70,7 +78,7 @@
   </div>
   <div class="col-md-2 mb-3">
     <label class="form-label">ΑΜΚΑ</label>
-    {{ step2_form.health_id|add_class:"form-control" }}
+    {{ step2_form.amka|add_class:"form-control" }}
   </div>
   <div class="col-md-2 mb-3">
     <label class="form-label">ΑΦΜ</label>
@@ -132,14 +140,14 @@ function toggleContactForm() {
 }
 
 function toggleChildrenDetails() {
-  const num = parseInt(document.getElementById("id_num_children").value || "0");
+  const num = parseInt(document.getElementById("id_children_count").value || "0");
   document.getElementById("childrenDetails").style.display = num > 0 ? "flex" : "none";
 }
 
 function calculateAge() {
-  const birthYear = parseInt(document.getElementById("id_birth_year").value);
+  const val = document.getElementById("id_birth_year").value;
   const ageField = document.getElementById("ageField");
-  ageField.value = !isNaN(birthYear) ? new Date().getFullYear() - birthYear : '';
+  ageField.value = val ? new Date().getFullYear() - parseInt(val) : '';
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -147,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
   calculateAge();
   toggleContactForm();
 
-  document.getElementById("id_num_children").addEventListener("input", toggleChildrenDetails);
+  document.getElementById("id_children_count").addEventListener("input", toggleChildrenDetails);
   document.getElementById("id_birth_year").addEventListener("input", calculateAge);
   document.getElementById("third_contact").addEventListener("change", toggleContactForm);
 });

@@ -38,7 +38,7 @@ class PersonForm(GreekNormalizeMixin, forms.ModelForm):
             "first_name",
             "father_name",
             "mother_name",
-            "birth_year",
+            #"birth_date",
             #"age",
             "gender",
             "nationality",
@@ -54,5 +54,6 @@ class PersonForm(GreekNormalizeMixin, forms.ModelForm):
             "municipality",
         ]
         widgets = {
+            "birth_date": forms.DateInput(attrs={"type": "date"}),
             "notes": forms.Textarea(attrs={"rows": 3}),
         }

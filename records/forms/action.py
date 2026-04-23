@@ -6,16 +6,15 @@ class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
         fields = [
-            "request",
-            "person",
-            "action_type",
-            "channel",
-            "when",
-            "by_whom",
-            "notes",
-            "next_due",
+            'action_type', 'direction',
+            'action_date',
+            'org_name', 'contact_name', 'contact_role',
+            'contact_phone', 'contact_email',
+            'result',
+            'follow_up_date', 'is_completed',
         ]
         widgets = {
-            "when": forms.DateTimeInput(attrs={"type": "datetime-local"}),
-            "notes": forms.Textarea(attrs={"rows": 3}),
+            'action_date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'follow_up_date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'result': forms.Textarea(attrs={'rows': 3}),
         }

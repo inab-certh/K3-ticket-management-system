@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 from .views import (
     dashboard, settings_view,
+    ActionCreateView, ActionUpdateView,
     PersonListView, PersonCreateView, PersonUpdateView, PersonDeleteView, PersonDetailView,
     RequestListView, RequestDetailView, RequestCreateView, RequestUpdateView, RequestDeleteView,
     RegionalUnitsAPIView, MunicipalitiesAPIView, QuickSearchAPIView, statistics_view
@@ -19,6 +20,7 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('statistics/', statistics_view, name='statistics'),
     path('settings/', settings_view, name='settings_view'),
+    path("new-entry/", views.new_entry, name="new_entry"),
     
     # Person management
     path("persons/", PersonListView.as_view(), name="person_list"),
@@ -33,6 +35,10 @@ urlpatterns = [
     path("requests/<int:pk>/", RequestDetailView.as_view(), name="request_detail"),
     path("requests/<int:pk>/edit/", RequestUpdateView.as_view(), name="request_update"),
     path("requests/<int:pk>/delete/", RequestDeleteView.as_view(), name="request_delete"),
+    
+    # Actions management
+    path("requests/<int:request_pk>/actions/new/", ActionCreateView.as_view(), name="action_create"),
+    path("actions/<int:pk>/edit/", ActionUpdateView.as_view(), name="action_update"),
     
     # API endpoints for AJAX functionality
     path('api/regional-units/', RegionalUnitsAPIView.as_view(), name='api_regional_units'),

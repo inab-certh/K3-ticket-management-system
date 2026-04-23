@@ -65,7 +65,8 @@ class Neoplasm(TimeStampedModel):
     
     icd10_code = models.ForeignKey(
         ICD10Code,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
         verbose_name="Είδος",
     )
     localization = models.CharField(max_length=255, blank=True, null=True, verbose_name="Εντοπισμός")
@@ -74,6 +75,10 @@ class Neoplasm(TimeStampedModel):
     surgery = models.BooleanField(default=False, verbose_name="Χειρουργική επέμβαση")
     surgery_hospital = models.CharField(max_length=255, blank=True, null=True, verbose_name="Νοσοκομείο Χειρουργείου")
     scheduled_surgery = models.BooleanField(default=False, verbose_name="Προγραμματισμένη")
+    
+    category_label = models.CharField(max_length=20, blank=True, default='')
+    type_label = models.CharField(max_length=255, blank=True, default='')
+    icd10_label = models.CharField(max_length=255, blank=True, default='')
 
     def __str__(self):
         category_name = self.icd10_category.name if self.icd10_category else "Κατηγορία"
@@ -99,8 +104,6 @@ class Neoplasm(TimeStampedModel):
     class Meta:
         verbose_name = "Νεόπλασμα & Θεραπεία"
         verbose_name_plural = "Νεοπλάσματα & Θεραπείες"
-        unique_together = ("person", "icd10_category", "icd10_code")
-
 
 class Therapy(TimeStampedModel):
     THERAPY_TYPES = [

@@ -1,40 +1,200 @@
 <!-- templates/requests/request_detail.html -->
 {% extends "layouts/base.html" %}
-{% block content %}
-<div class="container">
-  <h2>Αίτημα: {{ request }}</h2>
-  <p><b>Δομή:</b> {{ request.beneficiary.structure }}</p>
-  <p><b>Όνομα:</b> {{ request.beneficiary }}</p>
-  <p><b>Κατηγορία:</b> {{ request.category }}</p>
-  <p><b>Κατάσταση:</b> {{ request.get_status_display }}</p>
-  <p><b>Έκβαση:</b> {{ request.outcome }}</p>
+{% load static %}
+{% block title %}Αίτημα — {{ request_obj.person }}{% endblock %}
 
-  <h4>Ενέργειες</h4>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th><th>Ημερομηνία</th><th>Τύπος</th><th>Φορέας</th><th>Όνομα επικοινωνίας</th><th>Θέση</th><th>Τηλ.</th><th>e-mail</th><th>Αποτέλεσμα</th><th>Ενέργεια</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for action in request.actions.all %}
-      <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ action.date }}</td>
-        <td>{{ action.get_action_type_display }}</td>
-        <td>{{ action.org_name }}</td>
-        <td>{{ action.contact_name }}</td>
-        <td>{{ action.contact_position }}</td>
-        <td>{{ action.contact_phone }}</td>
-        <td>{{ action.contact_email }}</td>
-        <td>{{ action.result }}</td>
-        <td>
-          <a href="{% url 'action_edit' action.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <a href="{% url 'action_create' request.pk %}" class="btn btn-success">Προσθήκη ενέργειας</a>
+{% block stylesheets %}
+<style>
+.request-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #c0392b 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: white;
+}
+.request-header h2,
+.request-header p,
+.request-header a {
+    color: white !important;
+}
+.info-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #c0392b;
+}
+.info-card h5 {
+    color: #c0392b;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-weight: 500; color: #6c757d; }
+.info-value { color: #495057; font-weight: 500; }
+.action-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #c0392b;
+}
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+}
+.priority-high { color: #dc3545; font-weight: bold; }
+.priority-medium { color: #fd7e14; font-weight: bold; }
+.priority-low { color: #28a745; font-weight: bold; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block mb-3">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">
+        <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+        </svg>
+      </a></li>
+      <li class="breadcrumb-item"><a href="{% url 'request_list' %}">Αιτήματα</a></li>
+      <li class="breadcrumb-item active">{{ request_obj.person }}</li>
+    </ol>
+  </nav>
+
+  <!-- Header Banner -->
+  <div class="request-header">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h2 class="mb-1">{{ request_obj.person }}</h2>
+        <p class="mb-1 opacity-90">
+          {{ request_obj.status }}
+          {% if request_obj.submission_date %} • Υποβλήθηκε: {{ request_obj.submission_date|date:"d/m/Y" }}{% endif %}
+          {% if request_obj.due_date %} • Προθεσμία: {{ request_obj.due_date|date:"d/m/Y" }}{% endif %}
+        </p>
+        <p class="mb-0 opacity-75">
+          {% if request_obj.category %}{{ request_obj.category }}{% endif %}
+          {% if request_obj.tags.exists %} • {{ request_obj.get_tags_display }}{% endif %}
+        </p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <div class="d-flex flex-column flex-md-row gap-2 justify-content-md-end">
+          <a href="{% url 'person_detail' request_obj.person.id %}" class="btn btn-light">← Ωφελούμενος</a>
+          <a href="{% url 'request_update' request_obj.id %}" class="btn btn-outline-light">Επεξεργασία</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Left: Request Details -->
+    <div class="col-lg-6">
+      <div class="info-card">
+        <h5>Στοιχεία Αιτήματος</h5>
+        <div class="info-row">
+          <span class="info-label">Ωφελούμενος</span>
+          <span class="info-value"><a href="{% url 'person_detail' request_obj.person.id %}">{{ request_obj.person }}</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Κατάσταση</span>
+          <span class="info-value">{{ request_obj.status }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Προτεραιότητα</span>
+          <span class="info-value 
+            {% if request_obj.priority == 1 %}priority-high
+            {% elif request_obj.priority == 2 %}priority-medium
+            {% else %}priority-low{% endif %}">
+            {{ request_obj.priority_display }}
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Κατηγορία</span>
+          <span class="info-value">{{ request_obj.category|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Θέμα</span>
+          <span class="info-value">{{ request_obj.subject|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Τρόπος επικοινωνίας</span>
+          <span class="info-value">{{ request_obj.get_communication_method_display|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ποιος επικοινώνησε</span>
+          <span class="info-value">{{ request_obj.get_contact_person_type_display|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ημ. Υποβολής</span>
+          <span class="info-value">{{ request_obj.submission_date|date:"d/m/Y"|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Προθεσμία</span>
+          <span class="info-value">{{ request_obj.due_date|date:"d/m/Y"|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Αρ. Πρωτοκόλλου</span>
+          <span class="info-value">{{ request_obj.protocol_number|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ετικέτες</span>
+          <span class="info-value">{{ request_obj.get_tags_display|default:"—" }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ημέρες ανοικτό</span>
+          <span class="info-value">{{ request_obj.days_open }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Actions -->
+    <div class="col-lg-6">
+      <div class="info-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Ενέργειες ({{ actions.count }})</h5>
+		  <a href="{% url 'action_create' request_obj.pk %}" class="btn btn-sm btn-primary">+ Νέα Ενέργεια</a>
+        </div>
+        {% if actions %}
+          {% for action in actions %}
+			<a href="{% url 'action_update' action.pk %}" class="text-decoration-none">
+			  <div class="action-card">
+				<div class="d-flex justify-content-between align-items-start">
+				  <div>
+					<strong class="text-dark">{{ action.get_action_type_display|default:"Ενέργεια" }}</strong>
+					{% if action.direction %}
+					  <span class="badge bg-secondary ms-1" style="font-size:0.7rem;">{{ action.get_direction_display }}</span>
+					{% endif %}
+					{% if action.org_name %}
+					  <small class="text-muted ms-2">{{ action.org_name }}</small>
+					{% endif %}
+				  </div>
+				  <small class="text-muted">{{ action.action_date|date:"d/m/Y"|default:"—" }}</small>
+				</div>
+				{% if action.result %}
+				  <small class="text-muted d-block mt-1">{{ action.result|truncatechars:100 }}</small>
+				{% endif %}
+				{% if action.follow_up_date %}
+				  <small class="text-warning d-block mt-1">⏰ Παρακολούθηση: {{ action.follow_up_date|date:"d/m/Y" }}</small>
+				{% endif %}
+			  </div>
+			</a>
+			{% endfor %}
+        {% else %}
+          <div class="empty-state">
+            <p class="mb-0">Δεν υπάρχουν ενέργειες ακόμα.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -11,7 +11,7 @@ from .org import Center  # or wherever your Center model is
 #from records.utils import greek_upper_no_tone
 from .mixins import TimeStampedModel
 from .geography import *
-from .lookups import InsuranceProvider, EmploymentStatus
+#from .lookups import InsuranceProvider, EmploymentStatus
 from datetime import date
 
 class Gender(models.TextChoices):
@@ -34,7 +34,7 @@ class Person(TimeStampedModel):
     mother_name = models.CharField("Μητρώνυμο", max_length=60, blank=True, null=True)
     
     #birth_date = models.DateField("Ημερομηνία γέννησης", null=True, blank=True)
-    birth_year = models.IntegerField("Έτος γέννησης", null=True, blank=True)  # From your Excel
+    birth_year = models.IntegerField(null=True, blank=True)
     #age = models.IntegerField("Ηλικία", blank=True, null=True)  # Can be calculated
     gender = models.CharField("Φύλο", max_length=8, choices=Gender.choices, blank=True)
     
@@ -249,11 +249,14 @@ class Person(TimeStampedModel):
     
     @property
     def calculated_age(self):
-        """Calculate age from birth_date or birth_year"""
         if self.birth_year:
             return date.today().year - self.birth_year
         return None
 
+    @property
+    def has_open_requests(self):
+        return self.requests.filter(status__is_closed=False).exists()
+    
     def save(self, *args, **kwargs):
         if not self.registration_number:
             # Get the highest existing registration number

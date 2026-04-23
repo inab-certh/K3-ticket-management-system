@@ -1,14 +1,19 @@
 from django import forms
-from records.models.person import Insurance, Employment
+from records.models import Person
 
-class InsuranceForm(forms.ModelForm):
+class Step3Form(forms.ModelForm):
     class Meta:
-        model = Insurance
-        fields = '__all__'
-        exclude = ['beneficiary']
-
-class EmploymentForm(forms.ModelForm):
-    class Meta:
-        model = Employment
-        fields = '__all__'
-        exclude = ['beneficiary']
+        model = Person
+        fields = [
+            'insurance_status', 'insurance_provider', 'special_funds',
+            'widow_pension', 'disability_pension',
+            'status', 'unemployment_card', 'unemployment_registration_date',
+            'profession', 'specialization', 'employment_type',
+            'employer_legal_form', 'hire_date', 'work_schedule', 'contract_type',
+        ]
+        widgets = {
+            'unemployment_registration_date': forms.DateInput(
+                attrs={'type': 'date', 'class': 'form-control'}, format='%Y-%m-%d'),
+            'hire_date': forms.DateInput(
+                attrs={'type': 'date', 'class': 'form-control'}, format='%Y-%m-%d'),
+        }

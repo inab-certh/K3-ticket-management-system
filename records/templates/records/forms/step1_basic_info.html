@@ -1,10 +1,6 @@
 {% load static %}
-{% load form_tags %}
-
+{% load form_extras %}
 <h2 class="visually-hidden">Αρχικά Στοιχεία Αιτήματος</h2>
-
-<input type="hidden" name="current_step" id="currentStepInput" value="1">
-
 <div class="row">
   <div class="col-md-2 mb-3">
     <label class="form-label">Εγγραφή</label>
@@ -15,78 +11,64 @@
     <label class="form-label">Αρ. Πρωτοκόλλου</label>
     {{ request_form.protocol_number|add_class:"form-control" }}
   </div>
-  
-  <h5 class="mt-3">Στοιχεία Ωφελούμενου</h5>
 
+  <h5 class="mt-3">Στοιχεία Ωφελούμενου</h5>
   <div class="col-md-3 mb-3">
     <label class="form-label">Όνομα</label>
     {{ beneficiary_form.first_name|add_class:"form-control" }}
   </div>
-
   <div class="col-md-3 mb-3">
     <label class="form-label">Επώνυμο</label>
     {{ beneficiary_form.last_name|add_class:"form-control" }}
   </div>
-
   <div class="col-md-3 mb-3">
     <label class="form-label">Πατρώνυμο</label>
     {{ beneficiary_form.father_name|add_class:"form-control" }}
   </div>
-
   <div class="col-md-3 mb-3">
     <label class="form-label">Μητρώνυμο</label>
     {{ beneficiary_form.mother_name|add_class:"form-control" }}
   </div>
 
   <h5 class="mt-3">Στοιχεία Αιτήματος</h5>
-
   <div class="col-md-2 mb-3">
     <label class="form-label">Δομή</label>
-    {{ request_form.structure|add_class:"form-control" }}
+    {{ request_form.center|add_class:"form-select" }}
   </div>
-
   <div class="col-md-2 mb-3">
     <label class="form-label">Ημ. Υποβολής</label>
     {{ request_form.submission_date|add_class:"form-control" }}
   </div>
-
   <div class="col-md-2 mb-3">
     <label class="form-label">Ημ. Ενημέρωσης</label>
-    <input type="text" class="form-control" value="{{ request_form.instance.db_update_date|date:'d/m/Y H:i' }}" readonly>
+    <input type="text" class="form-control" value="{{ request_form.instance.update_date|date:'d/m/Y H:i' }}" readonly>
   </div>
-
   <div class="col-md-2 mb-3">
     <label class="form-label">Τρόπος Επικοινωνίας</label>
     {{ request_form.communication_method|add_class:"form-select" }}
   </div>
-
   <div class="col-md-2 mb-3">
     <label class="form-label">Ποιος Επικοινώνησε</label>
-    {{ request_form.contacted_by|add_class:"form-select" }}
+    {{ request_form.contact_person_type|add_class:"form-select" }}
   </div>
-  
   <div class="col-md-2 mb-3">
-    <label class="form-label">Γνώση της Κ3</label>
-    {{ request_form.source_of_info|add_class:"form-select" }}
+    <label class="form-label">Γνώση της Κ3 από</label>
+    {{ beneficiary_form.knowledge_source|add_class:"form-select" }}
   </div>
-
-  <div class="col-3 mb-3">
+  <div class="col-md-3 mb-3">
     <label class="form-label">Θέμα</label>
-    {{ request_form.topic|add_class:"form-control" }}
+    {{ request_form.subject|add_class:"form-control" }}
   </div>
-  
   <div class="col-md-3 mb-3">
     <label class="form-label">Προτεραιότητα</label>
     {{ request_form.priority|add_class:"form-select" }}
   </div>
-
   <div class="col-md-3 mb-3">
     <label class="form-label">Ανατέθηκε σε</label>
     {{ request_form.assigned_to|add_class:"form-select" }}
   </div>
   <div class="col-md-2 mb-3">
     <label class="form-label">Δεκτό Αίτημα</label><br>
-    {{ request_form.accepted_request|add_class:"form-check-input" }}
+    {{ request_form.is_accepted|add_class:"form-check-input" }}
   </div>
-  
 </div>

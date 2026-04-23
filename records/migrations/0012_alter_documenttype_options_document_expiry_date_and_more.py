@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='documenttype',
             name='code',
-            field=models.CharField(default=1, help_text='Μοναδικός κωδικός για το σύστημα (π.χ. kepa_certificate)', max_length=50, unique=True, verbose_name='Κωδικός'),
+            field=models.CharField(default='', help_text='Μοναδικός κωδικός για το σύστημα (π.χ. kepa_certificate)', max_length=50, verbose_name='Κωδικός'),
             preserve_default=False,
         ),
         migrations.AddField(

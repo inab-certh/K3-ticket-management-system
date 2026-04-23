@@ -1,0 +1,8396 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$FlnAc8LenzjjVTydUyaT03$I4NsmO4nF+EtXFUmpRBhqv1Sc0Q4suHXOkZR/bbL7xU=",
+    "last_login": "2026-03-11T13:31:11.553Z",
+    "is_superuser": true,
+    "username": "kkastampolidou",
+    "first_name": "",
+    "last_name": "",
+    "email": "kkastampolidou@certh.gr",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-11T13:30:41.000Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "g12815lh84gd6dyisf2kejpme4wg57xs",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-FsyFLCRQ8evcbyC4sUjWQlPbU-O-2SQ96nHlvZhMB16WEtfMcpiSuQonLb0cYX1wPkJ5YH03GVpd5Inko8qRd3lvi9-10_w4K9rKvLSuG7IC0AcNgjMlIkbX2QOTsYLXLjvY4MPoMFkbUDtJoFRCDT-LzBdaVN2k:1w0JeZ:BzoPqzf7HaO8iQENR2fRAUwZL6i2fClIgURF-qehugc",
+    "expire_date": "2026-03-25T13:31:11.554Z"
+  }
+},
+{
+  "model": "records.region",
+  "pk": 1,
+  "fields": {
+    "name": "Ανατολική Μακεδονία-Θράκη",
+    "code": "ΑΝ. ΜΑΚ.-ΘΡΑΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.region",
+  "pk": 2,
+  "fields": {
+    "name": "Κεντρική Μακεδονία",
+    "code": "ΚΕΝ. ΜΑΚΕΔΟΝΙΑΣ",
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.region",
+  "pk": 3,
+  "fields": {
+    "name": "Δυτική Μακεδονία",
+    "code": "ΔΥΤ. ΜΑΚΕΔΟΝΙΑΣ",
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.region",
+  "pk": 4,
+  "fields": {
+    "name": "Ήπειρος",
+    "code": "ΗΠΕΙΡΟΥ",
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.region",
+  "pk": 5,
+  "fields": {
+    "name": "Θεσσαλία",
+    "code": "ΘΕΣΣΑΛΙΑΣ",
+    "sort_order": 5
+  }
+},
+{
+  "model": "records.region",
+  "pk": 6,
+  "fields": {
+    "name": "Στερεά Ελλάδα",
+    "code": "ΣΤ. ΕΛΛΑΔΑΣ",
+    "sort_order": 6
+  }
+},
+{
+  "model": "records.region",
+  "pk": 7,
+  "fields": {
+    "name": "Ιόνια Νησιά",
+    "code": "ΙΟΝΙΩΝ ΝΗΣΩΝ",
+    "sort_order": 7
+  }
+},
+{
+  "model": "records.region",
+  "pk": 8,
+  "fields": {
+    "name": "Δυτική Ελλάδα",
+    "code": "ΔΥΤ. ΕΛΛΑΔΑΣ",
+    "sort_order": 8
+  }
+},
+{
+  "model": "records.region",
+  "pk": 9,
+  "fields": {
+    "name": "Πελοπόννησος",
+    "code": "ΠΕΛΟΠΟΝΝΗΣΟΥ",
+    "sort_order": 9
+  }
+},
+{
+  "model": "records.region",
+  "pk": 10,
+  "fields": {
+    "name": "Αττική",
+    "code": "ΑΤΤΙΚΗΣ",
+    "sort_order": 10
+  }
+},
+{
+  "model": "records.region",
+  "pk": 11,
+  "fields": {
+    "name": "Βόρειο Αιγαίο",
+    "code": "ΒΟΡ. ΑΙΓΑΙΟΥ",
+    "sort_order": 11
+  }
+},
+{
+  "model": "records.region",
+  "pk": 12,
+  "fields": {
+    "name": "Νότιο Αιγαίο",
+    "code": "ΝΟΤ. ΑΙΓΑΙΟΥ",
+    "sort_order": 12
+  }
+},
+{
+  "model": "records.region",
+  "pk": 13,
+  "fields": {
+    "name": "Κρήτη",
+    "code": "ΚΡΗΤΗΣ",
+    "sort_order": 13
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 1,
+  "fields": {
+    "region": 1,
+    "name": "ΔΡΑΜΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 2,
+  "fields": {
+    "region": 1,
+    "name": "ΕΒΡΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 3,
+  "fields": {
+    "region": 1,
+    "name": "ΘΑΣΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 4,
+  "fields": {
+    "region": 1,
+    "name": "ΚΑΒΑΛΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 5,
+  "fields": {
+    "region": 1,
+    "name": "ΞΑΝΘΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 6,
+  "fields": {
+    "region": 1,
+    "name": "ΡΟΔΟΠΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 7,
+  "fields": {
+    "region": 2,
+    "name": "ΗΜΑΘΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 8,
+  "fields": {
+    "region": 2,
+    "name": "ΘΕΣΣΑΛΟΝΙΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 9,
+  "fields": {
+    "region": 2,
+    "name": "ΚΙΛΚΙΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 10,
+  "fields": {
+    "region": 2,
+    "name": "ΠΕΛΛΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 11,
+  "fields": {
+    "region": 2,
+    "name": "ΠΙΕΡΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 12,
+  "fields": {
+    "region": 2,
+    "name": "ΣΕΡΡΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 13,
+  "fields": {
+    "region": 2,
+    "name": "ΧΑΛΚΙΔΙΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 14,
+  "fields": {
+    "region": 3,
+    "name": "ΓΡΕΒΕΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 15,
+  "fields": {
+    "region": 3,
+    "name": "ΚΑΣΤΟΡΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 16,
+  "fields": {
+    "region": 3,
+    "name": "ΚΟΖΑΝΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 17,
+  "fields": {
+    "region": 3,
+    "name": "ΦΛΩΡΙΝΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 18,
+  "fields": {
+    "region": 4,
+    "name": "ΑΡΤΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 19,
+  "fields": {
+    "region": 4,
+    "name": "ΘΕΣΠΡΩΤΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 20,
+  "fields": {
+    "region": 4,
+    "name": "ΙΩΑΝΝΙΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 21,
+  "fields": {
+    "region": 4,
+    "name": "ΠΡΕΒΕΖΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 22,
+  "fields": {
+    "region": 5,
+    "name": "ΚΑΡΔΙΤΣΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 23,
+  "fields": {
+    "region": 5,
+    "name": "ΛΑΡΙΣΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 24,
+  "fields": {
+    "region": 5,
+    "name": "ΜΑΓΝΗΣΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 25,
+  "fields": {
+    "region": 5,
+    "name": "ΣΠΟΡΑΔΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 26,
+  "fields": {
+    "region": 5,
+    "name": "ΤΡΙΚΑΛΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 27,
+  "fields": {
+    "region": 6,
+    "name": "ΒΟΙΩΤΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 28,
+  "fields": {
+    "region": 6,
+    "name": "ΕΥΒΟΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 29,
+  "fields": {
+    "region": 6,
+    "name": "ΕΥΡΥΤΑΝΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 30,
+  "fields": {
+    "region": 6,
+    "name": "ΦΘΙΩΤΙΔΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 31,
+  "fields": {
+    "region": 6,
+    "name": "ΦΩΚΙΔΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 32,
+  "fields": {
+    "region": 7,
+    "name": "ΖΑΚΥΝΘΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 33,
+  "fields": {
+    "region": 7,
+    "name": "ΙΘΑΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 34,
+  "fields": {
+    "region": 7,
+    "name": "ΚΕΡΚΥΡΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 35,
+  "fields": {
+    "region": 7,
+    "name": "ΚΕΦΑΛΛΗΝΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 36,
+  "fields": {
+    "region": 7,
+    "name": "ΛΕΥΚΑΔΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 37,
+  "fields": {
+    "region": 8,
+    "name": "ΑΙΤΩΛΟΑΚΑΡΝΑΝΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 38,
+  "fields": {
+    "region": 8,
+    "name": "ΑΧΑΪΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 39,
+  "fields": {
+    "region": 8,
+    "name": "ΗΛΕΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 40,
+  "fields": {
+    "region": 9,
+    "name": "ΑΡΓΟΛΙΔΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 41,
+  "fields": {
+    "region": 9,
+    "name": "ΑΡΚΑΔΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 42,
+  "fields": {
+    "region": 9,
+    "name": "ΚΟΡΙΝΘΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 43,
+  "fields": {
+    "region": 9,
+    "name": "ΛΑΚΩΝΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 44,
+  "fields": {
+    "region": 9,
+    "name": "ΜΕΣΣΗΝΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 45,
+  "fields": {
+    "region": 10,
+    "name": "ΑΝΑΤ. ΑΤΤΙΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 46,
+  "fields": {
+    "region": 10,
+    "name": "Β. ΤΟΜΕΑ ΑΘΗΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 47,
+  "fields": {
+    "region": 10,
+    "name": "Δ. ΤΟΜΕΑ ΑΘΗΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 48,
+  "fields": {
+    "region": 10,
+    "name": "ΔΥΤΙΚΗΣ ΑΤΤΙΚΗΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 49,
+  "fields": {
+    "region": 10,
+    "name": "ΚΕΝ. ΤΟΜΕΑ ΑΘΗΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 50,
+  "fields": {
+    "region": 10,
+    "name": "Ν. ΤΟΜΕΑ ΑΘΗΝΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 51,
+  "fields": {
+    "region": 10,
+    "name": "ΝΗΣΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 52,
+  "fields": {
+    "region": 10,
+    "name": "ΠΕΙΡΑΙΩΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 53,
+  "fields": {
+    "region": 11,
+    "name": "ΙΚΑΡΙΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 54,
+  "fields": {
+    "region": 11,
+    "name": "ΛΕΣΒΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 55,
+  "fields": {
+    "region": 11,
+    "name": "ΛΗΜΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 56,
+  "fields": {
+    "region": 11,
+    "name": "ΣΑΜΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 57,
+  "fields": {
+    "region": 11,
+    "name": "ΧΙΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 58,
+  "fields": {
+    "region": 12,
+    "name": "ΑΝΔΡΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 59,
+  "fields": {
+    "region": 12,
+    "name": "ΘΗΡΑΣ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 60,
+  "fields": {
+    "region": 12,
+    "name": "ΚΑΛΥΜΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 61,
+  "fields": {
+    "region": 12,
+    "name": "ΚΑΡΠΑΘΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 62,
+  "fields": {
+    "region": 12,
+    "name": "ΚΕΑΣ – ΚΥΘΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 63,
+  "fields": {
+    "region": 12,
+    "name": "ΚΩ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 64,
+  "fields": {
+    "region": 12,
+    "name": "ΜΗΛΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 65,
+  "fields": {
+    "region": 12,
+    "name": "ΜΥΚΟΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 66,
+  "fields": {
+    "region": 12,
+    "name": "ΝΑΞΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 67,
+  "fields": {
+    "region": 12,
+    "name": "ΠΑΡΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 68,
+  "fields": {
+    "region": 12,
+    "name": "ΡΟΔΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 69,
+  "fields": {
+    "region": 12,
+    "name": "ΣΥΡΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 70,
+  "fields": {
+    "region": 12,
+    "name": "ΤΗΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 71,
+  "fields": {
+    "region": 13,
+    "name": "ΗΡΑΚΛΕΙΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 72,
+  "fields": {
+    "region": 13,
+    "name": "ΛΑΣΙΘΙΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 73,
+  "fields": {
+    "region": 13,
+    "name": "ΡΕΘΥΜΝΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.regionalunit",
+  "pk": 74,
+  "fields": {
+    "region": 13,
+    "name": "ΧΑΝΙΩΝ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 1,
+  "fields": {
+    "regional_unit": 1,
+    "name": "ΔΟΞΑΤΟΥ",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 2,
+  "fields": {
+    "regional_unit": 1,
+    "name": "ΔΡΑΜΑΣ",
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 3,
+  "fields": {
+    "regional_unit": 1,
+    "name": "ΚΑΤΩ ΝΕΥΡΟΚΟΠΙΟΥ",
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 4,
+  "fields": {
+    "regional_unit": 1,
+    "name": "ΠΑΡΑΝΕΣΤΙΟΥ",
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 5,
+  "fields": {
+    "regional_unit": 1,
+    "name": "ΠΡΟΣΟΤΣΑΝΗΣ",
+    "sort_order": 5
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 6,
+  "fields": {
+    "regional_unit": 2,
+    "name": "ΑΛΕΞΑΝΔΡΟΥΠΟΛΗΣ",
+    "sort_order": 6
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 7,
+  "fields": {
+    "regional_unit": 2,
+    "name": "ΔΙΔΥΜΟΤΕΙΧΟΥ",
+    "sort_order": 7
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 8,
+  "fields": {
+    "regional_unit": 2,
+    "name": "ΟΡΕΣΤΙΑΔΑΣ",
+    "sort_order": 8
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 9,
+  "fields": {
+    "regional_unit": 2,
+    "name": "ΣΑΜΟΘΡΑΚΗΣ",
+    "sort_order": 9
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 10,
+  "fields": {
+    "regional_unit": 2,
+    "name": "ΣΟΥΦΛΙΟΥ",
+    "sort_order": 10
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 11,
+  "fields": {
+    "regional_unit": 3,
+    "name": "ΘΑΣΟΥ",
+    "sort_order": 11
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 12,
+  "fields": {
+    "regional_unit": 4,
+    "name": "ΚΑΒΑΛΑΣ",
+    "sort_order": 12
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 13,
+  "fields": {
+    "regional_unit": 4,
+    "name": "ΝΕΣΤΟΥ",
+    "sort_order": 13
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 14,
+  "fields": {
+    "regional_unit": 4,
+    "name": "ΠΑΓΓΑΙΟΥ",
+    "sort_order": 14
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 15,
+  "fields": {
+    "regional_unit": 5,
+    "name": "ΑΒΔΗΡΩΝ",
+    "sort_order": 15
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 16,
+  "fields": {
+    "regional_unit": 5,
+    "name": "ΜΥΚΗΣ",
+    "sort_order": 16
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 17,
+  "fields": {
+    "regional_unit": 5,
+    "name": "ΞΑΝΘΗΣ",
+    "sort_order": 17
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 18,
+  "fields": {
+    "regional_unit": 5,
+    "name": "ΤΟΠΕΙΡΟΥ",
+    "sort_order": 18
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 19,
+  "fields": {
+    "regional_unit": 6,
+    "name": "ΑΡΡΙΑΝΩΝ",
+    "sort_order": 19
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 20,
+  "fields": {
+    "regional_unit": 6,
+    "name": "ΙΑΣΜΟΥ",
+    "sort_order": 20
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 21,
+  "fields": {
+    "regional_unit": 6,
+    "name": "ΚΟΜΟΤΗΝΗΣ",
+    "sort_order": 21
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 22,
+  "fields": {
+    "regional_unit": 6,
+    "name": "ΜΑΡΩΝΕΙΑΣ-ΣΑΠΩΝ",
+    "sort_order": 22
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 23,
+  "fields": {
+    "regional_unit": 7,
+    "name": "ΑΛΕΞΑΝΔΡΕΙΑΣ",
+    "sort_order": 23
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 24,
+  "fields": {
+    "regional_unit": 7,
+    "name": "ΒΕΡΟΙΑΣ",
+    "sort_order": 24
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 25,
+  "fields": {
+    "regional_unit": 7,
+    "name": "ΝΑΟΥΣΑΣ",
+    "sort_order": 25
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 26,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΑΜΠΕΛΟΚΗΠΩΝ-ΜΕΝΕΜΕΝΗΣ",
+    "sort_order": 26
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 27,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΒΟΛΒΗΣ",
+    "sort_order": 27
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 28,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΔΕΛΤΑ",
+    "sort_order": 28
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 29,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΘΕΡΜΑΪΚΟΥ",
+    "sort_order": 29
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 30,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΘΕΡΜΗΣ",
+    "sort_order": 30
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 31,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΘΕΣΣΑΛΟΝΙΚΗΣ",
+    "sort_order": 31
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 32,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΚΑΛΑΜΑΡΙΑΣ",
+    "sort_order": 32
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 33,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΚΟΡΔΕΛΙΟΥ-ΕΥΟΣΜΟΥ",
+    "sort_order": 33
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 34,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΛΑΓΚΑΔΑ",
+    "sort_order": 34
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 35,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΝΕΑΠΟΛΗΣ-ΣΥΚΕΩΝ",
+    "sort_order": 35
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 36,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΠΑΥΛΟΥ ΜΕΛΑ",
+    "sort_order": 36
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 37,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΠΥΛΑΙΑΣ-ΧΟΡΤΙΑΤΗ",
+    "sort_order": 37
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 38,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΧΑΛΚΗΔΟΝΟΣ",
+    "sort_order": 38
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 39,
+  "fields": {
+    "regional_unit": 8,
+    "name": "ΩΡΑΙΟΚΑΣΤΡΟΥ",
+    "sort_order": 39
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 40,
+  "fields": {
+    "regional_unit": 9,
+    "name": "ΚΙΛΚΙΣ",
+    "sort_order": 40
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 41,
+  "fields": {
+    "regional_unit": 9,
+    "name": "ΠΑΙΟΝΙΑΣ",
+    "sort_order": 41
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 42,
+  "fields": {
+    "regional_unit": 10,
+    "name": "ΑΛΜΩΠΙΑΣ",
+    "sort_order": 42
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 43,
+  "fields": {
+    "regional_unit": 10,
+    "name": "ΕΔΕΣΣΑΣ",
+    "sort_order": 43
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 44,
+  "fields": {
+    "regional_unit": 10,
+    "name": "ΠΕΛΛΑΣ",
+    "sort_order": 44
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 45,
+  "fields": {
+    "regional_unit": 10,
+    "name": "ΣΚΥΔΡΑΣ",
+    "sort_order": 45
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 46,
+  "fields": {
+    "regional_unit": 11,
+    "name": "ΔΙΟΥ-ΟΛΥΜΠΟΥ",
+    "sort_order": 46
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 47,
+  "fields": {
+    "regional_unit": 11,
+    "name": "ΚΑΤΕΡΙΝΗΣ",
+    "sort_order": 47
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 48,
+  "fields": {
+    "regional_unit": 11,
+    "name": "ΠΥΔΝΑΣ-ΚΟΛΙΝΔΡΟΥ",
+    "sort_order": 48
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 49,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΑΜΦΙΠΟΛΗΣ",
+    "sort_order": 49
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 50,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΒΙΣΑΛΤΙΑΣ",
+    "sort_order": 50
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 51,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΕΜΜΑΝΟΥΗΛ ΠΑΠΠΑ",
+    "sort_order": 51
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 52,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΗΡΑΚΛΕΙΑΣ",
+    "sort_order": 52
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 53,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΝΕΑΣ ΖΙΧΝΗΣ",
+    "sort_order": 53
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 54,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΣΕΡΡΩΝ",
+    "sort_order": 54
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 55,
+  "fields": {
+    "regional_unit": 12,
+    "name": "ΣΙΝΤΙΚΗΣ",
+    "sort_order": 55
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 56,
+  "fields": {
+    "regional_unit": 13,
+    "name": "ΑΡΙΣΤΟΤΕΛΗ",
+    "sort_order": 56
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 57,
+  "fields": {
+    "regional_unit": 13,
+    "name": "ΚΑΣΣΑΝΔΡΑΣ",
+    "sort_order": 57
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 58,
+  "fields": {
+    "regional_unit": 13,
+    "name": "ΝΕΑΣ ΠΡΟΠΟΝΤΙΔΑΣ",
+    "sort_order": 58
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 59,
+  "fields": {
+    "regional_unit": 13,
+    "name": "ΠΟΛΥΓΥΡΟΥ",
+    "sort_order": 59
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 60,
+  "fields": {
+    "regional_unit": 13,
+    "name": "ΣΙΘΩΝΙΑΣ",
+    "sort_order": 60
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 61,
+  "fields": {
+    "regional_unit": 14,
+    "name": "ΓΡΕΒΕΝΩΝ",
+    "sort_order": 61
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 62,
+  "fields": {
+    "regional_unit": 14,
+    "name": "ΔΕΣΚΑΤΗΣ",
+    "sort_order": 62
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 63,
+  "fields": {
+    "regional_unit": 15,
+    "name": "ΚΑΣΤΟΡΙΑΣ",
+    "sort_order": 63
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 64,
+  "fields": {
+    "regional_unit": 15,
+    "name": "ΝΕΣΤΟΡΙΟΥ",
+    "sort_order": 64
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 65,
+  "fields": {
+    "regional_unit": 15,
+    "name": "ΟΡΕΣΤΙΔΟΣ",
+    "sort_order": 65
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 66,
+  "fields": {
+    "regional_unit": 16,
+    "name": "ΒΟΪΟΥ",
+    "sort_order": 66
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 67,
+  "fields": {
+    "regional_unit": 16,
+    "name": "ΕΟΡΔΑΙΑΣ",
+    "sort_order": 67
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 68,
+  "fields": {
+    "regional_unit": 16,
+    "name": "ΚΟΖΑΝΗΣ",
+    "sort_order": 68
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 69,
+  "fields": {
+    "regional_unit": 16,
+    "name": "ΣΕΡΒΙΩΝ-ΒΕΛΒΕΝΤΟΥ",
+    "sort_order": 69
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 70,
+  "fields": {
+    "regional_unit": 17,
+    "name": "ΑΜΥΝΤΑΙΟΥ",
+    "sort_order": 70
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 71,
+  "fields": {
+    "regional_unit": 17,
+    "name": "ΠΡΕΣΠΩΝ",
+    "sort_order": 71
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 72,
+  "fields": {
+    "regional_unit": 17,
+    "name": "ΦΛΩΡΙΝΑΣ",
+    "sort_order": 72
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 73,
+  "fields": {
+    "regional_unit": 18,
+    "name": "ΑΡΤΑΙΩΝ",
+    "sort_order": 73
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 74,
+  "fields": {
+    "regional_unit": 18,
+    "name": "ΓΕΩΡΓΙΟΥ ΚΑΡΑΪΣΚΑΚΗ",
+    "sort_order": 74
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 75,
+  "fields": {
+    "regional_unit": 18,
+    "name": "ΚΕΝΤΡΙΚΩΝ ΤΖΟΥΜΕΡΚΩΝ",
+    "sort_order": 75
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 76,
+  "fields": {
+    "regional_unit": 18,
+    "name": "ΝΙΚΟΛΑΟΥ ΣΚΟΥΦΑ",
+    "sort_order": 76
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 77,
+  "fields": {
+    "regional_unit": 19,
+    "name": "ΗΓΟΥΜΕΝΙΤΣΑΣ",
+    "sort_order": 77
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 78,
+  "fields": {
+    "regional_unit": 19,
+    "name": "ΣΟΥΛΙΟΥ",
+    "sort_order": 78
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 79,
+  "fields": {
+    "regional_unit": 19,
+    "name": "ΦΙΛΙΑΤΩΝ",
+    "sort_order": 79
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 80,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΒΟΡΕΙΩΝ ΤΖΟΥΜΕΡΚΩΝ",
+    "sort_order": 80
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 81,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΔΩΔΩΝΗΣ",
+    "sort_order": 81
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 82,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΖΑΓΟΡΙΟΥ",
+    "sort_order": 82
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 83,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΖΙΤΣΑΣ",
+    "sort_order": 83
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 84,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΙΩΑΝΝΙΤΩΝ",
+    "sort_order": 84
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 85,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΚΟΝΙΤΣΑΣ",
+    "sort_order": 85
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 86,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΜΕΤΣΟΒΟΥ",
+    "sort_order": 86
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 87,
+  "fields": {
+    "regional_unit": 20,
+    "name": "ΠΩΓΩΝΙΟΥ",
+    "sort_order": 87
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 88,
+  "fields": {
+    "regional_unit": 21,
+    "name": "ΖΗΡΟΥ",
+    "sort_order": 88
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 89,
+  "fields": {
+    "regional_unit": 21,
+    "name": "ΠΑΡΓΑΣ",
+    "sort_order": 89
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 90,
+  "fields": {
+    "regional_unit": 21,
+    "name": "ΠΡΕΒΕΖΑΣ",
+    "sort_order": 90
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 91,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΑΡΓΙΘΕΑΣ",
+    "sort_order": 91
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 92,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΚΑΡΔΙΤΣΑΣ",
+    "sort_order": 92
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 93,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΛΙΜΝΗΣ ΠΛΑΣΤΗΡΑ",
+    "sort_order": 93
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 94,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΜΟΥΖΑΚΙΟΥ",
+    "sort_order": 94
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 95,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΠΑΛΑΜΑ",
+    "sort_order": 95
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 96,
+  "fields": {
+    "regional_unit": 22,
+    "name": "ΣΟΦΑΔΩΝ",
+    "sort_order": 96
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 97,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΑΓΙΑΣ",
+    "sort_order": 97
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 98,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΕΛΑΣΣΟΝΑΣ",
+    "sort_order": 98
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 99,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΚΙΛΕΛΕΡ",
+    "sort_order": 99
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 100,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΛΑΡΙΣΑΙΩΝ",
+    "sort_order": 100
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 101,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΤΕΜΠΩΝ",
+    "sort_order": 101
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 102,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΤΥΡΝΑΒΟΥ",
+    "sort_order": 102
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 103,
+  "fields": {
+    "regional_unit": 23,
+    "name": "ΦΑΡΣΑΛΩΝ",
+    "sort_order": 103
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 104,
+  "fields": {
+    "regional_unit": 24,
+    "name": "ΑΛΜΥΡΟΥ",
+    "sort_order": 104
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 105,
+  "fields": {
+    "regional_unit": 24,
+    "name": "ΒΟΛΟΥ",
+    "sort_order": 105
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 106,
+  "fields": {
+    "regional_unit": 24,
+    "name": "ΖΑΓΟΡΑΣ-ΜΟΥΡΕΣΙΟΥ",
+    "sort_order": 106
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 107,
+  "fields": {
+    "regional_unit": 24,
+    "name": "ΝΟΤΙΟΥ ΠΗΛΙΟΥ",
+    "sort_order": 107
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 108,
+  "fields": {
+    "regional_unit": 24,
+    "name": "ΡΗΓΑ ΦΕΡΑΙΟΥ",
+    "sort_order": 108
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 109,
+  "fields": {
+    "regional_unit": 25,
+    "name": "ΑΛΟΝΝΗΣΟΥ",
+    "sort_order": 109
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 110,
+  "fields": {
+    "regional_unit": 25,
+    "name": "ΣΚΙΑΘΟΥ",
+    "sort_order": 110
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 111,
+  "fields": {
+    "regional_unit": 25,
+    "name": "ΣΚΟΠΕΛΟΥ",
+    "sort_order": 111
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 112,
+  "fields": {
+    "regional_unit": 26,
+    "name": "ΚΑΛΑΜΠΑΚΑΣ",
+    "sort_order": 112
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 113,
+  "fields": {
+    "regional_unit": 26,
+    "name": "ΠΥΛΗΣ",
+    "sort_order": 113
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 114,
+  "fields": {
+    "regional_unit": 26,
+    "name": "ΤΡΙΚΚΑΙΩΝ",
+    "sort_order": 114
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 115,
+  "fields": {
+    "regional_unit": 26,
+    "name": "ΦΑΡΚΑΔΟΝΑΣ",
+    "sort_order": 115
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 116,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΑΛΙΑΡΤΟΥ",
+    "sort_order": 116
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 117,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΔΙΣΤΟΜΟΥ-ΑΡΑΧΟΒΑΣ-ΑΝΤΙΚΥΡΑΣ",
+    "sort_order": 117
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 118,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΘΗΒΑΙΩΝ",
+    "sort_order": 118
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 119,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΛΕΒΑΔΕΩΝ",
+    "sort_order": 119
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 120,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΟΡΧΟΜΕΝΟΥ",
+    "sort_order": 120
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 121,
+  "fields": {
+    "regional_unit": 27,
+    "name": "ΤΑΝΑΓΡΑΣ",
+    "sort_order": 121
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 122,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΔΙΡΦΥΩΝ-ΜΕΣΣΑΠΙΩΝ",
+    "sort_order": 122
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 123,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΕΡΕΤΡΙΑΣ",
+    "sort_order": 123
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 124,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΙΣΤΙΑΙΑΣ-ΑΙΔΗΨΟΥ",
+    "sort_order": 124
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 125,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΚΑΡΥΣΤΟΥ",
+    "sort_order": 125
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 126,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΚΥΜΗΣ-ΑΛΙΒΕΡΙΟΥ",
+    "sort_order": 126
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 127,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΜΑΝΤΟΥΔΙΟΥ-ΛΙΜΝΗΣ-ΑΓΙΑΣ ΑΝΝΑΣ",
+    "sort_order": 127
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 128,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΣΚΥΡΟΥ",
+    "sort_order": 128
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 129,
+  "fields": {
+    "regional_unit": 28,
+    "name": "ΧΑΛΚΙΔΕΩΝ",
+    "sort_order": 129
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 130,
+  "fields": {
+    "regional_unit": 29,
+    "name": "ΑΓΡΑΦΩΝ",
+    "sort_order": 130
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 131,
+  "fields": {
+    "regional_unit": 29,
+    "name": "ΚΑΡΠΕΝΗΣΙΟΥ",
+    "sort_order": 131
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 132,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΑΜΦΙΚΛΕΙΑΣ-ΕΛΑΤΕΙΑΣ",
+    "sort_order": 132
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 133,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΔΟΜΟΚΟΥ",
+    "sort_order": 133
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 134,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΛΑΜΙΕΩΝ",
+    "sort_order": 134
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 135,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΛΟΚΡΩΝ",
+    "sort_order": 135
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 136,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΜΑΚΡΑΚΩΜΗΣ",
+    "sort_order": 136
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 137,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΜΩΛΟΥ-ΑΓΙΟΥ ΚΩΝΣΤΑΝΤΙΝΟΥ",
+    "sort_order": 137
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 138,
+  "fields": {
+    "regional_unit": 30,
+    "name": "ΣΤΥΛΙΔΟΣ",
+    "sort_order": 138
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 139,
+  "fields": {
+    "regional_unit": 31,
+    "name": "ΔΕΛΦΩΝ",
+    "sort_order": 139
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 140,
+  "fields": {
+    "regional_unit": 31,
+    "name": "ΔΩΡΙΔΟΣ",
+    "sort_order": 140
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 141,
+  "fields": {
+    "regional_unit": 32,
+    "name": "ΖΑΚΥΝΘΟΥ",
+    "sort_order": 141
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 142,
+  "fields": {
+    "regional_unit": 33,
+    "name": "ΙΘΑΚΗΣ",
+    "sort_order": 142
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 143,
+  "fields": {
+    "regional_unit": 34,
+    "name": "ΚΕΡΚΥΡΑΣ",
+    "sort_order": 143
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 144,
+  "fields": {
+    "regional_unit": 34,
+    "name": "ΠΑΞΩΝ",
+    "sort_order": 144
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 145,
+  "fields": {
+    "regional_unit": 35,
+    "name": "ΚΕΦΑΛΟΝΙΑΣ",
+    "sort_order": 145
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 146,
+  "fields": {
+    "regional_unit": 36,
+    "name": "ΛΕΥΚΑΔΑΣ",
+    "sort_order": 146
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 147,
+  "fields": {
+    "regional_unit": 36,
+    "name": "ΜΕΓΑΝΗΣΙΟΥ",
+    "sort_order": 147
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 148,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΑΓΡΙΝΙΟΥ",
+    "sort_order": 148
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 149,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΑΚΤΙΟΥ-ΒΟΝΙΤΣΑΣ",
+    "sort_order": 149
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 150,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΑΜΦΙΛΟΧΙΑΣ",
+    "sort_order": 150
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 151,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΘΕΡΜΟΥ",
+    "sort_order": 151
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 152,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΙΕΡΑΣ ΠΟΛΗΣ ΜΕΣΟΛΟΓΓΙΟΥ",
+    "sort_order": 152
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 153,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΝΑΥΠΑΚΤΙΑΣ",
+    "sort_order": 153
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 154,
+  "fields": {
+    "regional_unit": 37,
+    "name": "ΞΗΡΟΜΕΡΟΥ",
+    "sort_order": 154
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 155,
+  "fields": {
+    "regional_unit": 38,
+    "name": "ΑΙΓΙΑΛΕΙΑΣ",
+    "sort_order": 155
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 156,
+  "fields": {
+    "regional_unit": 38,
+    "name": "ΔΥΤΙΚΗΣ ΑΧΑΪΑΣ",
+    "sort_order": 156
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 157,
+  "fields": {
+    "regional_unit": 38,
+    "name": "ΕΡΥΜΑΝΘΟΥ",
+    "sort_order": 157
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 158,
+  "fields": {
+    "regional_unit": 38,
+    "name": "ΚΑΛΑΒΡΥΤΩΝ",
+    "sort_order": 158
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 159,
+  "fields": {
+    "regional_unit": 38,
+    "name": "ΠΑΤΡΕΩΝ",
+    "sort_order": 159
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 160,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΑΝΔΡΑΒΙΔΑΣ-ΚΥΛΛΗΝΗΣ",
+    "sort_order": 160
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 161,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΑΝΔΡΙΤΣΑΙΝΑΣ-ΚΡΕΣΤΕΝΩΝ",
+    "sort_order": 161
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 162,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΑΡΧΑΙΑΣ ΟΛΥΜΠΙΑΣ",
+    "sort_order": 162
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 163,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΖΑΧΑΡΩΣ",
+    "sort_order": 163
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 164,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΗΛΙΔΑΣ",
+    "sort_order": 164
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 165,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΠΗΝΕΙΟΥ",
+    "sort_order": 165
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 166,
+  "fields": {
+    "regional_unit": 39,
+    "name": "ΠΥΡΓΟΥ",
+    "sort_order": 166
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 167,
+  "fields": {
+    "regional_unit": 40,
+    "name": "ΑΡΓΟΥΣ-ΜΥΚΗΝΩΝ",
+    "sort_order": 167
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 168,
+  "fields": {
+    "regional_unit": 40,
+    "name": "ΕΠΙΔΑΥΡΟΥ",
+    "sort_order": 168
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 169,
+  "fields": {
+    "regional_unit": 40,
+    "name": "ΕΡΜΙΟΝΙΔΑΣ",
+    "sort_order": 169
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 170,
+  "fields": {
+    "regional_unit": 40,
+    "name": "ΝΑΥΠΛΙΕΩΝ",
+    "sort_order": 170
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 171,
+  "fields": {
+    "regional_unit": 41,
+    "name": "ΒΟΡΕΙΑΣ ΚΥΝΟΥΡΙΑΣ",
+    "sort_order": 171
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 172,
+  "fields": {
+    "regional_unit": 41,
+    "name": "ΓΟΡΤΥΝΙΑΣ",
+    "sort_order": 172
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 173,
+  "fields": {
+    "regional_unit": 41,
+    "name": "ΜΕΓΑΛΟΠΟΛΗΣ",
+    "sort_order": 173
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 174,
+  "fields": {
+    "regional_unit": 41,
+    "name": "ΝΟΤΙΑΣ ΚΥΝΟΥΡΙΑΣ",
+    "sort_order": 174
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 175,
+  "fields": {
+    "regional_unit": 41,
+    "name": "ΤΡΙΠΟΛΗΣ",
+    "sort_order": 175
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 176,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΒΕΛΟΥ-ΒΟΧΑΣ",
+    "sort_order": 176
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 177,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΚΟΡΙΝΘΙΩΝ",
+    "sort_order": 177
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 178,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΛΟΥΤΡΑΚΙΟΥ-ΑΓΙΩΝ ΘΕΟΔΩΡΩΝ",
+    "sort_order": 178
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 179,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΝΕΜΕΑΣ",
+    "sort_order": 179
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 180,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΞΥΛΟΚΑΣΤΡΟΥ-ΕΥΡΩΣΤΙΝΗΣ",
+    "sort_order": 180
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 181,
+  "fields": {
+    "regional_unit": 42,
+    "name": "ΣΙΚΥΩΝΙΩΝ",
+    "sort_order": 181
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 182,
+  "fields": {
+    "regional_unit": 43,
+    "name": "ΑΝΑΤΟΛΙΚΗΣ ΜΑΝΗΣ",
+    "sort_order": 182
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 183,
+  "fields": {
+    "regional_unit": 43,
+    "name": "ΕΛΑΦΟΝΗΣΟΥ",
+    "sort_order": 183
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 184,
+  "fields": {
+    "regional_unit": 43,
+    "name": "ΕΥΡΩΤΑ",
+    "sort_order": 184
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 185,
+  "fields": {
+    "regional_unit": 43,
+    "name": "ΜΟΝΕΜΒΑΣΙΑΣ",
+    "sort_order": 185
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 186,
+  "fields": {
+    "regional_unit": 43,
+    "name": "ΣΠΑΡΤΗΣ",
+    "sort_order": 186
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 187,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΔΥΤΙΚΗΣ ΜΑΝΗΣ",
+    "sort_order": 187
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 188,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΚΑΛΑΜΑΤΑΣ",
+    "sort_order": 188
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 189,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΜΕΣΣΗΝΗΣ",
+    "sort_order": 189
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 190,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΟΙΧΑΛΙΑΣ",
+    "sort_order": 190
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 191,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΠΥΛΟΥ-ΝΕΣΤΟΡΟΣ",
+    "sort_order": 191
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 192,
+  "fields": {
+    "regional_unit": 44,
+    "name": "ΤΡΙΦΥΛΙΑΣ",
+    "sort_order": 192
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 193,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΑΧΑΡΝΩΝ",
+    "sort_order": 193
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 194,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΒΑΡΗΣ-ΒΟΥΛΑΣ-ΒΟΥΛΙΑΓΜΕΝΗΣ",
+    "sort_order": 194
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 195,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΔΙΟΝΥΣΟΥ",
+    "sort_order": 195
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 196,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΚΡΩΠΙΑΣ",
+    "sort_order": 196
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 197,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΛΑΥΡΕΩΤΙΚΗΣ",
+    "sort_order": 197
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 198,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΜΑΡΑΘΩΝΟΣ",
+    "sort_order": 198
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 199,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΜΑΡΚΟΠΟΥΛΟΥ-ΜΕΣΟΓΑΙΑΣ",
+    "sort_order": 199
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 200,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΠΑΙΑΝΙΑΣ",
+    "sort_order": 200
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 201,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΠΑΛΛΗΝΗΣ",
+    "sort_order": 201
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 202,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΡΑΦΗΝΑΣ-ΠΙΚΕΡΜΙΟΥ",
+    "sort_order": 202
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 203,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΣΑΡΩΝΙΚΟΥ",
+    "sort_order": 203
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 204,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΣΠΑΤΩΝ-ΑΡΤΕΜΙΔΟΣ",
+    "sort_order": 204
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 205,
+  "fields": {
+    "regional_unit": 45,
+    "name": "ΩΡΩΠΟΥ",
+    "sort_order": 205
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 206,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΑΓΙΑΣ ΠΑΡΑΣΚΕΥΗΣ",
+    "sort_order": 206
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 207,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΑΜΑΡΟΥΣΙΟΥ",
+    "sort_order": 207
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 208,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΒΡΙΛΗΣΣΙΩΝ",
+    "sort_order": 208
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 209,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΚΗΦΙΣΙΑΣ",
+    "sort_order": 209
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 210,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΛΥΚΟΒΡΥΣΗΣ-ΠΕΥΚΗΣ",
+    "sort_order": 210
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 211,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΜΕΤΑΜΟΡΦΩΣΕΩΣ",
+    "sort_order": 211
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 212,
+  "fields": {
+    "regional_unit": 46,
+    "name": "Ν. ΗΡΑΚΛΕΙΟΥ",
+    "sort_order": 212
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 213,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΝΕΑΣ ΙΩΝΙΑΣ",
+    "sort_order": 213
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 214,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΠΑΠΑΓΟΥ-ΧΟΛΑΡΓΟΥ",
+    "sort_order": 214
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 215,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΠΕΝΤΕΛΗΣ",
+    "sort_order": 215
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 216,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΦΙΛΟΘΕΗΣ-ΨΥΧΙΚΟΥ",
+    "sort_order": 216
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 217,
+  "fields": {
+    "regional_unit": 46,
+    "name": "ΧΑΛΑΝΔΡΙΟΥ",
+    "sort_order": 217
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 218,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΑΓΙΑΣ ΒΑΡΒΑΡΑΣ",
+    "sort_order": 218
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 219,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΑΓΙΩΝ ΑΝΑΡΓΥΡΩΝ-ΚΑΜΑΤΕΡΟΥ",
+    "sort_order": 219
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 220,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΑΙΓΑΛΕΩ",
+    "sort_order": 220
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 221,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΙΛΙΟΥ",
+    "sort_order": 221
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 222,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΠΕΡΙΣΤΕΡΙΟΥ",
+    "sort_order": 222
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 223,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΠΕΤΡΟΥΠΟΛΕΩΣ",
+    "sort_order": 223
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 224,
+  "fields": {
+    "regional_unit": 47,
+    "name": "ΧΑΪΔΑΡΙΟΥ",
+    "sort_order": 224
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 225,
+  "fields": {
+    "regional_unit": 48,
+    "name": "ΑΣΠΡΟΠΥΡΓΟΥ",
+    "sort_order": 225
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 226,
+  "fields": {
+    "regional_unit": 48,
+    "name": "ΕΛΕΥΣΙΝΑΣ",
+    "sort_order": 226
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 227,
+  "fields": {
+    "regional_unit": 48,
+    "name": "ΜΑΝΔΡΑΣ-ΕΙΔΥΛΛΙΑΣ",
+    "sort_order": 227
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 228,
+  "fields": {
+    "regional_unit": 48,
+    "name": "ΜΕΓΑΡΕΩΝ",
+    "sort_order": 228
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 229,
+  "fields": {
+    "regional_unit": 48,
+    "name": "ΦΥΛΗΣ",
+    "sort_order": 229
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 230,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΑΘΗΝΑΙΩΝ",
+    "sort_order": 230
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 231,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΒΥΡΩΝΟΣ",
+    "sort_order": 231
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 232,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΓΑΛΑΤΣΙΟΥ",
+    "sort_order": 232
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 233,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΔΑΦΝΗΣ-ΥΜΗΤΤΟΥ",
+    "sort_order": 233
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 234,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΖΩΓΡΑΦΟΥ",
+    "sort_order": 234
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 235,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΗΛΙΟΥΠΟΛΕΩΣ",
+    "sort_order": 235
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 236,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΚΑΙΣΑΡΙΑΝΗΣ",
+    "sort_order": 236
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 237,
+  "fields": {
+    "regional_unit": 49,
+    "name": "ΦΙΛΑΔΕΛΦΕΙΑΣ-ΧΑΛΚΗΔΟΝΟΣ",
+    "sort_order": 237
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 238,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΑΓΙΟΥ ΔΗΜΗΤΡΙΟΥ",
+    "sort_order": 238
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 239,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΑΛΙΜΟΥ",
+    "sort_order": 239
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 240,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΓΛΥΦΑΔΑΣ",
+    "sort_order": 240
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 241,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΕΛΛΗΝΙΚΟΥ-ΑΡΓΥΡΟΥΠΟΛΗΣ",
+    "sort_order": 241
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 242,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΚΑΛΛΙΘΕΑΣ",
+    "sort_order": 242
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 243,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΜΟΣΧΑΤΟΥ-ΤΑΥΡΟΥ",
+    "sort_order": 243
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 244,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΝΕΑΣ ΣΜΥΡΝΗΣ",
+    "sort_order": 244
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 245,
+  "fields": {
+    "regional_unit": 50,
+    "name": "ΠΑΛΑΙΟΥ ΦΑΛΗΡΟΥ",
+    "sort_order": 245
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 246,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΑΓΚΙΣΤΡΙΟΥ",
+    "sort_order": 246
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 247,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΑΙΓΙΝΑΣ",
+    "sort_order": 247
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 248,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΚΥΘΗΡΩΝ",
+    "sort_order": 248
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 249,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΠΟΡΟΥ",
+    "sort_order": 249
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 250,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΣΑΛΑΜΙΝΟΣ",
+    "sort_order": 250
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 251,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΣΠΕΤΣΩΝ",
+    "sort_order": 251
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 252,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΤΡΟΙΖΗΝΙΑΣ",
+    "sort_order": 252
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 253,
+  "fields": {
+    "regional_unit": 51,
+    "name": "ΥΔΡΑΣ",
+    "sort_order": 253
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 254,
+  "fields": {
+    "regional_unit": 52,
+    "name": "ΚΕΡΑΤΣΙΝΙΟΥ-ΔΡΑΠΕΤΣΩΝΑΣ",
+    "sort_order": 254
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 255,
+  "fields": {
+    "regional_unit": 52,
+    "name": "ΚΟΡΥΔΑΛΛΟΥ",
+    "sort_order": 255
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 256,
+  "fields": {
+    "regional_unit": 52,
+    "name": "ΝΙΚΑΙΑΣ-ΑΓΙΟΥ ΙΩΑΝΝΗ ΡΕΝΤΗ",
+    "sort_order": 256
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 257,
+  "fields": {
+    "regional_unit": 52,
+    "name": "ΠΕΙΡΑΙΩΣ",
+    "sort_order": 257
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 258,
+  "fields": {
+    "regional_unit": 52,
+    "name": "ΠΕΡΑΜΑΤΟΣ",
+    "sort_order": 258
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 259,
+  "fields": {
+    "regional_unit": 53,
+    "name": "ΙΚΑΡΙΑΣ",
+    "sort_order": 259
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 260,
+  "fields": {
+    "regional_unit": 53,
+    "name": "ΦΟΥΡΝΩΝ-ΚΟΡΣΕΩΝ",
+    "sort_order": 260
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 261,
+  "fields": {
+    "regional_unit": 54,
+    "name": "ΛΕΣΒΟΥ",
+    "sort_order": 261
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 262,
+  "fields": {
+    "regional_unit": 55,
+    "name": "ΑΓΙΟΥ ΕΥΣΤΡΑΤΙΟΥ",
+    "sort_order": 262
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 263,
+  "fields": {
+    "regional_unit": 55,
+    "name": "ΛΗΜΝΟΥ",
+    "sort_order": 263
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 264,
+  "fields": {
+    "regional_unit": 56,
+    "name": "ΣΑΜΟΥ",
+    "sort_order": 264
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 265,
+  "fields": {
+    "regional_unit": 57,
+    "name": "ΟΙΝΟΥΣΣΩΝ",
+    "sort_order": 265
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 266,
+  "fields": {
+    "regional_unit": 57,
+    "name": "ΧΙΟΥ",
+    "sort_order": 266
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 267,
+  "fields": {
+    "regional_unit": 57,
+    "name": "ΨΑΡΩΝ",
+    "sort_order": 267
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 268,
+  "fields": {
+    "regional_unit": 58,
+    "name": "ΑΝΔΡΟΥ",
+    "sort_order": 268
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 269,
+  "fields": {
+    "regional_unit": 59,
+    "name": "ΑΝΑΦΗΣ",
+    "sort_order": 269
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 270,
+  "fields": {
+    "regional_unit": 59,
+    "name": "ΘΗΡΑΣ",
+    "sort_order": 270
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 271,
+  "fields": {
+    "regional_unit": 59,
+    "name": "ΙΗΤΩΝ",
+    "sort_order": 271
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 272,
+  "fields": {
+    "regional_unit": 59,
+    "name": "ΣΙΚΙΝΟΥ",
+    "sort_order": 272
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 273,
+  "fields": {
+    "regional_unit": 59,
+    "name": "ΦΟΛΕΓΑΝΔΡΟΥ",
+    "sort_order": 273
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 274,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΑΓΑΘΟΝΗΣΙΟΥ",
+    "sort_order": 274
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 275,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΑΣΤΥΠΑΛΑΙΑΣ",
+    "sort_order": 275
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 276,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΚΑΛΥΜΝΙΩΝ",
+    "sort_order": 276
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 277,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΛΕΙΨΩΝ",
+    "sort_order": 277
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 278,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΛΕΡΟΥ",
+    "sort_order": 278
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 279,
+  "fields": {
+    "regional_unit": 60,
+    "name": "ΠΑΤΜΟΥ",
+    "sort_order": 279
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 280,
+  "fields": {
+    "regional_unit": 61,
+    "name": "ΚΑΡΠΑΘΟΥ",
+    "sort_order": 280
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 281,
+  "fields": {
+    "regional_unit": 61,
+    "name": "ΚΑΣΟΥ",
+    "sort_order": 281
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 282,
+  "fields": {
+    "regional_unit": 62,
+    "name": "ΚΕΑΣ",
+    "sort_order": 282
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 283,
+  "fields": {
+    "regional_unit": 62,
+    "name": "ΚΥΘΝΟΥ",
+    "sort_order": 283
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 284,
+  "fields": {
+    "regional_unit": 63,
+    "name": "ΚΩ",
+    "sort_order": 284
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 285,
+  "fields": {
+    "regional_unit": 63,
+    "name": "ΝΙΣΥΡΟΥ",
+    "sort_order": 285
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 286,
+  "fields": {
+    "regional_unit": 64,
+    "name": "ΚΙΜΩΛΟΥ",
+    "sort_order": 286
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 287,
+  "fields": {
+    "regional_unit": 64,
+    "name": "ΜΗΛΟΥ",
+    "sort_order": 287
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 288,
+  "fields": {
+    "regional_unit": 64,
+    "name": "ΣΕΡΙΦΟΥ",
+    "sort_order": 288
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 289,
+  "fields": {
+    "regional_unit": 64,
+    "name": "ΣΙΦΝΟΥ",
+    "sort_order": 289
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 290,
+  "fields": {
+    "regional_unit": 65,
+    "name": "ΜΥΚΟΝΟΥ",
+    "sort_order": 290
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 291,
+  "fields": {
+    "regional_unit": 66,
+    "name": "ΑΜΟΡΓΟΥ",
+    "sort_order": 291
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 292,
+  "fields": {
+    "regional_unit": 66,
+    "name": "ΝΑΞΟΥ & ΜΙΚΡΩΝ ΚΥΚΛΑΔΩΝ",
+    "sort_order": 292
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 293,
+  "fields": {
+    "regional_unit": 67,
+    "name": "ΑΝΤΙΠΑΡΟΥ",
+    "sort_order": 293
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 294,
+  "fields": {
+    "regional_unit": 67,
+    "name": "ΠΑΡΟΥ",
+    "sort_order": 294
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 295,
+  "fields": {
+    "regional_unit": 68,
+    "name": "ΜΕΓΙΣΤΗΣ",
+    "sort_order": 295
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 296,
+  "fields": {
+    "regional_unit": 68,
+    "name": "ΡΟΔΟΥ",
+    "sort_order": 296
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 297,
+  "fields": {
+    "regional_unit": 68,
+    "name": "ΣΥΜΗΣ",
+    "sort_order": 297
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 298,
+  "fields": {
+    "regional_unit": 68,
+    "name": "ΤΗΛΟΥ",
+    "sort_order": 298
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 299,
+  "fields": {
+    "regional_unit": 68,
+    "name": "ΧΑΛΚΗΣ",
+    "sort_order": 299
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 300,
+  "fields": {
+    "regional_unit": 69,
+    "name": "ΣΥΡΟΥ-ΕΡΜΟΥΠΟΛΗΣ",
+    "sort_order": 300
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 301,
+  "fields": {
+    "regional_unit": 70,
+    "name": "ΤΗΝΟΥ",
+    "sort_order": 301
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 302,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΑΡΧΑΝΩΝ-ΑΣΤΕΡΟΥΣΙΩΝ",
+    "sort_order": 302
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 303,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΒΙΑΝΝΟΥ",
+    "sort_order": 303
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 304,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΓΟΡΤΥΝΑΣ",
+    "sort_order": 304
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 305,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΗΡΑΚΛΕΙΟΥ",
+    "sort_order": 305
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 306,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΜΑΛΕΒΙΖΙΟΥ",
+    "sort_order": 306
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 307,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΜΙΝΩΑ ΠΕΔΙΑΔΑΣ",
+    "sort_order": 307
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 308,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΦΑΙΣΤΟΥ",
+    "sort_order": 308
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 309,
+  "fields": {
+    "regional_unit": 71,
+    "name": "ΧΕΡΣΟΝΗΣΟΥ",
+    "sort_order": 309
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 310,
+  "fields": {
+    "regional_unit": 72,
+    "name": "ΑΓΙΟΥ ΝΙΚΟΛΑΟΥ",
+    "sort_order": 310
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 311,
+  "fields": {
+    "regional_unit": 72,
+    "name": "ΙΕΡΑΠΕΤΡΑΣ",
+    "sort_order": 311
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 312,
+  "fields": {
+    "regional_unit": 72,
+    "name": "ΟΡΟΠΕΔΙΟΥ ΛΑΣΙΘΙΟΥ",
+    "sort_order": 312
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 313,
+  "fields": {
+    "regional_unit": 72,
+    "name": "ΣΗΤΕΙΑΣ",
+    "sort_order": 313
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 314,
+  "fields": {
+    "regional_unit": 73,
+    "name": "ΑΓΙΟΥ ΒΑΣΙΛΕΙΟΥ",
+    "sort_order": 314
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 315,
+  "fields": {
+    "regional_unit": 73,
+    "name": "ΑΜΑΡΙΟΥ",
+    "sort_order": 315
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 316,
+  "fields": {
+    "regional_unit": 73,
+    "name": "ΑΝΩΓΕΙΩΝ",
+    "sort_order": 316
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 317,
+  "fields": {
+    "regional_unit": 73,
+    "name": "ΜΥΛΟΠΟΤΑΜΟΥ",
+    "sort_order": 317
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 318,
+  "fields": {
+    "regional_unit": 73,
+    "name": "ΡΕΘΥΜΝΗΣ",
+    "sort_order": 318
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 319,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΑΠΟΚΟΡΩΝΟΥ",
+    "sort_order": 319
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 320,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΓΑΥΔΟΥ",
+    "sort_order": 320
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 321,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΚΑΝΤΑΝΟΥ-ΣΕΛΙΝΟΥ",
+    "sort_order": 321
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 322,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΚΙΣΣΑΜΟΥ",
+    "sort_order": 322
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 323,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΠΛΑΤΑΝΙΑ",
+    "sort_order": 323
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 324,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΣΦΑΚΙΩΝ",
+    "sort_order": 324
+  }
+},
+{
+  "model": "records.municipality",
+  "pk": 325,
+  "fields": {
+    "regional_unit": 74,
+    "name": "ΧΑΝΙΩΝ",
+    "sort_order": 325
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 1,
+  "fields": {
+    "name": "ΚΕΠΑ",
+    "name_en": "",
+    "code": "kepa",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Κέντρα Πιστοποίησης Αναπηρίας"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Επιδόματα/Παροχές",
+    "name_en": "",
+    "code": "benefits",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Κοινωνικά επιδόματα και παροχές"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Ιατρικές Υπηρεσίες",
+    "name_en": "",
+    "code": "medical",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Ιατρική φροντίδα και υπηρεσίες"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Μετακίνηση",
+    "name_en": "",
+    "code": "transport",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Μέσα μεταφοράς και αποζημιώσεις"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 5,
+  "fields": {
+    "name": "Φιλοξενία",
+    "name_en": "",
+    "code": "accommodation",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Υπηρεσίες φιλοξενίας και κατοικίας"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 6,
+  "fields": {
+    "name": "Εργασιακά",
+    "name_en": "",
+    "code": "work",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Εργασιακά δικαιώματα και υπηρεσίες"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 7,
+  "fields": {
+    "name": "Εκπαίδευση",
+    "name_en": "",
+    "code": "education",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Εκπαιδευτικές υπηρεσίες και εισαγωγές"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 8,
+  "fields": {
+    "name": "Οικονομική Υποστήριξη",
+    "name_en": "",
+    "code": "financial",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Οικονομική βοήθεια και αποζημιώσεις"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 9,
+  "fields": {
+    "name": "Ψυχοκοινωνική Υποστήριξη",
+    "name_en": "",
+    "code": "psychosocial",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Ψυχολογική και κοινωνική υποστήριξη"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 10,
+  "fields": {
+    "name": "Διοικητικές Διαδικασίες",
+    "name_en": "",
+    "code": "administrative",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Γραφειοκρατικές διαδικασίες"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 11,
+  "fields": {
+    "name": "Αναπηρία",
+    "name_en": "",
+    "code": "disability",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Υπηρεσίες για άτομα με αναπηρία"
+  }
+},
+{
+  "model": "records.requestcategory",
+  "pk": 12,
+  "fields": {
+    "name": "Άλλα",
+    "name_en": "",
+    "code": "other",
+    "is_active": true,
+    "sort_order": 0,
+    "description": "Άλλες κατηγορίες αιτημάτων"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 1,
+  "fields": {
+    "name": "Καταγραφή αιτήματος",
+    "name_en": "Request Recorded",
+    "code": "recorded",
+    "is_active": true,
+    "sort_order": 1,
+    "is_closed": false,
+    "is_pending": false,
+    "requires_action": true,
+    "color_code": "#6c757d"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 2,
+  "fields": {
+    "name": "Επικοινωνία με φορέα",
+    "name_en": "Contacting Organization",
+    "code": "contacting_org",
+    "is_active": true,
+    "sort_order": 2,
+    "is_closed": false,
+    "is_pending": false,
+    "requires_action": true,
+    "color_code": "#007bff"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 3,
+  "fields": {
+    "name": "Εκκρεμεί, απάντηση φορέα",
+    "name_en": "Pending Organization Response",
+    "code": "pending_org_response",
+    "is_active": true,
+    "sort_order": 3,
+    "is_closed": false,
+    "is_pending": true,
+    "requires_action": true,
+    "color_code": "#e83e8c"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 4,
+  "fields": {
+    "name": "Εκκρεμεί, απάντηση ωφελούμενου",
+    "name_en": "Pending Beneficiary Response",
+    "code": "pending_beneficiary",
+    "is_active": true,
+    "sort_order": 4,
+    "is_closed": false,
+    "is_pending": true,
+    "requires_action": true,
+    "color_code": "#fd7e14"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 5,
+  "fields": {
+    "name": "Εκκρεμεί, κοινοποίηση αποτελέσματος",
+    "name_en": "Pending Result Notification",
+    "code": "pending_notification",
+    "is_active": true,
+    "sort_order": 5,
+    "is_closed": false,
+    "is_pending": true,
+    "requires_action": true,
+    "color_code": "#ffc107"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 6,
+  "fields": {
+    "name": "Ολοκλήρωση",
+    "name_en": "Completed",
+    "code": "completed",
+    "is_active": true,
+    "sort_order": 6,
+    "is_closed": true,
+    "is_pending": false,
+    "requires_action": false,
+    "color_code": "#28a745"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 7,
+  "fields": {
+    "name": "Αξιολόγηση",
+    "name_en": "Assessment",
+    "code": "assessment",
+    "is_active": true,
+    "sort_order": 7,
+    "is_closed": false,
+    "is_pending": false,
+    "requires_action": true,
+    "color_code": "#17a2b8"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 8,
+  "fields": {
+    "name": "Διακοπή",
+    "name_en": "Discontinued",
+    "code": "discontinued",
+    "is_active": true,
+    "sort_order": 8,
+    "is_closed": true,
+    "is_pending": false,
+    "requires_action": false,
+    "color_code": "#dc3545"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 9,
+  "fields": {
+    "name": "Απεβίωσε",
+    "name_en": "Deceased",
+    "code": "deceased",
+    "is_active": true,
+    "sort_order": 9,
+    "is_closed": true,
+    "is_pending": false,
+    "requires_action": false,
+    "color_code": "#343a40"
+  }
+},
+{
+  "model": "records.requeststatus",
+  "pk": 10,
+  "fields": {
+    "name": "Άλλο",
+    "name_en": "Other",
+    "code": "other",
+    "is_active": true,
+    "sort_order": 10,
+    "is_closed": false,
+    "is_pending": false,
+    "requires_action": true,
+    "color_code": "#6f42c1"
+  }
+},
+{
+  "model": "records.therapytype",
+  "pk": 1,
+  "fields": {
+    "name": "Χημειοθεραπεία",
+    "name_en": "",
+    "code": "",
+    "is_active": true,
+    "sort_order": 0,
+    "therapy_category": "systemic",
+    "requires_hospitalization": false,
+    "typical_duration_weeks": 12
+  }
+},
+{
+  "model": "records.center",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-03-11T13:29:28.644Z",
+    "updated_at": "2026-03-11T13:29:28.644Z",
+    "name": "ΑΘΗΝΑ",
+    "address": "",
+    "municipality": null,
+    "phone": "",
+    "email": "",
+    "is_active": true
+  }
+},
+{
+  "model": "records.center",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-03-11T13:29:28.644Z",
+    "updated_at": "2026-03-11T13:29:28.644Z",
+    "name": "ΘΕΣΣΑΛΟΝΙΚΗ",
+    "address": "",
+    "municipality": null,
+    "phone": "",
+    "email": "",
+    "is_active": true
+  }
+},
+{
+  "model": "records.person",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-03-13T10:03:41.747Z",
+    "updated_at": "2026-03-13T10:24:09.724Z",
+    "last_name": "Test",
+    "first_name": "faga",
+    "father_name": null,
+    "mother_name": null,
+    "birth_year": 1990,
+    "gender": "female",
+    "marital_status": "single",
+    "children_count": 2,
+    "minors": 0,
+    "students": 2,
+    "no_military_service": 2,
+    "nationality": "Ελληνική",
+    "citizenship": "Ελληνική",
+    "vat": null,
+    "amka": null,
+    "id_card": null,
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "regional_unit": null,
+    "region": null,
+    "weight": null,
+    "height": null,
+    "center": null,
+    "registration_number": 1,
+    "knowledge_source": "print",
+    "insurance_status": "",
+    "insurance_provider": "",
+    "special_funds": "",
+    "widow_pension": false,
+    "disability_pension": false,
+    "status": "",
+    "unemployment_card": false,
+    "unemployment_registration_date": null,
+    "profession": "",
+    "specialization": "",
+    "employment_type": "",
+    "employer_name": "",
+    "employer_legal_form": "",
+    "hire_date": null,
+    "work_schedule": "",
+    "contract_type": ""
+  }
+},
+{
+  "model": "records.person",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-03-13T10:24:49.337Z",
+    "updated_at": "2026-03-13T13:16:26.656Z",
+    "last_name": "te",
+    "first_name": "ρε",
+    "father_name": null,
+    "mother_name": null,
+    "birth_year": 1990,
+    "gender": "male",
+    "marital_status": "married",
+    "children_count": 1,
+    "minors": 1,
+    "students": 0,
+    "no_military_service": 1,
+    "nationality": "Ελληνική",
+    "citizenship": "Ελληνική",
+    "vat": null,
+    "amka": null,
+    "id_card": null,
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "regional_unit": null,
+    "region": null,
+    "weight": null,
+    "height": null,
+    "center": null,
+    "registration_number": 2,
+    "knowledge_source": "",
+    "insurance_status": "uninsured",
+    "insurance_provider": "",
+    "special_funds": "",
+    "widow_pension": false,
+    "disability_pension": false,
+    "status": "unemployed",
+    "unemployment_card": true,
+    "unemployment_registration_date": null,
+    "profession": "",
+    "specialization": "",
+    "employment_type": "",
+    "employer_name": "",
+    "employer_legal_form": "",
+    "hire_date": null,
+    "work_schedule": "",
+    "contract_type": ""
+  }
+},
+{
+  "model": "records.person",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-03-13T13:35:32.230Z",
+    "updated_at": "2026-03-13T13:36:37.432Z",
+    "last_name": "Sub1",
+    "first_name": "Test",
+    "father_name": null,
+    "mother_name": null,
+    "birth_year": null,
+    "gender": "other",
+    "marital_status": "",
+    "children_count": 0,
+    "minors": 0,
+    "students": 0,
+    "no_military_service": 0,
+    "nationality": "Ελληνική",
+    "citizenship": "Ελληνική",
+    "vat": null,
+    "amka": null,
+    "id_card": null,
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "regional_unit": null,
+    "region": null,
+    "weight": null,
+    "height": null,
+    "center": null,
+    "registration_number": 3,
+    "knowledge_source": "",
+    "insurance_status": "uninsured",
+    "insurance_provider": "",
+    "special_funds": "",
+    "widow_pension": false,
+    "disability_pension": false,
+    "status": "employed",
+    "unemployment_card": false,
+    "unemployment_registration_date": null,
+    "profession": "Κλοουν",
+    "specialization": "",
+    "employment_type": "employee",
+    "employer_name": "",
+    "employer_legal_form": "",
+    "hire_date": null,
+    "work_schedule": "seasonal",
+    "contract_type": "other"
+  }
+},
+{
+  "model": "records.contactperson",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-03-13T10:05:31.083Z",
+    "updated_at": "2026-03-13T10:13:29.254Z",
+    "person": 9,
+    "last_name": "ρε",
+    "first_name": "ρε",
+    "relation": "friend",
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "is_primary": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.contactperson",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-03-13T10:06:52.107Z",
+    "updated_at": "2026-03-13T10:24:01.571Z",
+    "person": 9,
+    "last_name": "te",
+    "first_name": "test",
+    "relation": "spouse",
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "is_primary": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.contactperson",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-03-13T10:06:55.504Z",
+    "updated_at": "2026-03-13T10:15:34.732Z",
+    "person": 9,
+    "last_name": "ρε",
+    "first_name": "ρε",
+    "relation": "guardian",
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "is_primary": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.contactperson",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-03-13T13:35:46.560Z",
+    "updated_at": "2026-03-13T13:35:54.303Z",
+    "person": 11,
+    "last_name": "ra",
+    "first_name": "",
+    "relation": "child",
+    "landline": "",
+    "mobile": "",
+    "email": "",
+    "address": "",
+    "city": "",
+    "postal_code": "",
+    "municipality": null,
+    "is_primary": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 1,
+  "fields": {
+    "code_range": "C00-C97",
+    "name": "Κακοήθη νεοπλάσματα",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 2,
+  "fields": {
+    "code_range": "D00-D09",
+    "name": "Νεοπλάσματα in situ",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 3,
+  "fields": {
+    "code_range": "D10-D36",
+    "name": "Καλοήθη νεοπλάσματα",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.icd10category",
+  "pk": 4,
+  "fields": {
+    "code_range": "D37-D48",
+    "name": "Αβέβαιη/Άγνωστη συμπεριφορά",
+    "name_en": "",
+    "description": "",
+    "is_cancer_related": true,
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Στόμα-Χείλος-Φάρυγγας",
+    "description": "Subcategory for Στόμα-Χείλος-Φάρυγγας",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 1
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Πεπτικό",
+    "description": "Subcategory for Πεπτικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 2
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 3
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "Οστά-Δέρμα",
+    "description": "Subcategory for Οστά-Δέρμα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 4
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Μαλακά μόρια",
+    "description": "Subcategory for Μαλακά μόρια",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 5
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "name": "Μαστός",
+    "description": "Subcategory for Μαστός",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 6
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "name": "Γεννητικά όργανα Γυναικεία",
+    "description": "Subcategory for Γεννητικά όργανα Γυναικεία",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 7
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "name": "Γεννητικά όργανα Ανδρικά",
+    "description": "Subcategory for Γεννητικά όργανα Ανδρικά",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 8
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 9
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "name": "Εγκέφαλος-Οφθαλμός",
+    "description": "Subcategory for Εγκέφαλος-Οφθαλμός",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 10
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 11,
+  "fields": {
+    "category": 1,
+    "name": "Ενδοκρινείς αδένες",
+    "description": "Subcategory for Ενδοκρινείς αδένες",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 11
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "name": "Ασαφώς καθοριζόμενα",
+    "description": "Subcategory for Ασαφώς καθοριζόμενα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 12
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 13,
+  "fields": {
+    "category": 1,
+    "name": "Αίμα Λεμφικό",
+    "description": "Subcategory for Αίμα Λεμφικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 13
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "name": "Πεπτικό",
+    "description": "Subcategory for Πεπτικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 14
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 15
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 16,
+  "fields": {
+    "category": 2,
+    "name": "Μελάνωμα",
+    "description": "Subcategory for Μελάνωμα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 16
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "name": "Δέρμα",
+    "description": "Subcategory for Δέρμα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 17
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "name": "Μαστός",
+    "description": "Subcategory for Μαστός",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 18
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 19,
+  "fields": {
+    "category": 2,
+    "name": "Γεννητικά όργανα",
+    "description": "Subcategory for Γεννητικά όργανα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 19
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 20,
+  "fields": {
+    "category": 2,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 20
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 21,
+  "fields": {
+    "category": 3,
+    "name": "Στόμα-Φάρυγγας",
+    "description": "Subcategory for Στόμα-Φάρυγγας",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 21
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 22,
+  "fields": {
+    "category": 3,
+    "name": "Πεπτικό",
+    "description": "Subcategory for Πεπτικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 22
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 23,
+  "fields": {
+    "category": 3,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 23
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 24,
+  "fields": {
+    "category": 3,
+    "name": "Άλλα",
+    "description": "Subcategory for Άλλα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 24
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 25,
+  "fields": {
+    "category": 3,
+    "name": "Δέρμα",
+    "description": "Subcategory for Δέρμα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 25
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 26,
+  "fields": {
+    "category": 3,
+    "name": "Μαστός",
+    "description": "Subcategory for Μαστός",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 26
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 27,
+  "fields": {
+    "category": 3,
+    "name": "Γεννητικά όργανα",
+    "description": "Subcategory for Γεννητικά όργανα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 27
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 28,
+  "fields": {
+    "category": 3,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 28
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 29,
+  "fields": {
+    "category": 3,
+    "name": "Ενδοκρινείς",
+    "description": "Subcategory for Ενδοκρινείς",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 29
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 30,
+  "fields": {
+    "category": 3,
+    "name": "Νευρικό σύστημα",
+    "description": "Subcategory for Νευρικό σύστημα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 30
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 31,
+  "fields": {
+    "category": 4,
+    "name": "Στόμα-Πεπτικό",
+    "description": "Subcategory for Στόμα-Πεπτικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 31
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 32,
+  "fields": {
+    "category": 4,
+    "name": "Αναπνευστικό",
+    "description": "Subcategory for Αναπνευστικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 32
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 33,
+  "fields": {
+    "category": 4,
+    "name": "Γεννητικά",
+    "description": "Subcategory for Γεννητικά",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 33
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 34,
+  "fields": {
+    "category": 4,
+    "name": "Ουροποιητικό",
+    "description": "Subcategory for Ουροποιητικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 34
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 35,
+  "fields": {
+    "category": 4,
+    "name": "Νευρικό",
+    "description": "Subcategory for Νευρικό",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 35
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 36,
+  "fields": {
+    "category": 4,
+    "name": "Ενδοκρινείς",
+    "description": "Subcategory for Ενδοκρινείς",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 36
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 37,
+  "fields": {
+    "category": 4,
+    "name": "Αίμα",
+    "description": "Subcategory for Αίμα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 37
+  }
+},
+{
+  "model": "records.icd10subcategory",
+  "pk": 38,
+  "fields": {
+    "category": 4,
+    "name": "Άλλα",
+    "description": "Subcategory for Άλλα",
+    "code_range_start": "",
+    "code_range_end": "",
+    "sort_order": 38
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 1,
+  "fields": {
+    "code": "C00",
+    "label": "Χείλους",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 2,
+  "fields": {
+    "code": "C01",
+    "label": "Βάσης γλώσσας",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 3,
+  "fields": {
+    "code": "C02",
+    "label": "Αλλων και μη καθορισμένων τμημάτων γλώσσας",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 4,
+  "fields": {
+    "code": "C03",
+    "label": "Ούλων",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 5,
+  "fields": {
+    "code": "C04",
+    "label": "Εδάφους στόματος",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 6,
+  "fields": {
+    "code": "C05",
+    "label": "Υπερώας ",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 7,
+  "fields": {
+    "code": "C06",
+    "label": "Αλλων και μη καθορισμένων τμημάτων στόματος",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 8,
+  "fields": {
+    "code": "C07",
+    "label": "Παρωτίδας",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 9,
+  "fields": {
+    "code": "C08",
+    "label": "Αλλων και μη καθορισμένων μειζόνων σιελογόνων αδένων",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 10,
+  "fields": {
+    "code": "C09",
+    "label": "Αμυγδαλή",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 11,
+  "fields": {
+    "code": "C10",
+    "label": "Στοματοφάρυγγα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 12,
+  "fields": {
+    "code": "C11",
+    "label": "Ρινοφάρυγγα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 13,
+  "fields": {
+    "code": "C12",
+    "label": "Απιοειδούς κόλπου",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 14,
+  "fields": {
+    "code": "C13",
+    "label": "Υποφάρυγγα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 15,
+  "fields": {
+    "code": "C14",
+    "label": "Αλλων και ασαφώς καθορισμένων εντοπίσεων στο χείλος, τη στοματική κοιλότητα και το φάρυγγα",
+    "category": 1,
+    "subcategory": 1,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 16,
+  "fields": {
+    "code": "C15",
+    "label": "Οισοφάγου",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 17,
+  "fields": {
+    "code": "C16",
+    "label": "Στομάχου",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 18,
+  "fields": {
+    "code": "C17",
+    "label": "Λεπτού εντέρου",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 19,
+  "fields": {
+    "code": "C18",
+    "label": "Παχέος εντέρου [κόλου]",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 20,
+  "fields": {
+    "code": "C19",
+    "label": "Ορθοσιγμοειδούς συμβολής",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 21,
+  "fields": {
+    "code": "C20",
+    "label": "Ορθού",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 22,
+  "fields": {
+    "code": "C21",
+    "label": "Πρωκτού και πρωκτικού σωλήνα",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 23,
+  "fields": {
+    "code": "C22",
+    "label": "Ηπατος και ενδοηπατικών χοληφόρων πόρων",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 24,
+  "fields": {
+    "code": "C23",
+    "label": "Χοληδόχου κύστης",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 25,
+  "fields": {
+    "code": "C24",
+    "label": "Άλλων και μη καθορισμένων τμημάτων χοληφόρων πόρων",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 26,
+  "fields": {
+    "code": "C25",
+    "label": "Παγκρέατος",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 27,
+  "fields": {
+    "code": "C26",
+    "label": "Άλλων και ασαφώς καθορισμένων οργάνων πεπτικού",
+    "category": 1,
+    "subcategory": 2,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 28,
+  "fields": {
+    "code": "C30",
+    "label": "Ρινικής κοιλότητας και μέσου ωτός",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 29,
+  "fields": {
+    "code": "C31",
+    "label": "Επικουρικών [παραρρινίων] κόλπων",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 30,
+  "fields": {
+    "code": "C32",
+    "label": "Λάρυγγα",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 31,
+  "fields": {
+    "code": "C33",
+    "label": "Τραχείας",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 32,
+  "fields": {
+    "code": "C34",
+    "label": "Βρόγχου και πνεύμονα",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 33,
+  "fields": {
+    "code": "C37",
+    "label": "Θύμου αδένα",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 34,
+  "fields": {
+    "code": "C38",
+    "label": "Καρδιάς, μεσοθωρακίου και υπεζωκότα",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 35,
+  "fields": {
+    "code": "C39",
+    "label": "Αλλων και ασαφώς καθορισμένων εντοπίσεων αναπνευστικού συστήματος, άλλων ενδοθωρακικών οργάνων",
+    "category": 1,
+    "subcategory": 3,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 36,
+  "fields": {
+    "code": "C40",
+    "label": "Οστών και αρθρικών χόνδρων άκρων",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 37,
+  "fields": {
+    "code": "C41",
+    "label": "Οστών και αρθρικών χόνδρων άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 38,
+  "fields": {
+    "code": "C43",
+    "label": "Κακόηθες μελάνωμα δέρματος",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 39,
+  "fields": {
+    "code": "C44",
+    "label": "Άλλα δέρματος",
+    "category": 1,
+    "subcategory": 4,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 40,
+  "fields": {
+    "code": "C45",
+    "label": "Μεσοθηλίωμα",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 41,
+  "fields": {
+    "code": "C46",
+    "label": "Σάρκωμα Kaposi",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 42,
+  "fields": {
+    "code": "C47",
+    "label": "Περιφερικών νεύρων και αυτόνομου νευρικού συστήματος",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 43,
+  "fields": {
+    "code": "C48",
+    "label": "Οπισθοπεριτοναίου και περιτοναίου",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 44,
+  "fields": {
+    "code": "C49",
+    "label": "Άλλου συνδετικού και μαλακών μορίων",
+    "category": 1,
+    "subcategory": 5,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 45,
+  "fields": {
+    "code": "C50",
+    "label": "Μαστού",
+    "category": 1,
+    "subcategory": 6,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 46,
+  "fields": {
+    "code": "C51",
+    "label": "Αιδοίου",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 47,
+  "fields": {
+    "code": "C52",
+    "label": "Κόλπου",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 48,
+  "fields": {
+    "code": "C53",
+    "label": "Τραχήλου μήτρας",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 49,
+  "fields": {
+    "code": "C54",
+    "label": "Σώματος μήτρας",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 50,
+  "fields": {
+    "code": "C55",
+    "label": "Μήτρας μη καθορισμένου τμήματος",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 51,
+  "fields": {
+    "code": "C56",
+    "label": "Ωοθήκης",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 52,
+  "fields": {
+    "code": "C57",
+    "label": "Άλλων και μη καθορισμένων γυναικείων γεννητικών οργάνων",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 53,
+  "fields": {
+    "code": "C58",
+    "label": "Πλακούντα",
+    "category": 1,
+    "subcategory": 7,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 54,
+  "fields": {
+    "code": "C60",
+    "label": "Πέους",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 55,
+  "fields": {
+    "code": "C61",
+    "label": "Προστάτη",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 56,
+  "fields": {
+    "code": "C62",
+    "label": "Όρχεως",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 57,
+  "fields": {
+    "code": "C63",
+    "label": "Άλλων και μη καθορισμένων ανδρικών γεννητικών οργάνων",
+    "category": 1,
+    "subcategory": 8,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 58,
+  "fields": {
+    "code": "C64",
+    "label": "Νεφρού εκτός νεφρικής πυέλου",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 59,
+  "fields": {
+    "code": "C65",
+    "label": "Νεφρικής πυέλου",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 60,
+  "fields": {
+    "code": "C66",
+    "label": "Ουρητήρα",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 61,
+  "fields": {
+    "code": "C67",
+    "label": "Ουροδόχου κύστης",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 62,
+  "fields": {
+    "code": "C68",
+    "label": "Άλλων και μη καθορισμένων οργάνων ουροποιητικού",
+    "category": 1,
+    "subcategory": 9,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 63,
+  "fields": {
+    "code": "C69",
+    "label": "Οφθαλμού και εξαρτημάτων",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 64,
+  "fields": {
+    "code": "C70",
+    "label": "Μηνίγγων",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 65,
+  "fields": {
+    "code": "C71",
+    "label": "Εγκεφάλου",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 66,
+  "fields": {
+    "code": "C72",
+    "label": "Νωτιαίου μυελού, κρανιακών νεύρων και άλλων τμημάτων κεντρικού νευρικού συστήματος",
+    "category": 1,
+    "subcategory": 10,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 67,
+  "fields": {
+    "code": "C73",
+    "label": "Θυρεοειδούς αδένα",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 68,
+  "fields": {
+    "code": "C74",
+    "label": "Επινεφριδίου",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 69,
+  "fields": {
+    "code": "C75",
+    "label": "Αλλων ενδοκρινών αδένων και συνοδών τους δομών",
+    "category": 1,
+    "subcategory": 11,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 70,
+  "fields": {
+    "code": "C76",
+    "label": "Ασαφώς καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 71,
+  "fields": {
+    "code": "C77",
+    "label": "?ευτεροπαθές και μη καθορισμένο λεμφαδένων",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 72,
+  "fields": {
+    "code": "C78",
+    "label": "?ευτεροπαθές οργάνων αναπνευστικού και πεπτικού συστήματος",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 73,
+  "fields": {
+    "code": "C79",
+    "label": "?ευτεροπαθές άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 74,
+  "fields": {
+    "code": "C80",
+    "label": "Χωρίς καθορισμένη εντόπιση",
+    "category": 1,
+    "subcategory": 12,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 75,
+  "fields": {
+    "code": "C81",
+    "label": "Hodgkin νόσος Λέμφωμα  ",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 76,
+  "fields": {
+    "code": "C82",
+    "label": "Μη-Hodgkin θυλακιώδες λέμφωμα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 77,
+  "fields": {
+    "code": "C83",
+    "label": "Μη-Hodgkin μη θυλακιώδες λέμφωμα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 78,
+  "fields": {
+    "code": "C84",
+    "label": "Λέμφωμα από ώριμα Τ/ΝΚ κύτταρα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 79,
+  "fields": {
+    "code": "C85",
+    "label": "Άλλοι και μη καθορισμένοι τύποι μη Hodgkin λεμφώματος",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 80,
+  "fields": {
+    "code": "C86",
+    "label": "Άλλα προσδιορισμένα λεμφώματα από Τ/ΝΚ κύτταρα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 81,
+  "fields": {
+    "code": "C88",
+    "label": "Κακοήθη ανοσοϋπερπλαστικά νοσήματα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 82,
+  "fields": {
+    "code": "C90",
+    "label": "Πολλαπλούν μυέλωμα και κακοήθη πλασματοκυτταρικά νεοπλάσματα",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 83,
+  "fields": {
+    "code": "C91",
+    "label": "Λεμφική [λεμφογενής] λευχαιμία",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 84,
+  "fields": {
+    "code": "C92",
+    "label": "Μυελογενής λευχαιμία",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 85,
+  "fields": {
+    "code": "C93",
+    "label": "Μονοκυτταρική λευχαιμία",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 86,
+  "fields": {
+    "code": "C94",
+    "label": "Άλλες λευχαιμίες καθορισμένου κυτταρικού τύπου",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 87,
+  "fields": {
+    "code": "C95",
+    "label": "Λευχαιμία μη καθορισμένου κυτταρικού τύπου",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 88,
+  "fields": {
+    "code": "C96",
+    "label": "Άλλα και μη καθορισμένα λεμφικού αιμοποιητικού και σχετικών τους ιστών",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 89,
+  "fields": {
+    "code": "C97",
+    "label": "Πρωτοπαθή πολλαπλών εντοπίσεων",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 90,
+  "fields": {
+    "code": "C97!",
+    "label": "Με ανεξάρτητες πρωτοπαθείς πολλαπλές εντοπίσεις",
+    "category": 1,
+    "subcategory": 13,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 91,
+  "fields": {
+    "code": "D00",
+    "label": "Στοματικής κοιλότητας οισοφάγου και στομάχου",
+    "category": 2,
+    "subcategory": 14,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 92,
+  "fields": {
+    "code": "D01",
+    "label": "Άλλων και μη καθορισμένων οργάνων πεπτικού",
+    "category": 2,
+    "subcategory": 14,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 93,
+  "fields": {
+    "code": "D02",
+    "label": "Μέσου ωτός και αναπνευστικού συστήματος",
+    "category": 2,
+    "subcategory": 15,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 94,
+  "fields": {
+    "code": "D03",
+    "label": "Μελάνωμα",
+    "category": 2,
+    "subcategory": 16,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 95,
+  "fields": {
+    "code": "D04",
+    "label": "Δέρματος",
+    "category": 2,
+    "subcategory": 17,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 96,
+  "fields": {
+    "code": "D05",
+    "label": "Μαστού [μαζικού αδένα]",
+    "category": 2,
+    "subcategory": 18,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 97,
+  "fields": {
+    "code": "D06",
+    "label": "Τραχήλου μήτρας",
+    "category": 2,
+    "subcategory": 19,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 98,
+  "fields": {
+    "code": "D07",
+    "label": "Άλλων και μη καθορισμένων γεννητικών οργάνων",
+    "category": 2,
+    "subcategory": 19,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 99,
+  "fields": {
+    "code": "D09",
+    "label": "Άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 2,
+    "subcategory": 20,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 100,
+  "fields": {
+    "code": "D10",
+    "label": "Στόματος και φάρυγγα",
+    "category": 3,
+    "subcategory": 21,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 101,
+  "fields": {
+    "code": "D11",
+    "label": "Μειζόνων σιελογόνων αδένων",
+    "category": 3,
+    "subcategory": 21,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 102,
+  "fields": {
+    "code": "D12",
+    "label": "Κόλου ορθού πρωκτού και πρωκτικού σωλήνα",
+    "category": 3,
+    "subcategory": 22,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 103,
+  "fields": {
+    "code": "D13",
+    "label": "Άλλων και ασαφώς καθορισμένων τμημάτων πεπτικού",
+    "category": 3,
+    "subcategory": 22,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 104,
+  "fields": {
+    "code": "D14",
+    "label": "Μέσου ωτός και αναπνευστικού",
+    "category": 3,
+    "subcategory": 23,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 105,
+  "fields": {
+    "code": "D15",
+    "label": "Άλλων και μη καθορισμένων ενδοθωρακικών οργάνων",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 106,
+  "fields": {
+    "code": "D16",
+    "label": "Οστών και αρθρικών χόνδρων",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 107,
+  "fields": {
+    "code": "D17",
+    "label": "Λιπώδους ιστού",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 108,
+  "fields": {
+    "code": "D18",
+    "label": "Αιμαγγειωμάτων και λεμφαγγειωμάτων οποιασδήποτε εντόπισης",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 109,
+  "fields": {
+    "code": "D19",
+    "label": "Μεσοθηλιακού ιστού",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 110,
+  "fields": {
+    "code": "D20",
+    "label": "Μαλακών μορίων οπισθοπεριτοναίου και περιτοναίου",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 111,
+  "fields": {
+    "code": "D21",
+    "label": "Συνδετικού ιστού και άλλων μαλακών μορίων",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 112,
+  "fields": {
+    "code": "D22",
+    "label": "Μελανωματώδεις σπίλοι",
+    "category": 3,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 113,
+  "fields": {
+    "code": "D23",
+    "label": "Άλλα δέρματος",
+    "category": 3,
+    "subcategory": 25,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 114,
+  "fields": {
+    "code": "D24",
+    "label": "Μαστού [μαζικού αδένα]",
+    "category": 3,
+    "subcategory": 26,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 115,
+  "fields": {
+    "code": "D25",
+    "label": "Λειομύωμα μήτρας",
+    "category": 3,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 116,
+  "fields": {
+    "code": "D26",
+    "label": "Μήτρας",
+    "category": 3,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 117,
+  "fields": {
+    "code": "D27",
+    "label": "Ωοθήκης",
+    "category": 3,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 118,
+  "fields": {
+    "code": "D28",
+    "label": "Άλλων και μη καθορισμένων γυναικείων γεννητικών οργάνων",
+    "category": 3,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 119,
+  "fields": {
+    "code": "D29",
+    "label": "Ανδρικών γεννητικών οργάνων",
+    "category": 3,
+    "subcategory": 27,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 120,
+  "fields": {
+    "code": "D30",
+    "label": "Οργάνων ουροποιητικού",
+    "category": 3,
+    "subcategory": 28,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 121,
+  "fields": {
+    "code": "D31",
+    "label": "Οφθαλμού και εξαρτημάτων",
+    "category": 3,
+    "subcategory": 29,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 122,
+  "fields": {
+    "code": "D32",
+    "label": "Μηνίγγων",
+    "category": 3,
+    "subcategory": 30,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 123,
+  "fields": {
+    "code": "D33",
+    "label": "Εγκεφάλου και άλλων τμημάτων κεντρικού νευρικού συστήματος",
+    "category": 3,
+    "subcategory": 30,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 124,
+  "fields": {
+    "code": "D34",
+    "label": "Θυρεοειδούς αδένα",
+    "category": 3,
+    "subcategory": 29,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 125,
+  "fields": {
+    "code": "D35",
+    "label": "Άλλων και μη καθορισμένων ενδοκρινών αδένων",
+    "category": 3,
+    "subcategory": 29,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 126,
+  "fields": {
+    "code": "D36",
+    "label": "Άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 3,
+    "subcategory": 24,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 127,
+  "fields": {
+    "code": "D37",
+    "label": "Στοματικής κοιλότητας και οργάνων πεπτικού",
+    "category": 4,
+    "subcategory": 31,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 128,
+  "fields": {
+    "code": "D38",
+    "label": "Μέσου ωτός οργάνων αναπνευστικού συστήματος και ενδοθωρακικών οργάνων",
+    "category": 4,
+    "subcategory": 32,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 129,
+  "fields": {
+    "code": "D39",
+    "label": "Γυναικείων γεννητικών οργάνων",
+    "category": 4,
+    "subcategory": 33,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 130,
+  "fields": {
+    "code": "D40",
+    "label": "Ανδρικών γεννητικών οργάνων",
+    "category": 4,
+    "subcategory": 33,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 131,
+  "fields": {
+    "code": "D41",
+    "label": "Ουροποιητικού συστήματος",
+    "category": 4,
+    "subcategory": 34,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 132,
+  "fields": {
+    "code": "D42",
+    "label": "Μηνίγγων",
+    "category": 4,
+    "subcategory": 35,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 133,
+  "fields": {
+    "code": "D43",
+    "label": "Εγκεφάλου και κεντρικού νευρικού συστήματος",
+    "category": 4,
+    "subcategory": 35,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 134,
+  "fields": {
+    "code": "D44",
+    "label": "Ενδοκρινών αδένων",
+    "category": 4,
+    "subcategory": 36,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 135,
+  "fields": {
+    "code": "D45",
+    "label": "Αληθής πολυκυτταραιμία",
+    "category": 4,
+    "subcategory": 37,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 136,
+  "fields": {
+    "code": "D46",
+    "label": "Μυελοδυσπλαστικά σύνδρομα",
+    "category": 4,
+    "subcategory": 37,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 137,
+  "fields": {
+    "code": "D47",
+    "label": "Λεμφικού αιμοποιητικού και σχετικών ιστών",
+    "category": 4,
+    "subcategory": 37,
+    "is_active": true,
+    "is_common": true,
+    "notes": ""
+  }
+},
+{
+  "model": "records.icd10code",
+  "pk": 138,
+  "fields": {
+    "code": "D48",
+    "label": "Άλλων και μη καθορισμένων εντοπίσεων",
+    "category": 4,
+    "subcategory": 38,
+    "is_active": true,
+    "is_common": false,
+    "notes": ""
+  }
+},
+{
+  "model": "records.neoplasm",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-03-13T13:27:24.066Z",
+    "updated_at": "2026-03-13T13:27:24.066Z",
+    "person": 10,
+    "icd10_category": 1,
+    "icd10_subcategory": 2,
+    "icd10_code": 16,
+    "localization": "",
+    "metastasis": false,
+    "surgery": false,
+    "surgery_hospital": "",
+    "scheduled_surgery": false,
+    "category_label": "",
+    "type_label": "",
+    "icd10_label": ""
+  }
+},
+{
+  "model": "records.neoplasm",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-03-13T13:27:24.067Z",
+    "updated_at": "2026-03-13T13:27:24.067Z",
+    "person": 10,
+    "icd10_category": 2,
+    "icd10_subcategory": 18,
+    "icd10_code": 96,
+    "localization": "",
+    "metastasis": false,
+    "surgery": false,
+    "surgery_hospital": "",
+    "scheduled_surgery": false,
+    "category_label": "",
+    "type_label": "",
+    "icd10_label": ""
+  }
+},
+{
+  "model": "records.neoplasm",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-03-13T13:38:51.000Z",
+    "updated_at": "2026-03-13T13:38:51.000Z",
+    "person": 11,
+    "icd10_category": 1,
+    "icd10_subcategory": 5,
+    "icd10_code": null,
+    "localization": "",
+    "metastasis": false,
+    "surgery": false,
+    "surgery_hospital": "",
+    "scheduled_surgery": false,
+    "category_label": "",
+    "type_label": "",
+    "icd10_label": ""
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.404Z",
+    "updated_at": "2026-03-12T08:53:16.405Z",
+    "name": "Δημιουργία φακέλου ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Δημιουργία νέου φακέλου στο ΚΕΠΑ",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.412Z",
+    "updated_at": "2026-03-12T08:53:16.412Z",
+    "name": "Δημιουργία/Ενημέρωση Φακέλου ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Δημιουργία ή ενημέρωση φακέλου ΚΕΠΑ",
+    "is_active": true,
+    "estimated_duration_days": 25,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 3,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.417Z",
+    "updated_at": "2026-03-12T08:53:16.417Z",
+    "name": "Ενημέρωση Φακέλου ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Ενημέρωση υπάρχοντος φακέλου",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 4,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.423Z",
+    "updated_at": "2026-03-12T08:53:16.423Z",
+    "name": "Βήματα ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Ενημέρωση για διαδικασία ΚΕΠΑ",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 5,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.428Z",
+    "updated_at": "2026-03-12T08:53:16.428Z",
+    "name": "Διαδικασία ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Πληροφορίες διαδικασίας ΚΕΠΑ",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 6,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.433Z",
+    "updated_at": "2026-03-12T08:53:16.433Z",
+    "name": "Πορεία φακέλου ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Παρακολούθηση πορείας φακέλου",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.437Z",
+    "updated_at": "2026-03-12T08:53:16.438Z",
+    "name": "Αίτηση Επιδείνωσης ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Αίτηση επιδείνωσης κατάστασης",
+    "is_active": true,
+    "estimated_duration_days": 45,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.444Z",
+    "updated_at": "2026-03-12T08:53:16.444Z",
+    "name": "Αίτηση Παράτασης",
+    "category": "kepa",
+    "description": "Παράταση ισχύος ΚΕΠΑ",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.449Z",
+    "updated_at": "2026-03-12T08:53:16.449Z",
+    "name": "Ισχύ Επ΄αορίστου ΚΕΠΑ",
+    "category": "kepa",
+    "description": "Αίτηση για ισχύ επ' αορίστου",
+    "is_active": true,
+    "estimated_duration_days": 60,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 10,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.454Z",
+    "updated_at": "2026-03-12T08:53:16.454Z",
+    "name": "Απαλλαγές-Παροχές",
+    "category": "benefits",
+    "description": "Φορολογικές απαλλαγές και παροχές ΑΜΕΑ",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 11,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.459Z",
+    "updated_at": "2026-03-12T08:53:16.459Z",
+    "name": "Απαλλαγές/Παροχές",
+    "category": "benefits",
+    "description": "Απαλλαγές και παροχές",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 12,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.468Z",
+    "updated_at": "2026-03-12T08:53:16.468Z",
+    "name": "Δικαιώματα-Απαλλαγές/Παροχές",
+    "category": "benefits",
+    "description": "Ενημέρωση δικαιωμάτων και απαλλαγών",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 13,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.474Z",
+    "updated_at": "2026-03-12T08:53:16.474Z",
+    "name": "Παροχές μέσω ΕΟΠΥΥ",
+    "category": "benefits",
+    "description": "Παροχές μέσω ΕΟΠΥΥ",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 14,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.479Z",
+    "updated_at": "2026-03-12T08:53:16.481Z",
+    "name": "Επιδόματα",
+    "category": "benefits",
+    "description": "Κοινωνικά επιδόματα",
+    "is_active": true,
+    "estimated_duration_days": 25,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 15,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.485Z",
+    "updated_at": "2026-03-12T08:53:16.485Z",
+    "name": "Ενημέρωση για Επιδόματα",
+    "category": "benefits",
+    "description": "Πληροφορίες για διαθέσιμα επιδόματα",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 16,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.491Z",
+    "updated_at": "2026-03-12T08:53:16.491Z",
+    "name": "Επίδομα Αεροθεραπείας",
+    "category": "benefits",
+    "description": "Επίδομα για αεροθεραπεία",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 17,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.497Z",
+    "updated_at": "2026-03-12T08:53:16.497Z",
+    "name": "Επίδομα ΟΠΕΚΑ",
+    "category": "benefits",
+    "description": "Επίδομα παιδιού ΟΠΕΚΑ",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 18,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.501Z",
+    "updated_at": "2026-03-12T08:53:16.502Z",
+    "name": "Επίδομα ετέρου προσώπου",
+    "category": "benefits",
+    "description": "Επίδομα για φροντιστή",
+    "is_active": true,
+    "estimated_duration_days": 25,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 19,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.508Z",
+    "updated_at": "2026-03-12T08:53:16.508Z",
+    "name": "Επίδομα ανεργίας ταυτόχρονα με σύνταξη αναπηρίας",
+    "category": "benefits",
+    "description": "Συνδυασμός επιδομάτων",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 20,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.514Z",
+    "updated_at": "2026-03-12T08:53:16.514Z",
+    "name": "Έξοδα Μετακίνησης",
+    "category": "transport",
+    "description": "Αποζημίωση εξόδων μετακίνησης",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 21,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.519Z",
+    "updated_at": "2026-03-12T08:53:16.520Z",
+    "name": "Κάρτα ΟΑΣΑ",
+    "category": "transport",
+    "description": "Ειδική κάρτα ΜΜΜ για ΑΜΕΑ",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 22,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.527Z",
+    "updated_at": "2026-03-12T08:53:16.527Z",
+    "name": "Κάρτα Αναπηρίας",
+    "category": "transport",
+    "description": "Κάρτα αναπηρίας για μεταφορά",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 23,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.532Z",
+    "updated_at": "2026-03-12T08:53:16.532Z",
+    "name": "Δομή Φιλοξενίας",
+    "category": "accommodation",
+    "description": "Φιλοξενία σε ειδική δομή",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 24,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.536Z",
+    "updated_at": "2026-03-12T08:53:16.537Z",
+    "name": "Δωρεάν Φιλοξενεία για Θεραπείες",
+    "category": "accommodation",
+    "description": "Φιλοξενία κατά τη διάρκεια θεραπειών",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 25,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.543Z",
+    "updated_at": "2026-03-12T08:53:16.543Z",
+    "name": "Δομές Φιλοξενίας",
+    "category": "accommodation",
+    "description": "Ειδικές δομές φιλοξενίας",
+    "is_active": true,
+    "estimated_duration_days": 25,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 26,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.548Z",
+    "updated_at": "2026-03-12T08:53:16.548Z",
+    "name": "Εισαγωγή στην Τριτοβάθμια",
+    "category": "education",
+    "description": "Ειδικές θέσεις τριτοβάθμιας",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 27,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.553Z",
+    "updated_at": "2026-03-12T08:53:16.553Z",
+    "name": "Εισαγωγή στην 3βάθμια εκπαίδευση",
+    "category": "education",
+    "description": "Εισαγωγή στην τριτοβάθμια",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 28,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.559Z",
+    "updated_at": "2026-03-12T08:53:16.559Z",
+    "name": "Μοριοδότηση για Τριτοβάθμια",
+    "category": "education",
+    "description": "Μόρια για πανεπιστήμιο",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 29,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.564Z",
+    "updated_at": "2026-03-12T08:53:16.564Z",
+    "name": "Ενημέρωση για εκπαιδευτικά θέματα",
+    "category": "education",
+    "description": "Εκπαιδευτικές πληροφορίες",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 30,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.576Z",
+    "updated_at": "2026-03-12T08:53:16.576Z",
+    "name": "Αναζήτηση Φαρμάκων",
+    "category": "medical",
+    "description": "Εύρεση και πρόσβαση σε φάρμακα",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 31,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.587Z",
+    "updated_at": "2026-03-12T08:53:16.588Z",
+    "name": "Έγκριση Φαρμάκου ΕΟΦ",
+    "category": "medical",
+    "description": "Έγκριση φαρμάκου από ΕΟΦ",
+    "is_active": true,
+    "estimated_duration_days": 45,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 32,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.596Z",
+    "updated_at": "2026-03-12T08:53:16.596Z",
+    "name": "Εξετάσεις για Βιοδείκτες",
+    "category": "medical",
+    "description": "Ειδικές ιατρικές εξετάσεις",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 33,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.603Z",
+    "updated_at": "2026-03-12T08:53:16.604Z",
+    "name": "Εύρεση Νοσοκομείου",
+    "category": "medical",
+    "description": "Εύρεση κατάλληλου νοσοκομείου",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 34,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.609Z",
+    "updated_at": "2026-03-12T08:53:16.609Z",
+    "name": "Κλινικές Εξωτερικού",
+    "category": "medical",
+    "description": "Παραπομπή σε κλινικές εξωτερικού",
+    "is_active": true,
+    "estimated_duration_days": 60,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 35,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.616Z",
+    "updated_at": "2026-03-12T08:53:16.616Z",
+    "name": "Νοσοκομείο για μεταγγίσεις αίματος",
+    "category": "medical",
+    "description": "Εύρεση νοσοκομείου για μεταγγίσεις",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 36,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.622Z",
+    "updated_at": "2026-03-12T08:53:16.622Z",
+    "name": "Διαδικασίες εντός του Νοσοκομείου",
+    "category": "administrative",
+    "description": "Βοήθεια με νοσοκομειακές διαδικασίες",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 37,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.628Z",
+    "updated_at": "2026-03-12T08:53:16.628Z",
+    "name": "Βοήθεια στο σπίτι",
+    "category": "medical",
+    "description": "Κατ' οίκον φροντίδα",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 38,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.632Z",
+    "updated_at": "2026-03-12T08:53:16.632Z",
+    "name": "Κατ'οίκον φροντίδα",
+    "category": "medical",
+    "description": "Φροντίδα στο σπίτι",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 39,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.642Z",
+    "updated_at": "2026-03-12T08:53:16.642Z",
+    "name": "Μετεγχειρητική φροντίδα",
+    "category": "medical",
+    "description": "Φροντίδα μετά από επέμβαση",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 40,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.647Z",
+    "updated_at": "2026-03-12T08:53:16.647Z",
+    "name": "Ανακουφιστική Φροντίδα",
+    "category": "medical",
+    "description": "Παρηγορητική φροντίδα",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 41,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.652Z",
+    "updated_at": "2026-03-12T08:53:16.652Z",
+    "name": "Υπηρεσίες Ανακουφιστικής Φροντίδας",
+    "category": "medical",
+    "description": "Ανακουφιστική φροντίδα",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 42,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.658Z",
+    "updated_at": "2026-03-12T08:53:16.658Z",
+    "name": "Παρηγορητική Φροντίδα",
+    "category": "medical",
+    "description": "Φροντίδα τέλους ζωής",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 43,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.663Z",
+    "updated_at": "2026-03-12T08:53:16.663Z",
+    "name": "Φυσικοθεραπευτής",
+    "category": "medical",
+    "description": "Υπηρεσίες φυσικοθεραπείας",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 44,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.668Z",
+    "updated_at": "2026-03-12T08:53:16.668Z",
+    "name": "Διατροφικό πλάνο",
+    "category": "medical",
+    "description": "Συμβουλευτική διατροφής",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 45,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.674Z",
+    "updated_at": "2026-03-12T08:53:16.674Z",
+    "name": "Κρύα Καπέλα",
+    "category": "medical",
+    "description": "Εξοπλισμός για χημειοθεραπεία",
+    "is_active": true,
+    "estimated_duration_days": 3,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 46,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.681Z",
+    "updated_at": "2026-03-12T08:53:16.681Z",
+    "name": "Περούκα",
+    "category": "medical",
+    "description": "Πρόσθεση μαλλιών",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 47,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.686Z",
+    "updated_at": "2026-03-12T08:53:16.686Z",
+    "name": "Αιματολογικές εξετάσεις",
+    "category": "medical",
+    "description": "Εργαστηριακές εξετάσεις αίματος",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 48,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.692Z",
+    "updated_at": "2026-03-12T08:53:16.692Z",
+    "name": "Επέμβαση Λέιζερ",
+    "category": "medical",
+    "description": "Λέιζερ θεραπεία",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 49,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.697Z",
+    "updated_at": "2026-03-12T08:53:16.698Z",
+    "name": "Ψυχολογική Υποστήριξη",
+    "category": "psychosocial",
+    "description": "Ψυχολογική βοήθεια και συμβουλευτική",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 50,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.703Z",
+    "updated_at": "2026-03-12T08:53:16.703Z",
+    "name": "Παραπομπή για ψυχολογική υποστήριξη",
+    "category": "psychosocial",
+    "description": "Παραπομπή σε ψυχολόγο",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 51,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.709Z",
+    "updated_at": "2026-03-12T08:53:16.709Z",
+    "name": "Εργασιακά Δικαιώματα",
+    "category": "work",
+    "description": "Δικαιώματα στον εργασιακό χώρο",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 52,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.715Z",
+    "updated_at": "2026-03-12T08:53:16.715Z",
+    "name": "Θέση ΑΜΕΑ",
+    "category": "work",
+    "description": "Ειδικές θέσεις εργασίας για ΑΜΕΑ",
+    "is_active": true,
+    "estimated_duration_days": 45,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 53,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.720Z",
+    "updated_at": "2026-03-12T08:53:16.720Z",
+    "name": "Άδειες Εργασίας",
+    "category": "work",
+    "description": "Ειδικές άδειες για εργαζόμενους",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 54,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.725Z",
+    "updated_at": "2026-03-12T08:53:16.725Z",
+    "name": "Άδειες στον ιδιωτικό τομέα",
+    "category": "work",
+    "description": "Άδειες ιδιωτικού τομέα",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 55,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.730Z",
+    "updated_at": "2026-03-12T08:53:16.730Z",
+    "name": "Άδειες Δημοσίου",
+    "category": "work",
+    "description": "Άδειες δημοσίου τομέα",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 56,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.736Z",
+    "updated_at": "2026-03-12T08:53:16.736Z",
+    "name": "Άδεια για εξετάσεις",
+    "category": "work",
+    "description": "Ειδική άδεια για ιατρικές εξετάσεις",
+    "is_active": true,
+    "estimated_duration_days": 3,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 57,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.741Z",
+    "updated_at": "2026-03-12T08:53:16.742Z",
+    "name": "Άδεια παραμονής",
+    "category": "work",
+    "description": "Άδεια για παραμονή με ασθενή",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 58,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.749Z",
+    "updated_at": "2026-03-12T08:53:16.749Z",
+    "name": "Αίτηση ανεργίας σε επεξεργασία",
+    "category": "work",
+    "description": "Διεκπεραίωση αίτησης ανεργίας",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 59,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.755Z",
+    "updated_at": "2026-03-12T08:53:16.755Z",
+    "name": "Οικονομική Ενίσχυση",
+    "category": "financial",
+    "description": "Οικονομική υποστήριξη",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 60,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.761Z",
+    "updated_at": "2026-03-12T08:53:16.761Z",
+    "name": "Έξοδα Κηδείας",
+    "category": "financial",
+    "description": "Επιστροφή εξόδων κηδείας",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 61,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.765Z",
+    "updated_at": "2026-03-12T08:53:16.765Z",
+    "name": "Αποζημίωση Αναλώσιμων",
+    "category": "financial",
+    "description": "Αποζημίωση ιατρικών αναλώσιμων",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 62,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.774Z",
+    "updated_at": "2026-03-12T08:53:16.775Z",
+    "name": "Αποζημίωση ασφαλιστικής",
+    "category": "financial",
+    "description": "Ασφαλιστική αποζημίωση",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 63,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.787Z",
+    "updated_at": "2026-03-12T08:53:16.787Z",
+    "name": "Παροχή Φαγητού",
+    "category": "financial",
+    "description": "Διανομή τροφίμων",
+    "is_active": true,
+    "estimated_duration_days": 1,
+    "requires_documents": false,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 64,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.792Z",
+    "updated_at": "2026-03-12T08:53:16.792Z",
+    "name": "Ρεύμα, Νερό, Τρόφιμα",
+    "category": "financial",
+    "description": "Βοήθεια με βασικές ανάγκες",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 65,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.799Z",
+    "updated_at": "2026-03-12T08:53:16.799Z",
+    "name": "Σύνταξη Αναπηρίας",
+    "category": "benefits",
+    "description": "Αίτηση σύνταξης αναπηρίας",
+    "is_active": true,
+    "estimated_duration_days": 60,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 66,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.805Z",
+    "updated_at": "2026-03-12T08:53:16.806Z",
+    "name": "Αναπηρική Σύνταξη",
+    "category": "benefits",
+    "description": "Σύνταξη λόγω αναπηρίας",
+    "is_active": true,
+    "estimated_duration_days": 60,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 67,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.813Z",
+    "updated_at": "2026-03-12T08:53:16.813Z",
+    "name": "Υποστήριξη για κοινωνικές παροχές",
+    "category": "benefits",
+    "description": "Βοήθεια για κοινωνικές παροχές",
+    "is_active": true,
+    "estimated_duration_days": 20,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 68,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.818Z",
+    "updated_at": "2026-03-12T08:53:16.818Z",
+    "name": "Ενημέρωση",
+    "category": "administrative",
+    "description": "Γενική ενημέρωση",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 69,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.824Z",
+    "updated_at": "2026-03-12T08:53:16.824Z",
+    "name": "Ενημέρωση δικαιωμάτων",
+    "category": "administrative",
+    "description": "Πληροφορίες για δικαιώματα",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 70,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.831Z",
+    "updated_at": "2026-03-12T08:53:16.831Z",
+    "name": "Ενημέρωση για εισηγητικό φάκελο",
+    "category": "administrative",
+    "description": "Πληροφορίες εισηγητικού φακέλου",
+    "is_active": true,
+    "estimated_duration_days": 5,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 71,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.837Z",
+    "updated_at": "2026-03-12T08:53:16.837Z",
+    "name": "Συνταγογράφηση σκιαγραφικού",
+    "category": "medical",
+    "description": "Συνταγή για σκιαγραφικό υλικό",
+    "is_active": true,
+    "estimated_duration_days": 3,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 72,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.842Z",
+    "updated_at": "2026-03-12T08:53:16.842Z",
+    "name": "Εννιαιός πίνακας προσδιορισμού αναπηρίας",
+    "category": "disability",
+    "description": "Πίνακας αναπηρίας",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 73,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.848Z",
+    "updated_at": "2026-03-12T08:53:16.848Z",
+    "name": "Αλλαγή διεύθυνσης επιτροπής",
+    "category": "administrative",
+    "description": "Μεταφορά σε άλλη επιτροπή",
+    "is_active": true,
+    "estimated_duration_days": 10,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 74,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.854Z",
+    "updated_at": "2026-03-12T08:53:16.854Z",
+    "name": "Έκπτωση σε ταυτοποίηση αυθαιρέτων",
+    "category": "administrative",
+    "description": "Έκπτωση για ακίνητα",
+    "is_active": true,
+    "estimated_duration_days": 30,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 75,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.859Z",
+    "updated_at": "2026-03-12T08:53:16.860Z",
+    "name": "Αποκλειστική",
+    "category": "other",
+    "description": "Αποκλειστική περίπτωση",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 76,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.864Z",
+    "updated_at": "2026-03-12T08:53:16.865Z",
+    "name": "Εξέταση",
+    "category": "medical",
+    "description": "Γενική ιατρική εξέταση",
+    "is_active": true,
+    "estimated_duration_days": 7,
+    "requires_documents": true,
+    "requires_external_contact": true
+  }
+},
+{
+  "model": "records.requesttag",
+  "pk": 77,
+  "fields": {
+    "created_at": "2026-03-12T08:53:16.869Z",
+    "updated_at": "2026-03-12T08:53:16.869Z",
+    "name": "Άλλο",
+    "category": "other",
+    "description": "Άλλες κατηγορίες",
+    "is_active": true,
+    "estimated_duration_days": 15,
+    "requires_documents": false,
+    "requires_external_contact": false
+  }
+},
+{
+  "model": "records.request",
+  "pk": 20,
+  "fields": {
+    "created_at": "2026-03-13T10:03:41.748Z",
+    "updated_at": "2026-03-13T10:24:09.724Z",
+    "person": 9,
+    "center": 2,
+    "status": 1,
+    "category": null,
+    "communication_method": "phone",
+    "contact_person_type": "referral",
+    "submission_date": "2026-03-13",
+    "update_date": null,
+    "due_date": null,
+    "expiry_date": null,
+    "closed_date": null,
+    "subject": "",
+    "priority": 2,
+    "is_accepted": false,
+    "protocol_number": "",
+    "assigned_to": [
+      "kkastampolidou"
+    ],
+    "created_by": [
+      "kkastampolidou"
+    ],
+    "number_of_actions": 0,
+    "tags": []
+  }
+},
+{
+  "model": "records.request",
+  "pk": 21,
+  "fields": {
+    "created_at": "2026-03-13T10:24:49.338Z",
+    "updated_at": "2026-03-13T13:16:16.228Z",
+    "person": 10,
+    "center": 1,
+    "status": 1,
+    "category": null,
+    "communication_method": "",
+    "contact_person_type": "",
+    "submission_date": "2026-03-07",
+    "update_date": null,
+    "due_date": null,
+    "expiry_date": null,
+    "closed_date": null,
+    "subject": "",
+    "priority": 2,
+    "is_accepted": true,
+    "protocol_number": "",
+    "assigned_to": null,
+    "created_by": [
+      "kkastampolidou"
+    ],
+    "number_of_actions": 0,
+    "tags": []
+  }
+},
+{
+  "model": "records.request",
+  "pk": 22,
+  "fields": {
+    "created_at": "2026-03-13T13:35:32.230Z",
+    "updated_at": "2026-03-13T13:35:32.230Z",
+    "person": 11,
+    "center": null,
+    "status": 1,
+    "category": null,
+    "communication_method": "",
+    "contact_person_type": "",
+    "submission_date": null,
+    "update_date": null,
+    "due_date": null,
+    "expiry_date": null,
+    "closed_date": null,
+    "subject": "",
+    "priority": 2,
+    "is_accepted": true,
+    "protocol_number": "",
+    "assigned_to": null,
+    "created_by": [
+      "kkastampolidou"
+    ],
+    "number_of_actions": 0,
+    "tags": []
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 1,
+  "fields": {
+    "name": "Πιστοποιητικό ΚΕΠΑ",
+    "description": "Πιστοποιητικό ΚΕΠΑ για αναπηρία",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 2,
+  "fields": {
+    "name": "Ανανέωση ΚΕΠΑ",
+    "description": "Ανανέωση πιστοποιητικού ΚΕΠΑ",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 3,
+  "fields": {
+    "name": "Πιστοποιητικό Αναπηρίας",
+    "description": "Επίσημο πιστοποιητικό αναπηρίας",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 4,
+  "fields": {
+    "name": "Ιατρική Γνωμάτευση",
+    "description": "Ιατρική γνωμάτευση από ειδικό γιατρό",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 5,
+  "fields": {
+    "name": "Ιατρικό Ιστορικό",
+    "description": "Πλήρες ιατρικό ιστορικό του ωφελούμενου",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 6,
+  "fields": {
+    "name": "Αποτελέσματα Βιοψίας",
+    "description": "Αποτελέσματα βιοψίας για νεόπλασμα",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 7,
+  "fields": {
+    "name": "Εργαστηριακές Εξετάσεις",
+    "description": "Αποτελέσματα εργαστηριακών εξετάσεων",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 8,
+  "fields": {
+    "name": "Απεικονιστικές Εξετάσεις",
+    "description": "CT, MRI, ακτινογραφίες κλπ",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 9,
+  "fields": {
+    "name": "Ογκολογική Γνωμάτευση",
+    "description": "Γνωμάτευση από ογκολόγο",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 10,
+  "fields": {
+    "name": "Χειρουργικό Πρωτόκολλο",
+    "description": "Αναφορά χειρουργικής επέμβασης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 11,
+  "fields": {
+    "name": "Σχέδιο Θεραπείας",
+    "description": "Προτεινόμενο σχέδιο θεραπείας",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 12,
+  "fields": {
+    "name": "Επικρίσεις Νοσηλείας",
+    "description": "Επικρίσεις από νοσηλεία",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 13,
+  "fields": {
+    "name": "Αστυνομική Ταυτότητα",
+    "description": "Ταυτότητα ή αντίγραφο",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 14,
+  "fields": {
+    "name": "Διαβατήριο",
+    "description": "Διαβατήριο ή αντίγραφο",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 15,
+  "fields": {
+    "name": "Βεβαίωση ΑΜΚΑ",
+    "description": "Επίσημη βεβαίωση ΑΜΚΑ",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 16,
+  "fields": {
+    "name": "Βεβαίωση ΑΦΜ",
+    "description": "Βεβαίωση Αριθμού Φορολογικού Μητρώου",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 17,
+  "fields": {
+    "name": "Πιστοποιητικό Οικογενειακής Κατάστασης",
+    "description": "Οικογενειακή κατάσταση από δήμο",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 18,
+  "fields": {
+    "name": "Πιστοποιητικό Γέννησης",
+    "description": "Πιστοποιητικό γέννησης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 19,
+  "fields": {
+    "name": "Βιβλιάριο Υγείας",
+    "description": "Βιβλιάριο υγείας ή ασφάλισης",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 20,
+  "fields": {
+    "name": "Βεβαίωση Ασφάλισης",
+    "description": "Βεβαίωση ασφαλιστικής κατάστασης",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 21,
+  "fields": {
+    "name": "Πιστοποιητικό Σύνταξης",
+    "description": "Πιστοποιητικό συνταξιοδότησης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 22,
+  "fields": {
+    "name": "Βεβαίωση Εισοδήματος",
+    "description": "Βεβαίωση εισοδήματος από εφορία",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 23,
+  "fields": {
+    "name": "Φορολογική Ενημερότητα",
+    "description": "Πιστοποιητικό φορολογικής ενημερότητας",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 24,
+  "fields": {
+    "name": "Κάρτα Ανεργίας ΟΑΕΔ",
+    "description": "Κάρτα ανεργίας από ΟΑΕΔ",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 25,
+  "fields": {
+    "name": "Βεβαίωση Επιδομάτων",
+    "description": "Βεβαίωση λήψης επιδομάτων",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 26,
+  "fields": {
+    "name": "Βεβαίωση Κατοικίας",
+    "description": "Βεβαίωση διεύθυνσης κατοικίας",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 27,
+  "fields": {
+    "name": "Λογαριασμοί Κοινής Ωφέλειας",
+    "description": "ΔΕΗ, ΕΥΔΑΠ, τηλέφωνο κλπ",
+    "is_required_for_requests": true
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 28,
+  "fields": {
+    "name": "Συμβόλαιο Ενοικίασης",
+    "description": "Συμβόλαιο ενοικίασης κατοικίας",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 29,
+  "fields": {
+    "name": "Συμβόλαιο Ιδιοκτησίας",
+    "description": "Τίτλος ιδιοκτησίας ακινήτου",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 30,
+  "fields": {
+    "name": "Βεβαίωση Εργοδότη",
+    "description": "Βεβαίωση από εργοδότη",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 31,
+  "fields": {
+    "name": "Σύμβαση Εργασίας",
+    "description": "Σύμβαση εργασίας",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 32,
+  "fields": {
+    "name": "Μισθοδοτικές Καταστάσεις",
+    "description": "Μισθοδοτικές καταστάσεις",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 33,
+  "fields": {
+    "name": "Άδεια Άσκησης Επαγγέλματος",
+    "description": "Επαγγελματική άδεια",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 34,
+  "fields": {
+    "name": "Παραχώρηση Εξουσιοδότησης",
+    "description": "Πληρεξούσιο ή εξουσιοδότηση",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 35,
+  "fields": {
+    "name": "Έγγραφα Κηδεμονίας",
+    "description": "Έγγραφα κηδεμονίας ή επιτροπείας",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 36,
+  "fields": {
+    "name": "Δικαστική Απόφαση",
+    "description": "Απόφαση δικαστηρίου",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 37,
+  "fields": {
+    "name": "Νομική Εκπροσώπηση",
+    "description": "Έγγραφα νομικής εκπροσώπησης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 38,
+  "fields": {
+    "name": "Αίτηση/Φόρμα",
+    "description": "Συμπληρωμένη αίτηση ή φόρμα",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 39,
+  "fields": {
+    "name": "Δικαιολογητικά Αίτησης",
+    "description": "Δικαιολογητικά που συνοδεύουν αίτηση",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 40,
+  "fields": {
+    "name": "Προηγούμενη Αλληλογραφία",
+    "description": "Προηγούμενη αλληλογραφία με φορείς",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 41,
+  "fields": {
+    "name": "Εξωτερικές Γνωματεύσεις",
+    "description": "Γνωματεύσεις από εξωτερικούς φορείς",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 42,
+  "fields": {
+    "name": "Σχολικά Πιστοποιητικά",
+    "description": "Απολυτήρια, βεβαιώσεις σπουδών",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 43,
+  "fields": {
+    "name": "Πτυχίο/Δίπλωμα",
+    "description": "Πανεπιστημιακά πτυχία και διπλώματα",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 44,
+  "fields": {
+    "name": "Πιστοποιητικά Εκπαίδευσης",
+    "description": "Πιστοποιητικά επαγγελματικής εκπαίδευσης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 45,
+  "fields": {
+    "name": "Άδεια Οδήγησης",
+    "description": "Δίπλωμα οδήγησης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 46,
+  "fields": {
+    "name": "Άδεια Κυκλοφορίας",
+    "description": "Άδεια κυκλοφορίας οχήματος",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 47,
+  "fields": {
+    "name": "Άδεια Στάθμευσης ΑΜΕΑ",
+    "description": "Ειδική άδεια στάθμευσης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 48,
+  "fields": {
+    "name": "Κάρτα ΜΜΜ",
+    "description": "Κάρτα μαζικών μέσων μεταφοράς",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 49,
+  "fields": {
+    "name": "Φωτογραφία",
+    "description": "Φωτογραφία ταυτότητας",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 50,
+  "fields": {
+    "name": "Συναίνεση/Συγκατάθεση",
+    "description": "Έγγραφα συναίνεσης",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 51,
+  "fields": {
+    "name": "Άλλο Πιστοποιητικό",
+    "description": "Άλλα πιστοποιητικά",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 52,
+  "fields": {
+    "name": "Αλληλογραφία",
+    "description": "Επιστολές και αλληλογραφία",
+    "is_required_for_requests": false
+  }
+},
+{
+  "model": "records.documenttype",
+  "pk": 53,
+  "fields": {
+    "name": "Σημειώσεις/Παρατηρήσεις",
+    "description": "Σημειώσεις και παρατηρήσεις",
+    "is_required_for_requests": false
+  }
+}
+]

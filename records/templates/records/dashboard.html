@@ -1,32 +1,193 @@
 {% extends "layouts/base.html" %}
-
 {% block title %}Αρχική{% endblock %}
-
 {% block content %}
 <div class="py-4">
-  <h1 class="h4">Καλώς ήρθατε στο Σύστημα Κ3</h1>
-  <p class="mb-4">Αυτή είναι η αρχική σας σελίδα. Εδώ μπορείτε να παρακολουθείτε τη συνολική εικόνα.</p>
+  <h1 class="h4 mb-1">Καλώς ήρθατε στο Σύστημα Κ3</h1>
+  <p class="text-muted mb-4">Συνολική εικόνα και ειδοποιήσεις</p>
 
-  <div class="row">
-    <div class="col-12 col-md-6 col-xl-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <div class="icon-shape icon-shape-primary rounded me-3">
-              <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a8 8 0 11-0.001 16.001A8 8 0 0110 2zm0 3a1 1 0 00-1 1v4H7a1 1 0 000 2h3a1 1 0 001-1V6a1 1 0 00-1-1z" />
-              </svg>
-            </div>
-            <div>
-              <h5 class="mb-1">Εγγραφές</h5>
-              <h6 class="fw-bold mb-0">42 συνολικές</h6>
-            </div>
+  <!-- Summary cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">👥</div>
+          <div>
+            <div class="text-muted small">Ωφελούμενοι</div>
+            <div class="fw-bold fs-4">{{ total_persons }}</div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">📋</div>
+          <div>
+            <div class="text-muted small">Συνολικά αιτήματα</div>
+            <div class="fw-bold fs-4">{{ total_requests }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">🟢</div>
+          <div>
+            <div class="text-muted small">Ανοικτά αιτήματα</div>
+            <div class="fw-bold fs-4">{{ open_requests }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Add more cards, charts or tables here as needed -->
+  <!-- Alerts -->
+  {% if total_alerts %}
+  <h5 class="mb-3">⚠️ Ειδοποιήσεις <span class="badge bg-danger">{{ total_alerts }}</span></h5>
+  <div class="row g-3 mb-4">
+    {% if alert_kepa_expired %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'person_list' %}?alert=kepa_expired" class="text-decoration-none">
+        <div class="card border-danger shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">🔴</div>
+            <div>
+              <div class="fw-semibold text-danger">ΚΕΠΑ έχει λήξει</div>
+              <div class="text-muted small">{{ alert_kepa_expired }} ωφελούμενοι</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% if alert_kepa_expiring %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'person_list' %}?alert=kepa_expiring" class="text-decoration-none">
+        <div class="card border-warning shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">🟡</div>
+            <div>
+              <div class="fw-semibold text-warning">ΚΕΠΑ λήγει σύντομα</div>
+              <div class="text-muted small">{{ alert_kepa_expiring }} ωφελούμενοι (εντός 3 μηνών)</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% if alert_overdue_requests %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'request_list' %}?overdue=1" class="text-decoration-none">
+        <div class="card border-danger shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">🔴</div>
+            <div>
+              <div class="fw-semibold text-danger">Εκπρόθεσμα αιτήματα</div>
+              <div class="text-muted small">{{ alert_overdue_requests }} αιτήματα</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% if alert_stale_requests %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'request_list' %}" class="text-decoration-none">
+        <div class="card border-warning shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">🟠</div>
+            <div>
+              <div class="fw-semibold" style="color:#fd7e14;">Αιτήματα χωρίς ενέργεια</div>
+              <div class="text-muted small">{{ alert_stale_requests }} αιτήματα >30 μέρες</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% if alert_incomplete_profiles %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'person_list' %}?alert=incomplete" class="text-decoration-none">
+        <div class="card border-info shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">🔵</div>
+            <div>
+              <div class="fw-semibold text-info">Προφίλ προς συμπλήρωση</div>
+              <div class="text-muted small">{{ alert_incomplete_profiles }} ωφελούμενοι</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+    {% if alert_no_requests %}
+    <div class="col-12 col-md-6 col-xl-4">
+      <a href="{% url 'person_list' %}?alert=no_requests" class="text-decoration-none">
+        <div class="card border-secondary shadow-sm h-100">
+          <div class="card-body d-flex align-items-center gap-3">
+            <div class="fs-2">⚪</div>
+            <div>
+              <div class="fw-semibold text-secondary">Χωρίς αίτημα >30 μέρες</div>
+              <div class="text-muted small">{{ alert_no_requests }} ωφελούμενοι</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Recent activity -->
+  <div class="row g-3">
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white fw-semibold">Πρόσφατες εγγραφές</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <tbody>
+              {% for person in recent_persons %}
+              <tr>
+                <td>
+                  <a href="{% url 'person_detail' person.id %}" class="text-decoration-none fw-semibold">
+                    {{ person }}
+                  </a>
+                  <br><small class="text-muted">{{ person.created_at|date:"d/m/Y" }}</small>
+                </td>
+              </tr>
+              {% empty %}
+              <tr><td class="text-muted text-center py-3">Δεν υπάρχουν εγγραφές</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white fw-semibold">Πρόσφατα αιτήματα</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <tbody>
+              {% for req in recent_requests %}
+              <tr>
+                <td>
+                  <a href="{% url 'request_detail' req.id %}" class="text-decoration-none fw-semibold">
+                    {{ req.person }}
+                  </a>
+                  <br>
+                  <small class="text-muted">{{ req.status }} • {{ req.created_at|date:"d/m/Y" }}</small>
+                </td>
+              </tr>
+              {% empty %}
+              <tr><td class="text-muted text-center py-3">Δεν υπάρχουν αιτήματα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-{% endblock content %}
+{% endblock %}

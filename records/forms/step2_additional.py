@@ -1,30 +1,26 @@
 from django import forms
-from records.models import Beneficiary
+from records.models import Person
 from django.core.exceptions import ValidationError
-from .step2_contact import ContactPersonForm
-
 
 class BeneficiaryExtraForm(forms.ModelForm):
     class Meta:
-        model = Beneficiary
+        model = Person
         fields = [
-            'gender', 'birth_year', 'marital_status', 'num_children', 'nationality',
-            'citizenship', 'health_id', 'landline', 'address', 'vat', 'id_card',
+            'gender', 'birth_year', 'marital_status', 'children_count', 'nationality',
+            'citizenship', 'amka', 'landline', 'address', 'vat', 'id_card',
             'city', 'postal_code', 'mobile', 'email',
-            'minor_children', 'student_children', 'no_military_obligation'
+            'minors', 'students', 'no_military_service'
         ]
         widgets = {
-            'birth_year': forms.NumberInput(attrs={'min': 1900, 'max': 2100}),
-            'num_children': forms.NumberInput(attrs={'min': 0}),
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control'
-            }),
+            'birth_year': forms.NumberInput(attrs={'min': 1900, 'max': 2100, 'class': 'form-control'}),
+            'children_count': forms.NumberInput(attrs={'min': 0}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'vat': forms.TextInput(attrs={
                 'pattern': r'\d{9}',
                 'title': 'Ο ΑΦΜ πρέπει να έχει ακριβώς 9 ψηφία.',
                 'class': 'form-control'
             }),
-            'health_id': forms.TextInput(attrs={
+            'amka': forms.TextInput(attrs={
                 'pattern': r'\d{11}',
                 'title': 'Ο ΑΜΚΑ πρέπει να έχει ακριβώς 11 ψηφία.',
                 'class': 'form-control'
@@ -38,28 +34,19 @@ class BeneficiaryExtraForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        instance = self.instance
+        children = cleaned_data.get("children_count") or 0
+        minors = cleaned_data.get("minors") or 0
+        students = cleaned_data.get("students") or 0
+        military = cleaned_data.get("no_military_service") or 0
 
-        # Fill the instance with cleaned data temporarily for validation
-        for field in self.fields:
-            setattr(instance, field, cleaned_data.get(field))
-
-        try:
-            instance.full_clean(validate_unique=False)
-        except ValidationError as e:
-            for field, errors in e.message_dict.items():
-                if field in self.fields:  # ✅ πρόσθεσε έλεγχο αν το πεδίο υπάρχει στο form
-                    for error in errors:
-                        self.add_error(field, error)
-
-
-        num_children = cleaned_data.get("num_children")
-
-        # These fields must be filled if num_children > 0
-        if num_children and num_children > 0:
-            required_if_children = ['minor_children', 'student_children', 'no_military_obligation']
-            for field in required_if_children:
-                if cleaned_data.get(field) is None:
-                    self.add_error(field, "Αυτό το πεδίο είναι υποχρεωτικό όταν υπάρχουν παιδιά.")
+        if children > 0:
+            if minors > children:
+                self.add_error("minors", f"Δεν μπορεί να υπερβαίνει τον αριθμό παιδιών ({children}).")
+            if students > children:
+                self.add_error("students", f"Δεν μπορεί να υπερβαίνει τον αριθμό παιδιών ({children}).")
+            if military > children:
+                self.add_error("no_military_service", f"Δεν μπορεί να υπερβαίνει τον αριθμό παιδιών ({children}).")
+            if minors + students > children:
+                self.add_error("students", "Ανήλικα + Φοιτητές δεν μπορεί να υπερβαίνει τον αριθμό παιδιών.")
 
         return cleaned_data

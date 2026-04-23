@@ -26,7 +26,7 @@ from .models import (
     # Requests
     Request, RequestTag, RequestAttachment,
     # Actions
-    Action, ActionAttachment,
+    Action,
     # Organizations
     Center, ExternalOrganization, Contact,
     # Documents
@@ -170,7 +170,8 @@ class PersonAdminForm(forms.ModelForm):
             last_person = Person.objects.aggregate(
                 max_reg=models.Max('registration_number')
             )['max_reg']
-            self.fields['registration_number'].initial = (last_person or 0) + 1
+            #self.fields['registration_number'].initial = (last_person or 0) + 1
+            self.instance.registration_number = (last_person or 0) + 1
         
         # Set up center field properly
         self.fields['center'].queryset = Center.objects.filter(is_active=True)
@@ -363,10 +364,47 @@ def request_management(self, obj):
     )
     
     return format_html(summary + ''.join(status_sections) + add_button)
+
+def export_persons_csv(modeladmin, request, queryset):
+    """Export selected persons to CSV"""
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="persons_export.csv"'
+    
+    writer = csv.writer(response)
+    
+    # Write header row
+    writer.writerow([
+        'Registration Number', 'Last Name', 'First Name', 'AMKA', 'Center',
+        'Gender', 'Age', 'Municipality', 'Mobile', 'Email', 'Insurance Status',
+        'Marital Status', 'Created At'
+    ])
+    
+    # Write data rows
+    for person in queryset:
+        writer.writerow([
+            person.registration_number,
+            person.last_name,
+            person.first_name,
+            person.amka,
+            person.center.name if person.center else '',
+            person.get_gender_display(),
+            person.calculated_age,
+            person.municipality.name if person.municipality else '',
+            person.mobile,
+            person.email,
+            person.get_insurance_status_display(),
+            person.get_marital_status_display(),
+            person.created_at.strftime('%Y-%m-%d %H:%M:%S') if person.created_at else '',
+        ])
+    
+    return response
+
+export_persons_csv.short_description = "Export selected persons to CSV"
     
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     form = PersonAdminForm
+    actions = [export_persons_csv]  # Add this line
 
     list_display = (
         'full_name', 'center', 'age_display', 'gender', 
@@ -430,14 +468,12 @@ class PersonAdmin(admin.ModelAdmin):
                 ('employer_legal_form', 'hire_date'),
                 ('work_schedule', 'contract_type'),
             ),
-            'classes': ('collapse',)
         }),
         ('Φυσικά Χαρακτηριστικά', {
             'fields': (
                 ('weight', 'height'),
                 ('bmi', 'bmi_category'),
             ),
-            'classes': ('collapse',)
         }),
         ('Διαχειριστικά', {
             'fields': (
@@ -1343,79 +1379,62 @@ class ComorbidityAdmin(admin.ModelAdmin):
     
 @admin.register(Action)
 class ActionAdmin(admin.ModelAdmin):
-    list_display = ('request_link', 'action_display', 'action_date', 'organization_display', 'is_completed')
-    list_filter = ('action_type', 'direction', 'contact_type', 'is_completed', 'action_date')
-    search_fields = ('request__person__last_name', 'external_org__name', 'result')
+    list_display = ('request_link', 'action_display', 'action_date', 'org_name', 'is_completed')
+    list_filter = ('action_type', 'direction', 'is_completed', 'action_date')
+    search_fields = ('request__person__last_name', 'org_name', 'contact_name', 'result')
     date_hierarchy = 'action_date'
-    
-    class Media:
-        js = ('assets/js/action_cascading.js',)
-        
+
     fieldsets = (
         ('Βασικά Στοιχεία', {
-            'fields': ('request', 'person_display')  # Show person as readonly display
+            'fields': ('request', 'person_display')
         }),
         ('Τύπος ενέργειας', {
-            'fields': ('action_type', 'direction', 'contact_type', 'referral_type')
+            'fields': ('action_type', 'direction')
         }),
         ('Λεπτομέρειες', {
             'fields': ('action_date', 'performed_by')
         }),
-        ('Εξωτερικός φορέας', {
-            'fields': ('external_org', 'contact_person', 'manual_org_name', 'manual_contact_name'),
+        ('Επαφή', {
+            'fields': ('org_name', 'contact_name', 'contact_role', 'contact_phone', 'contact_email'),
             'classes': ('collapse',)
         }),
         ('Αποτέλεσμα', {
-            'fields': ('result', 'is_completed', 'requires_follow_up', 'follow_up_date')
+            'fields': ('result', 'is_completed', 'follow_up_date')
         }),
     )
     readonly_fields = ('person_display',)
 
     def person_display(self, obj):
-        """Display the person from the request"""
         if obj and obj.request and obj.request.person:
             return str(obj.request.person)
-        elif hasattr(obj, '_request_person'):  # For new objects
-            return str(obj._request_person)
         return "-"
     person_display.short_description = "Ωφελούμενος"
-    
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        
-        # Auto-populate from request parameter
         if 'request' in request.GET and not obj:
             try:
                 request_id = request.GET['request']
                 req = Request.objects.get(id=request_id)
                 form.base_fields['request'].initial = request_id
-                
-                # Make request readonly when pre-populated
                 form.base_fields['request'].widget.attrs['readonly'] = True
             except Request.DoesNotExist:
                 pass
-        
         return form
-    
-       
+
     def save_model(self, request, obj, form, change):
-        """Auto-set person from request"""
-        if obj.request and not obj.person:
+        if obj.request and not obj.person_id:
             obj.person = obj.request.person
         super().save_model(request, obj, form, change)
-        
+
     def action_display(self, obj):
         return str(obj)
     action_display.short_description = "Ενέργεια"
-    
+
     def request_link(self, obj):
         url = reverse('admin:records_request_change', args=[obj.request.id])
         return format_html('<a href="{}">{}</a>', url, str(obj.request))
     request_link.short_description = "Αίτημα"
-    
-    def organization_display(self, obj):
-        return obj.organization_display
-    organization_display.short_description = "Φορέας"
 
 
 # ========== LOOKUP ADMIN CLASSES ==========
