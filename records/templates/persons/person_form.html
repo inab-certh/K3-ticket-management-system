@@ -1,0 +1,176 @@
+{% extends "layouts/base.html" %}
+{% load form_extras %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row mb-3">
+    <div class="col">
+      <h2 class="h4 mb-0">{% if object %}Επεξεργασία{% else %}Νέα Εγγραφή{% endif %} Ωφελούμενου</h2>
+      <p class="text-muted mb-0">Συμπληρώστε τα στοιχεία</p>
+    </div>
+    <div class="col-auto">
+      <a href="{% url 'person_list' %}" class="btn btn-outline-secondary">Πίσω στη Λίστα</a>
+    </div>
+  </div>
+
+  {% if messages %}
+    <div class="mb-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-2" role="alert">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="card shadow-sm mb-3">
+      <div class="card-header bg-white">
+        <strong>Βασικά Στοιχεία</strong>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.last_name|add_class:"form-control" }}
+              <label for="{{ form.last_name.id_for_label }}">Επώνυμο</label>
+              {{ form.last_name.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.first_name|add_class:"form-control" }}
+              <label for="{{ form.first_name.id_for_label }}">Όνομα</label>
+              {{ form.first_name.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.father_name|add_class:"form-control" }}
+              <label for="{{ form.father_name.id_for_label }}">Όνομα Πατέρα</label>
+              {{ form.father_name.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.mother_name|add_class:"form-control" }}
+              <label for="{{ form.mother_name.id_for_label }}">Όνομα Μητέρας</label>
+              {{ form.mother_name.errors }}
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.birth_date|add_class:"form-control" }}
+              <label for="{{ form.birth_date.id_for_label }}">Ημ/νία Γέννησης</label>
+              {{ form.birth_date.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.age|add_class:"form-control" }}
+              <label for="{{ form.age.id_for_label }}">Ηλικία</label>
+              {{ form.age.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.gender|add_class:"form-select" }}
+              <label for="{{ form.gender.id_for_label }}">Φύλο</label>
+              {{ form.gender.errors }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-header bg-white">
+        <strong>Ταυτοποίηση</strong>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.vat|add_class:"form-control" }}
+              <label for="{{ form.vat.id_for_label }}">ΑΦΜ</label>
+              {{ form.vat.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.amka|add_class:"form-control" }}
+              <label for="{{ form.amka.id_for_label }}">ΑΜΚΑ</label>
+              {{ form.amka.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.id_card|add_class:"form-control" }}
+              <label for="{{ form.id_card.id_for_label }}">Αρ. Ταυτότητας</label>
+              {{ form.id_card.errors }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-header bg-white">
+        <strong>Επικοινωνία & Διεύθυνση</strong>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.mobile|add_class:"form-control" }}
+              <label for="{{ form.mobile.id_for_label }}">Κινητό</label>
+              {{ form.mobile.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.landline|add_class:"form-control" }}
+              <label for="{{ form.landline.id_for_label }}">Σταθερό</label>
+              {{ form.landline.errors }}
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              {{ form.email|add_class:"form-control" }}
+              <label for="{{ form.email.id_for_label }}">Email</label>
+              {{ form.email.errors }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating">
+              {{ form.address|add_class:"form-control" }}
+              <label for="{{ form.address.id_for_label }}">Διεύθυνση</label>
+              {{ form.address.errors }}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-floating">
+              {{ form.postal_code|add_class:"form-control" }}
+              <label for="{{ form.postal_code.id_for_label }}">Τ.Κ.</label>
+              {{ form.postal_code.errors }}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating">
+              {{ form.municipality|add_class:"form-select" }}
+              <label for="{{ form.municipality.id_for_label }}">Δήμος</label>
+              {{ form.municipality.errors }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary" type="submit">Αποθήκευση</button>
+      <a class="btn btn-outline-secondary" href="{% url 'person_list' %}">Άκυρο</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

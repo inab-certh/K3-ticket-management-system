@@ -1,0 +1,96 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row mb-3">
+    <div class="col">
+      <h2 class="h4 mb-0">Ωφελούμενοι</h2>
+      <p class="text-muted mb-0">Διαχείριση καταλόγου ατόμων</p>
+    </div>
+    <div class="col-auto">
+      <a href="{% url 'person_create' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i> Νέα Εγγραφή
+      </a>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form method="get" class="row g-2 align-items-end mb-3">
+        <div class="col-sm-6 col-lg-4">
+          <div class="form-floating">
+            <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" id="searchInput" placeholder="Αναζήτηση...">
+            <label for="searchInput">Αναζήτηση (Επώνυμο/Όνομα/ΑΜΚΑ)</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-outline-secondary">Αναζήτηση</button>
+          <a href="{% url 'person_list' %}" class="btn btn-link">Καθαρισμός</a>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Επώνυμο</th>
+              <th>Όνομα</th>
+              <th class="d-none d-md-table-cell">ΑΜΚΑ</th>
+              <th class="d-none d-lg-table-cell">Δήμος</th>
+              <th class="text-end">Ενέργειες</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in persons %}
+              <tr>
+                <td>{{ person.last_name }}</td>
+                <td>{{ person.first_name }}</td>
+                <td class="d-none d-md-table-cell">{{ person.amka|default:"—" }}</td>
+                <td class="d-none d-lg-table-cell">{{ person.municipality|default:"—" }}</td>
+                <td class="text-end">
+                  <a href="{% url 'person_update' person.id %}" class="btn btn-sm btn-outline-primary">Επεξεργασία</a>
+                  <a href="{% url 'person_delete' person.id %}" class="btn btn-sm btn-outline-danger">Διαγραφή</a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5" class="text-center text-muted py-4">Δεν βρέθηκαν εγγραφές.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if is_paginated %}
+      <nav class="mt-3">
+        <ul class="pagination justify-content-end">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">«</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">«</span></li>
+          {% endif %}
+
+          {% for p in paginator.page_range %}
+            {% if p == page_obj.number %}
+              <li class="page-item active"><span class="page-link">{{ p }}</span></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?q={{ request.GET.q }}&page={{ p }}">{{ p }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">»</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">»</span></li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

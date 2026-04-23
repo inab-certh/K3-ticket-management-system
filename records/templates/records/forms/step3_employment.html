@@ -1,0 +1,124 @@
+{% load form_tags %}
+<input type="hidden" name="current_step" value="3">
+<h4 class="mb-3">Ασφαλιστική - Εργασιακή Κατάσταση</h4>
+
+<!-- 📌 Εμφάνιση Βασικών Πληροφοριών -->
+<div class="row mb-4">
+  <div class="col-md-2">
+    <label class="form-label">ID Ωφελούμενου</label>
+    <input type="text" class="form-control" value="{{ beneficiary_id }}" readonly>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Όνομα</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.first_name.value }}" readonly>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Επώνυμο</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.last_name.value }}" readonly>
+  </div>
+</div>
+
+<h5 class="mb-3">Ασφαλιστική Κατάσταση</h5>
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <label class="form-label">Ασφάλιση</label>
+    {{ insurance_form.insurance_status|add_class:"form-select" }}
+  </div>
+  <div class="col-md-4 mb-3">
+    <label class="form-label">Φορέας Ασφάλισης</label>
+    {{ insurance_form.insurance_provider|add_class:"form-select" }}
+  </div>
+  <div class="col-md-4 mb-3">
+    <label class="form-label">Ειδικά Ταμεία</label>
+    {{ insurance_form.special_funds|add_class:"form-control" }}
+  </div>
+</div>
+
+
+<div class="form-check mb-3">
+  {{ insurance_form.widow_pension|add_class:"form-check-input" }}
+  <label class="form-check-label" for="{{ insurance_form.widow_pension.id_for_label }}">Σύνταξη Χηρείας</label>
+</div>
+
+<div class="form-check mb-3">
+  {{ insurance_form.disability_pension|add_class:"form-check-input" }}
+  <label class="form-check-label" for="{{ insurance_form.disability_pension.id_for_label }}">Σύνταξη Αναπηρίας</label>
+</div>
+
+<!-- ✅ Εργασιακή Κατάσταση -->
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <label class="form-label">Κατάσταση Εργασίας</label>
+    {{ employment_form.employment_status|add_class:"form-select" }}
+  </div>
+</div>
+
+<!-- Αν ΕΡΓΑΖΟΜΕΝΟΣ ή ΣΥΝΤΑΞ. & ΕΡΓΑΖ. -->
+<div id="employment-details" style="display: none;">
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Επάγγελμα</label>
+      {{ employment_form.job_title|add_class:"form-control" }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Ειδικότητα</label>
+      {{ employment_form.specialization|add_class:"form-control" }}
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Ημερομηνία Πρόσληψης</label>
+      {{ employment_form.hire_date|add_class:"form-control" }}
+    </div>
+  </div>
+  <div class="row">
+	<div class="col-md-3 mb-4">
+      <label class="form-label">Εργασιακή σχέση</label>
+      {{ employment_form.employment_type|add_class:"form-select" }}
+    </div>
+    <div class="col-md-3 mb-4">
+      <label class="form-label">Μορφή Απασχόλησης</label>
+      {{ employment_form.work_schedule|add_class:"form-select" }}
+    </div>
+    <div class="col-md-3 mb-4">
+      <label class="form-label">Είδος Σύμβασης</label>
+      {{ employment_form.contract_type|add_class:"form-select" }}
+    </div>
+    <div class="col-md-3 mb-4">
+      <label class="form-label">Νομική Μορφή Εργοδότη</label>
+      {{ employment_form.employer_legal_form|add_class:"form-control" }}
+    </div>
+  </div>
+</div>
+
+<!-- Αν ΑΝΕΡΓΟΣ -->
+<div id="unemployment-details" style="display: none;">
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Ημερομηνία Εγγραφής</label>
+      {{ employment_form.registration_date|add_class:"form-control" }}
+    </div>
+	<div class="col-md-4 mb-3">
+      <label class="form-label">Κάρτα Ανεργίας</label>
+      {{ employment_form.unemployment_card|add_class:"form-check-input" }}
+    </div>
+  </div>
+</div>
+
+<hr class="my-4">
+
+
+
+<script>
+function toggleEmploymentFields() {
+  const status = document.getElementById("id_employment_status").value;
+  const empFields = document.getElementById("employment-details");
+  const unempFields = document.getElementById("unemployment-details");
+
+  empFields.style.display = ["employed", "retired_employed"].includes(status) ? "block" : "none";
+  unempFields.style.display = status === "unemployed" ? "block" : "none";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  toggleEmploymentFields();
+  document.getElementById("id_employment_status").addEventListener("change", toggleEmploymentFields);
+});
+</script>

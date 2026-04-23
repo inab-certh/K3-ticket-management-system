@@ -1,0 +1,365 @@
+{% load form_tags %}
+
+<input type="hidden" name="current_step" value="4">
+<h4 class="mb-3">Βήμα 4: Καταγραφή Νεοπλασμάτων</h4>
+<div class="row mb-4">
+  <div class="col-md-2">
+    <label class="form-label">ID Ωφελούμενου</label>
+    <input type="text" class="form-control" value="{{ beneficiary_id }}" readonly>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Όνομα</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.first_name.value }}" readonly>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Επώνυμο</label>
+    <input type="text" class="form-control" value="{{ beneficiary_form.last_name.value }}" readonly>
+  </div>
+</div>
+
+<div id="neoplasms-container" class="mt-3"></div>
+
+
+<script>
+const typeICD10Map = {
+  malignant: {
+    "Αίμα, Λεμφικό":                { icd10: "C81-C96", label: "C81-C96 Αίμα, Λεμφικό" },
+    "Αναπνευστικό":                 { icd10: "C30-C39", label: "C30-C39 Αναπνευστικό" },
+    "Ασαφώς καθοριζόμενα":          { icd10: "C76-C80", label: "C76-C80 Ασαφώς καθοριζόμενα" },
+    "Γεννητικά όργανα":             { icd10: "C51-C58", label: "C51-C58 Γεννητικά όργανα" },
+    "Ενδοκρινείς αδένες":           { icd10: "C73-C75", label: "C73-C75 Ενδοκρινείς αδένες" },
+    "Μαλακά μόρια":                 { icd10: "C45-C49", label: "C45-C49 Μαλακά μόρια" },
+    "Μαστός":                       { icd10: "C50",    label: "C50 Μαστός" },
+    "Οστά-Δέρμα":                   { icd10: "C40-C41",label: "C40-C41 Οστά-Δέρμα" },
+    "Ουροποιητικό":                 { icd10: "C64-C68",label: "C64-C68 Ουροποιητικό" },
+    "Εγκέφαλος-Οφθαλμός-Νευρικό":   { icd10: "C69-C72",label: "C69-C72 Εγκέφαλος-Οφθαλμός-Νευρικό" },
+    "Πεπτικό":                      { icd10: "C15-C26",label: "C15-C26 Πεπτικό" },
+    "Στόμα-Χείλος-Φάρυγγας":        { icd10: "C00-C14",label: "C00-C14 Στόμα-Χείλος-Φάρυγγας" }
+  },
+  benign: {
+    "Αιμαγγείωμα & λεμφαγγείωμα":                         { icd10: "D18", label: "D18 Αιμαγγείωμα & λεμφαγγείωμα" },
+    "Γυναικείων γεννητικών οργάνων μη καθορισμένων":      { icd10: "D28", label: "D28 Γυναικείων γεννητικών οργάνων μη καθορισμένων" },
+    "Ενδοκρινών αδένων μη καθορισμένων":                  { icd10: "D35", label: "D35 Ενδοκρινών αδένων μη καθορισμένων" },
+    "Μη καθορισμένων εντοπίσεων":                         { icd10: "D36", label: "D36 Μη καθορισμένων εντοπίσεων" },
+    "Ενδοθωρακικών οργάνων μη καθορισμένων":              { icd10: "D15", label: "D15 Ενδοθωρακικών οργάνων μη καθορισμένων" },
+    "Ανδρικών γεννητικών οργάνων":                        { icd10: "D29", label: "D29 Ανδρικών γεννητικών οργάνων" },
+    "Δέρματος":                                           { icd10: "D23", label: "D23 Δέρματος" },
+    "Εγκεφάλου & άλλων τμημάτων ΚΝΣ":                     { icd10: "D33", label: "D33 Εγκεφάλου & άλλων τμημάτων ΚΝΣ" },
+    "Θυρεοειδούς αδένα":                                  { icd10: "D34", label: "D34 Θυρεοειδούς αδένα" },
+    "Καλόηθες νεόπλασμα άλλων & ασαφώς τμημάτων πεπτικού":{ icd10: "D13", label: "D13 Καλόηθες νεόπλασμα άλλων & ασαφώς τμημάτων πεπτικού" },
+    "Κόλου, ορθού, πρωκτού & πρωκτικού σωλήνα":           { icd10: "D12", label: "D12 Κόλου, ορθού, πρωκτού & πρωκτικού σωλήνα" },
+    "Λειομύωμα μήτρας":                                   { icd10: "D25", label: "D25 Λειομύωμα μήτρας" },
+    "Λιπώδους ιστού":                                     { icd10: "D17", label: "D17 Λιπώδους ιστού" },
+    "Μαλακών μορίων οπισθοπεριτοναίου & περιτοναίου":     { icd10: "D20", label: "D20 Μαλακών μορίων οπισθοπεριτοναίου & περιτοναίου" },
+    "Μαστού [μαζικού αδένα]":                             { icd10: "D24", label: "D24 Μαστού [μαζικού αδένα]" },
+    "Μειζόνων σιελογόνων αδένων":                         { icd10: "D11", label: "D11 Μειζόνων σιελογόνων αδένων" },
+    "Μελανοκυτταρικοί σπίλοι":                            { icd10: "D22", label: "D22 Μελανοκυτταρικοί σπίλοι" },
+    "Μεσοθηλιακού ιστού":                                 { icd10: "D19", label: "D19 Μεσοθηλιακού ιστού" },
+    "Μέσου ωτός & αναπνευστικού συστήματος":              { icd10: "D14", label: "D14 Μέσου ωτός & αναπνευστικού συστήματος" },
+    "Μηνίγγων":                                           { icd10: "D32", label: "D32 Μηνίγγων" },
+    "Μήτρας":                                             { icd10: "D26", label: "D26 Μήτρας" },
+    "Οργάνων ουροποιητικού":                              { icd10: "D30", label: "D30 Οργάνων ουροποιητικού" },
+    "Οστών & αρθρικών χόνδρων":                           { icd10: "D16", label: "D16 Οστών & αρθρικών χόνδρων" },
+    "Οφθαλμού & εξαρτημάτων του":                         { icd10: "D31", label: "D31 Οφθαλμού & εξαρτημάτων του" },
+    "Στόματος & φάρυγγα":                                 { icd10: "D10", label: "D10 Στόματος & φάρυγγα" },
+    "Συνδετικού ιστού & άλλων μαλακών μορίων":            { icd10: "D21", label: "D21 Συνδετικού ιστού & άλλων μαλακών μορίων" },
+    "Ωοθήκης":                                            { icd10: "D27", label: "D27 Ωοθήκης" }
+  },
+  uncertain: {
+    "Στοματικής κοιλότητας και οργάνων πεπτικού":        { icd10: "D37", label: "D37 Στοματικής κοιλότητας και οργάνων πεπτικού" },
+    "Μέσου ωτός, οργάνων αναπνευστικού & ενδοθωρακικών":{ icd10: "D38", label: "D38 Μέσου ωτός, οργάνων αναπνευστικού & ενδοθωρακικών" },
+    "Γυναικείων γεννητικών οργάνων":                    { icd10: "D39", label: "D39 Γυναικείων γεννητικών οργάνων" },
+    "Ανδρικών γεννητικών οργάνων":                      { icd10: "D40", label: "D40 Ανδρικών γεννητικών οργάνων" },
+    "Ουροποιητικού συστήματος":                         { icd10: "D41", label: "D41 Ουροποιητικού συστήματος" },
+    "Μηνίγγων":                                         { icd10: "D42", label: "D42 Μηνίγγων" },
+    "Εγκεφάλου-κεντρικού νευρικού συστήματος":          { icd10: "D43", label: "D43 Εγκεφάλου-κεντρικού νευρικού συστήματος" },
+    "Ενδοκρινών αδένων":                                { icd10: "D44", label: "D44 Ενδοκρινών αδένων" },
+    "Πολυκυτταραιμία αληθής":                           { icd10: "D45", label: "D45 Πολυκυτταραιμία αληθής" },
+    "Μυελοδυσπλαστικά σύνδρομα":                        { icd10: "D46", label: "D46 Μυελοδυσπλαστικά σύνδρομα" },
+    "Λεμφικού, αιμοποιητικού και σχετικών ιστών":        { icd10: "D47", label: "D47 Λεμφικού, αιμοποιητικού και σχετικών ιστών" },
+    "Μη καθορισμένων εντοπίσεων":                       { icd10: "D48", label: "D48 Μη καθορισμένων εντοπίσεων" }
+  }
+};
+
+const therapyTypes = [
+  "Χημειοθεραπεία", "Ακτινοθεραπεία", "Ορμονοθεραπεία",
+  "Στοχευμένη θεραπεία", "Ανοσοθεραπεία", "Γονιδιακή",
+  "Εναλλακτική", "Βλαστοκύτταρα", "Άλλη θεραπεία"
+];
+
+// Helper to generate a new neoplasm entry
+let neoplasmIndex = 0;
+
+function getTherapiesHtml(neoplasmIdx, therapies=[]) {
+  return `
+    <div class="therapy-list" data-neoplasm-index="${neoplasmIdx}">
+      ${(therapies.length ? therapies : [null]).map((_, therapyIdx) => `
+        <div class="row g-2 align-items-end therapy-box mb-2" data-therapy-index="${therapyIdx}">
+          <div class="col-md-5">
+            <label class="form-label">Είδος Θεραπείας</label>
+            <select class="form-select" name="therapy_type_${neoplasmIdx}_${therapyIdx}">
+              <option value="">Επιλέξτε...</option>
+              ${therapyTypes.map(t => `<option value="${t}">${t}</option>`).join("")}
+            </select>
+          </div>
+          <div class="col-md-5">
+            <label class="form-label">Νοσοκομείο</label>
+            <input type="text" class="form-control" name="therapy_hospital_${neoplasmIdx}_${therapyIdx}" placeholder="Νοσοκομείο">
+          </div>
+          <div class="col-md-2 text-end">
+            <button type="button" class="btn btn-danger btn-sm remove-therapy">Διαγραφή</button>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-sm mt-2 add-therapy">+ Προσθήκη Θεραπείας</button>
+  `;
+}
+
+function getNeoplasmBoxHtml(index, showAdd, showDelete) {
+  return `
+    <div class="card p-4 mb-4 neoplasm-box" data-index="${index}">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label">Κατηγορία Νεοπλάσματος</label>
+          <select class="form-select category" name="category_${index}">
+            <option value="">Επιλέξτε...</option>
+            <option value="malignant">Κακοήθες</option>
+            <option value="benign">Καλοήθες</option>
+            <option value="uncertain">Αβέβαιο</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Είδος</label>
+          <select class="form-select type" name="type_${index}" disabled>
+            <option value="">Επιλέξτε...</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">ICD-10</label>
+          <input type="text" class="form-control icd10" name="icd10_${index}" readonly>
+        </div>
+        <div class="col-md-12">
+          <label class="form-label">Εντοπισμός</label>
+          <input type="text" class="form-control localization" name="localization_${index}" placeholder="Ελεύθερο κείμενο">
+        </div>
+	</div>
+	<hr class="my-3">
+
+      <div class="row mb-2">
+        <div class="col-md-2">
+          <label class="form-label">Μεταστάσεις</label><br>
+          <input type="checkbox" name="metastasis_${index}" class="metastasis">
+          <label>Ναι</label>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Χειρουργική επέμβαση</label><br>
+          <input type="checkbox" name="surgery_${index}" class="surgery">
+          <label>Ναι</label>
+        </div>
+        <div class="col-md-4 surgery-hospital-group" style="display:none;">
+          <label class="form-label">Νοσοκομείο Χειρουργείου</label>
+          <input type="text" class="form-control" name="surgery_hospital_${index}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Προγραμματισμένη Χειρουργική Επέμβαση</label>
+          <input type="date" class="form-control" name="scheduled_surgery_${index}">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-3">
+          <label class="form-label">Θεραπείες</label>
+          <input type="checkbox" class="has-therapies" name="has_therapies_${index}">
+          <label>Ναι</label>
+        </div>
+      </div>
+      <div class="therapies-section" style="display:none;">
+        ${getTherapiesHtml(index)}
+      </div>
+		<div class="col-md-12 text-end mt-3">
+		  <div class="d-flex justify-content-between">
+			<div>
+			  ${showAdd ? '<button type="button" class="btn btn-outline-primary btn-sm add-neoplasm">+ Προσθήκη Νεοπλάσματος</button>' : ''}
+			</div>
+			<div>
+			  ${showDelete ? '<button type="button" class="btn btn-danger btn-sm remove-neoplasm">Διαγραφή</button>' : ''}
+			</div>
+		  </div>
+		</div>
+    </div>
+  `;
+}
+
+const container = document.getElementById('neoplasms-container');
+
+// Helper to re-render all boxes with correct buttons
+function renderNeoplasms() {
+  const data = [];
+  container.querySelectorAll('.neoplasm-box').forEach(box => {
+    data.push({
+      category: box.querySelector('.category').value,
+      type: box.querySelector('.type').value,
+      icd10: box.querySelector('.icd10').value,
+      localization: box.querySelector('.localization').value
+    });
+  });
+  container.innerHTML = '';
+  for (let i = 0; i < data.length; i++) {
+    const isFirst = i === 0;
+    const isLast = i === data.length - 1;
+    container.insertAdjacentHTML('beforeend',
+      getNeoplasmBoxHtml(i, isLast, !isFirst || data.length > 1)
+    );
+    // Restore values
+    const newBox = container.lastElementChild;
+    newBox.querySelector('.category').value = data[i].category;
+    const category = data[i].category;
+    const typeSelect = newBox.querySelector('.type');
+    if (typeICD10Map[category]) {
+      for (const typeName in typeICD10Map[category]) {
+        const option = document.createElement('option');
+        option.value = typeName;
+        option.textContent = typeName;
+        typeSelect.appendChild(option);
+      }
+      typeSelect.disabled = false;
+    }
+    newBox.querySelector('.type').value = data[i].type;
+    newBox.querySelector('.icd10').value = data[i].icd10;
+    newBox.querySelector('.localization').value = data[i].localization;
+  }
+}
+
+addNeoplasmBox();
+
+function addNeoplasmBox() {
+  const count = container.querySelectorAll('.neoplasm-box').length;
+  // If there are no boxes, just add the first one
+  if (count === 0) {
+    container.insertAdjacentHTML('beforeend', getNeoplasmBoxHtml(0, true, false));
+    return;
+  }
+  // Otherwise: re-render all, add a new blank at the end
+  const data = [];
+  container.querySelectorAll('.neoplasm-box').forEach(box => {
+    data.push({
+      category: box.querySelector('.category').value,
+      type: box.querySelector('.type').value,
+      icd10: box.querySelector('.icd10').value,
+      localization: box.querySelector('.localization').value
+    });
+  });
+  data.push({category: '', type: '', icd10: '', localization: ''});
+  container.innerHTML = '';
+  for (let i = 0; i < data.length; i++) {
+    const isFirst = i === 0;
+    const isLast = i === data.length - 1;
+    container.insertAdjacentHTML('beforeend',
+      getNeoplasmBoxHtml(i, isLast, !isFirst || data.length > 1)
+    );
+    const newBox = container.lastElementChild;
+    newBox.querySelector('.category').value = data[i].category;
+    const category = data[i].category;
+    const typeSelect = newBox.querySelector('.type');
+    if (typeICD10Map[category]) {
+      for (const typeName in typeICD10Map[category]) {
+        const option = document.createElement('option');
+        option.value = typeName;
+        option.textContent = typeName;
+        typeSelect.appendChild(option);
+      }
+      typeSelect.disabled = false;
+    }
+    newBox.querySelector('.type').value = data[i].type;
+    newBox.querySelector('.icd10').value = data[i].icd10;
+    newBox.querySelector('.localization').value = data[i].localization;
+  }
+}
+
+// Delegate all button actions and select changes
+container.addEventListener('click', function(e) {
+  const box = e.target.closest('.neoplasm-box');
+  if (!box) return;
+  if (e.target.classList.contains('add-neoplasm')) {
+    addNeoplasmBox();
+  }
+  if (e.target.classList.contains('remove-neoplasm')) {
+    box.remove();
+    // re-render to update buttons
+    renderNeoplasms();
+  }
+  if (e.target.classList.contains('add-therapy')) {
+    const therapiesSection = box.querySelector('.therapies-section');
+    const therapyList = box.querySelector('.therapy-list');
+    const nidx = box.dataset.index;
+    const currentCount = therapyList.querySelectorAll('.therapy-box').length;
+    if (currentCount >= 3) return;
+    // Add new therapy
+    const html = `
+      <div class="row g-2 align-items-end therapy-box mb-2" data-therapy-index="${currentCount}">
+        <div class="col-md-5">
+          <label class="form-label">Είδος Θεραπείας</label>
+          <select class="form-select" name="therapy_type_${nidx}_${currentCount}">
+            <option value="">Επιλέξτε...</option>
+            ${therapyTypes.map(t => `<option value="${t}">${t}</option>`).join("")}
+          </select>
+        </div>
+        <div class="col-md-5">
+          <label class="form-label">Νοσοκομείο</label>
+          <input type="text" class="form-control" name="therapy_hospital_${nidx}_${currentCount}" placeholder="Νοσοκομείο">
+        </div>
+        <div class="col-md-2 text-end">
+          <button type="button" class="btn btn-danger btn-sm remove-therapy">Διαγραφή</button>
+        </div>
+      </div>`;
+    therapyList.insertAdjacentHTML('beforeend', html);
+  }
+  if (e.target.classList.contains('remove-therapy')) {
+    e.target.closest('.therapy-box').remove();
+  }
+});
+
+container.addEventListener('change', function(e) {
+  const box = e.target.closest('.neoplasm-box');
+  if (!box) return;
+  if (e.target.classList.contains('category')) {
+    const category = e.target.value;
+    const typeSel = box.querySelector('.type');
+    typeSel.innerHTML = '<option value="">Επιλέξτε...</option>';
+    box.querySelector('.icd10').value = '';
+    typeSel.disabled = true;
+    if (typeICD10Map[category]) {
+      for (const typeName in typeICD10Map[category]) {
+        const option = document.createElement('option');
+        option.value = typeName;
+        option.textContent = typeName;
+        typeSel.appendChild(option);
+      }
+      typeSel.disabled = false;
+    }
+  }
+  if (e.target.classList.contains('type')) {
+    const category = box.querySelector('.category').value;
+    const type = e.target.value;
+    const icd10Input = box.querySelector('.icd10');
+    if (typeICD10Map[category] && typeICD10Map[category][type]) {
+      icd10Input.value = typeICD10Map[category][type].label;
+    } else {
+      icd10Input.value = '';
+    }
+  }
+  if (e.target.classList.contains('surgery')) {
+    // Show/hide surgery hospital field
+    const group = box.querySelector('.surgery-hospital-group');
+    group.style.display = e.target.checked ? '' : 'none';
+  }
+  if (e.target.classList.contains('has-therapies')) {
+    // Show/hide therapies section
+    const therapiesSection = box.querySelector('.therapies-section');
+    therapiesSection.style.display = e.target.checked ? '' : 'none';
+	}
+});
+</script>
+
+
+

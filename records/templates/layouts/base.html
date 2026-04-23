@@ -1,0 +1,43 @@
+{% load static %}
+{% load form_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/favicon.ico' %}">
+  <title>{% block title %}Αρχική{% endblock %} | Κ3 Σύστημα</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Volt CSS -->
+  <link rel="stylesheet" href="/static/assets/css/volt.css">
+  <link rel="stylesheet" href="{% static '/assets/css/custom.css' %}">
+
+  {% block stylesheets %}{% endblock %}
+</head>
+<body class="min-vh-100 d-flex flex-column" style="min-height: 100vh;">
+  <div class="d-flex flex-grow-1" style="min-height: 0;">
+    <!-- Sidebar -->
+    {% include "layouts/sidebar.html" %}
+
+    <!-- Main content (stretch this!) -->
+    <main class="content flex-grow-1 d-flex flex-column">
+      <!-- Navbar -->
+      {% include "includes/navigation.html" %}
+
+      <!-- Page Content -->
+      <div class="flex-grow-1">
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Footer -->
+      {% include "includes/footer.html" %}
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/assets/js/volt.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  {% block javascripts %}{% endblock %}
+</body>
+</html>

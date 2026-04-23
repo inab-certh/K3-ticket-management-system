@@ -1,0 +1,11 @@
+<!-- templates/requests/action_form.html -->
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container">
+  <h2>{% if object %}Edit{% else %}Add{% endif %} Action</h2>
+  <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Αποθήκευση</button>
+  </form>
+</div>
+{% endblock %}

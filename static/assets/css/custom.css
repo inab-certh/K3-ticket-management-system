@@ -1,0 +1,107 @@
+/* ----- K3 Custom Colors & Branding ----- */
+:root {
+  --primary:   #B72027; /* Κόκκινο του logo */
+  --secondary: #D4C5C0; /* Μπεζ/ροζ */
+  --third:     #D9C0BC;
+  --white:     #FFFFFF;
+  --dark:      #222328; /* Μαύρο-ish */
+  --gray:      #545454; /* Σκούρο γκρι */
+  --gray-light:#595959; /* Λιγότερο σκούρο γκρι */
+}
+
+/* General styles */
+
+/* Sidebar */
+.sidebar {
+  background: var(--dark) !important;
+  color: var(--white) !important;
+}
+
+.sidebar .nav-link,
+.sidebar .nav-link span {
+  color: var(--white) !important;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link.active span {
+  background: var(--gray-light) !important;
+  color: var(--white) !important;
+}
+
+/* Buttons */
+.btn-primary, .btn-danger {
+  background: var(--secondary) !important;
+  border-color: var(--gray-light) !important;
+  color: var(--dark) !important;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+  background: var(--gray) !important; /* Λίγο πιο σκούρο κόκκινο */
+  border-color: var(--gray) !important;
+  color: var(--white) !important;
+}
+
+.btn-secondary {
+  background: var(--secondary) !important;
+  color: var(--dark) !important;
+  border-color: var(--gray-light) !important;
+}
+.btn-secondary:hover {
+  background: var(--gray) !important; /* Λίγο πιο σκούρο κόκκινο */
+  border-color: var(--gray) !important;
+  color: var(--white) !important;
+}
+
+/* Forms */
+.form-control:focus {
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(183,32,39,0.2) !important;
+}
+
+.text-muted, .form-label {
+  color: var(--gray) !important;
+}
+
+/* Lines/Dividers */
+hr {
+  border-color: var(--secondary) !important;
+}
+
+/* Optional: style cards or info-boxes */
+.card, .bg-soft {
+  background: var(--white) !important;
+  color: var(--dark) !important;
+}
+
+/* Optional: fix link color */
+a, a:visited {
+  color: var(--primary);
+}
+a:hover, a:active {
+  color: #b61b23;
+}
+
+.nav-tabs .nav-link {
+  font-size: 0.9rem !important; /* ή μικρότερο, πχ 0.85rem */
+  padding: 0.4rem 0.7rem !important;   /* top-bottom, left-right */
+  min-height: 1.6rem !important;
+  border: 1px solid #A4A5A6 !important;
+}
+
+/* Χρώμα active tab */
+.nav-tabs .nav-link.active {
+  background-color: var(--gray) !important;   /* πχ το μπεζ/ροζ */
+  color: var(--white);                /* κόκκινο */
+  border-color: var(--gray-light) !important;
+}
+
+/* Χρώμα inactive tab */
+.nav-tabs .nav-link:not(.active) {
+  background-color: #f8f9fa !important;
+  color: var(--gray-light) !important;
+  border-color: #A4A5A6 !important;
+}
+
+
+
+/* ----- END K3 CUSTOM ----- */

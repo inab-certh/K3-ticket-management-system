@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Νέα Εγγραφή{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Νέα Εγγραφή</li>
+    </ol>
+  </nav>
+
+  <form
+	method="post"
+	enctype="multipart/form-data"
+	action="?step={{ step }}{% if beneficiary_id %}&beneficiary_id={{ beneficiary_id }}{% endif %}"
+	>
+	{% csrf_token %}
+	<input type="hidden" name="current_step" value="{{ step }}">
+	{% if beneficiary_id %}
+	<input type="hidden" name="beneficiary_id" value="{{ beneficiary_id }}">
+	{% endif %}
+
+
+    
+    <ul class="nav nav-tabs" id="newEntryTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link {% if step == 1 %}active{% endif %}" id="step1-tab" type="button">Αρχικά Στοιχεία</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link {% if step == 2 %}active{% endif %}" id="step2-tab" type="button">Επιπλέον Στοιχεία</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link {% if step == 3 %}active{% endif %}" id="step3-tab" type="button" disabled>Ασφαλιστική-Εργασιακή κατάσταση</button>
+      </li>
+	  <li class="nav-item" role="presentation">
+        <button class="nav-link {% if step == 4 %}active{% endif %}" id="step4-tab" type="button" disabled>Ιστορικό-Νεοπλάσματα</button>
+      </li>
+	  <li class="nav-item" role="presentation">
+        <button class="nav-link {% if step == 4 %}active{% endif %}" id="step4-tab" type="button" disabled>Άλλα προβλήματα υγείας</button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="newEntryTabsContent">
+      {% if step == 1 %}
+      <div class="tab-pane fade show active" id="step1" role="tabpanel">
+        {% include "records/forms/step1_basic_info.html" %}
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-outline-primary" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+          <button class="btn btn-primary" type="submit" name="current_step" value="{{ step|add:'1' }}">Επόμενο</button>
+        </div>
+      </div>
+      {% elif step == 2 %}
+      <div class="tab-pane fade show active" id="step2" role="tabpanel">
+        {% include "records/forms/step2_additional_info.html" %}
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" type="submit" name="current_step" value="{{ step|add:'-1' }}">Προηγούμενο</button>
+          <div>
+            <button class="btn btn-outline-primary me-2" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+            <button class="btn btn-primary" type="submit" name="current_step" value="{{ step|add:'1' }}">Επόμενο</button>
+          </div>
+        </div>
+      </div>
+      {% elif step == 3 %}
+	  <div class="tab-pane fade show active" id="step3" role="tabpanel">
+        {% include "records/forms/step3_employment.html" %}
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" type="submit" name="current_step" value="{{ step|add:'-1' }}">Προηγούμενο</button>
+          <div>
+            <button class="btn btn-outline-primary me-2" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+            <button class="btn btn-primary" type="submit" name="current_step" value="{{ step|add:'1' }}">Επόμενο</button>
+          </div>
+        </div>
+      </div>
+	  {% elif step == 4 %}
+      <div class="tab-pane fade show active" id="step4" role="tabpanel">
+	    {% include "records/forms/step4_neoplasm.html" %}
+		<div class="d-flex justify-content-between mt-4">
+		  <button class="btn btn-secondary" type="submit" name="current_step" value="{{ step|add:'-1' }}">Προηγούμενο</button>
+		  <div>
+			<button class="btn btn-outline-primary me-2" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+			<button class="btn btn-primary" type="submit" name="current_step" value="{{ step|add:'1' }}">Επόμενο</button>
+		  </div>
+		</div>
+	  </div>
+	  {% elif step == 5 %}
+      <div class="tab-pane fade show active" id="step4" role="tabpanel">
+	    {% include "records/forms/step5_history.html" %}
+		<div class="d-flex justify-content-between mt-4">
+		  <button class="btn btn-secondary" type="submit" name="current_step" value="{{ step|add:'-1' }}">Προηγούμενο</button>
+		  <div>
+			<button class="btn btn-outline-primary me-2" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+			<button class="btn btn-primary" type="submit" name="current_step" value="{{ step|add:'1' }}">Επόμενο</button>
+		  </div>
+		</div>
+	  </div>
+	 {% elif step == 6 %}
+      <div class="tab-pane fade show active" id="step4" role="tabpanel">
+        <p>Υπό κατασκευή.</p>
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" type="submit" name="current_step" value="{{ step|add:'-1' }}">Προηγούμενο</button>
+          <div>
+            <button class="btn btn-outline-primary me-2" type="submit" name="save_draft" value="{{ step }}">Αποθήκευση ως Πρόχειρο</button>
+            <button class="btn btn-success" type="submit">Ολοκλήρωση</button>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+</div>
+{% endblock %}
