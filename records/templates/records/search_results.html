@@ -1,0 +1,110 @@
+{% extends "layouts/base.html" %}
+{% block title %}Αποτελέσματα Αναζήτησης{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
+      <li class="breadcrumb-item active">Αναζήτηση</li>
+    </ol>
+  </nav>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">
+      Αποτελέσματα για: <strong>{{ q }}</strong>
+      <span class="text-muted fs-6 ms-2">({{ total }} αποτελέσματα)</span>
+    </h4>
+    <form method="get" action="{% url 'search' %}" class="d-flex gap-2">
+      <input type="text" name="q" value="{{ q }}" class="form-control" placeholder="Νέα αναζήτηση...">
+      <button type="submit" class="btn btn-primary">Αναζήτηση</button>
+    </form>
+  </div>
+
+  {% if not q %}
+  <div class="alert alert-info">Εισάγετε έναν όρο αναζήτησης.</div>
+  {% elif total == 0 %}
+  <div class="alert alert-warning">Δεν βρέθηκαν αποτελέσματα για "<strong>{{ q }}</strong>".</div>
+  {% else %}
+
+  <!-- Persons -->
+  {% if persons %}
+  <div class="card border-0 shadow mb-4">
+    <div class="card-header border-bottom d-flex align-items-center gap-2">
+      <span>👤</span>
+      <h6 class="mb-0">Ωφελούμενοι <span class="badge bg-primary ms-1">{{ persons|length }}</span></h6>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Επώνυμο</th>
+            <th>Όνομα</th>
+            <th>ΑΜΚΑ</th>
+            <th>Δομή</th>
+            <th>Ανοιχτά Αιτήματα</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for person in persons %}
+          <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.last_name }}</td>
+            <td>{{ person.first_name }}</td>
+            <td>{{ person.amka|default:"—" }}</td>
+            <td>{{ person.center.name|default:"—" }}</td>
+            <td>{{ person.open_requests }}</td>
+            <td>
+              <a href="{% url 'person_detail' person.pk %}" class="btn btn-sm btn-outline-primary">Προβολή</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Requests -->
+  {% if requests_results %}
+  <div class="card border-0 shadow mb-4">
+    <div class="card-header border-bottom d-flex align-items-center gap-2">
+      <span>📋</span>
+      <h6 class="mb-0">Αιτήματα <span class="badge bg-primary ms-1">{{ requests_results|length }}</span></h6>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Ωφελούμενος</th>
+            <th>Θέμα</th>
+            <th>Κατάσταση</th>
+            <th>Ημ. Υποβολής</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for req in requests_results %}
+          <tr>
+            <td>{{ req.id }}</td>
+            <td>{{ req.person.last_name }} {{ req.person.first_name }}</td>
+            <td>{{ req.subject|default:"—" }}</td>
+            <td>{{ req.status }}</td>
+            <td>{{ req.submission_date|date:"d/m/Y"|default:"—" }}</td>
+            <td>
+              <a href="{% url 'request_detail' req.pk %}" class="btn btn-sm btn-outline-primary">Προβολή</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 # records/urls.py
 from django.urls import path
 from . import views
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from .views import (
     dashboard, settings_view,
     ActionCreateView, ActionUpdateView,
@@ -14,6 +14,7 @@ urlpatterns = [
     # Authentication
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('password-change/', PasswordChangeView.as_view(template_name='accounts/password_change.html',success_url='/settings/'), name='password_change'),
     path("register/", views.register, name="register"),
     
     # Dashboard and main pages
@@ -44,4 +45,7 @@ urlpatterns = [
     path('api/regional-units/', RegionalUnitsAPIView.as_view(), name='api_regional_units'),
     path('api/municipalities/', MunicipalitiesAPIView.as_view(), name='api_municipalities'),
     path('api/quick-search/', QuickSearchAPIView.as_view(), name='api_quick_search'),
+    
+    #search
+    path('search/', views.search_view, name='search'),
 ]

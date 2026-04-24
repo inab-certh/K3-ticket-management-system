@@ -1,0 +1,147 @@
+{% extends "layouts/base.html" %}
+{% block title %}Ρυθμίσεις{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
+      <li class="breadcrumb-item active">Ρυθμίσεις</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <!-- Left column: forms -->
+    <div class="col-md-8">
+
+      <!-- Profile info -->
+      <div class="card border-0 shadow mb-4">
+        <div class="card-header border-bottom">
+          <h5 class="mb-0">Στοιχεία Χρήστη</h5>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Όνομα</label>
+                <input type="text" class="form-control" name="first_name" value="{{ request.user.first_name }}">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Επώνυμο</label>
+                <input type="text" class="form-control" name="last_name" value="{{ request.user.last_name }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" value="{{ request.user.username }}" disabled>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" value="{{ request.user.email }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Δομή</label>
+                <select class="form-select" name="center">
+                  <option value="">— Επιλέξτε Δομή —</option>
+                  {% for center in centers %}
+                  <option value="{{ center.id }}" {% if profile.center_id == center.id %}selected{% endif %}>
+                    {{ center.name }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Ρόλος</label>
+                <input type="text" class="form-control" value="{{ profile.get_role_display }}" disabled>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Password change -->
+      <div class="card border-0 shadow mb-4">
+        <div class="card-header border-bottom">
+          <h5 class="mb-0">Αλλαγή Κωδικού</h5>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'password_change' %}">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Τρέχων κωδικός</label>
+                <input type="password" class="form-control" name="old_password">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Νέος κωδικός</label>
+                <input type="password" class="form-control" name="new_password1">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Επιβεβαίωση νέου κωδικού</label>
+                <input type="password" class="form-control" name="new_password2">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Αλλαγή Κωδικού</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Admin only: User management -->
+      {% if profile.is_admin or request.user.is_superuser %}
+      <div class="card border-0 shadow mb-4">
+        <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Διαχείριση Χρηστών</h5>
+          <a href="/admin/auth/user/add/" class="btn btn-sm btn-outline-primary">+ Νέος Χρήστης</a>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Username</th>
+                <th>Όνομα</th>
+                <th>Δομή</th>
+                <th>Ρόλος</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for up in all_profiles %}
+              <tr>
+                <td>{{ up.user.username }}</td>
+                <td>{{ up.user.get_full_name|default:"—" }}</td>
+                <td>{{ up.center.name|default:"—" }}</td>
+                <td>{{ up.get_role_display }}</td>
+                <td><a href="/admin/records/userprofile/{{ up.id }}/change/" class="btn btn-xs btn-outline-secondary">Επεξεργασία</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- Right column: info card -->
+    <div class="col-md-4">
+      <div class="card border-0 shadow mb-4">
+        <div class="card-body text-center">
+          <div class="display-4 mb-3">👤</div>
+          <h5 class="mb-1">{{ request.user.get_full_name|default:request.user.username }}</h5>
+          <p class="text-muted mb-1">{{ request.user.username }}</p>
+          <p class="text-muted mb-1">{{ request.user.email|default:"—" }}</p>
+          <span class="badge bg-primary">{{ profile.get_role_display }}</span>
+          {% if profile.center %}
+          <p class="mt-2 text-muted small">{{ profile.center.name }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

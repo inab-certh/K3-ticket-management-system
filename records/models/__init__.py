@@ -6,6 +6,7 @@ from .org import Center, ExternalOrganization, Contact
 from .document import Document, DocumentType
 from .icd10 import ICD10Code, ICD10Category, ICD10Subcategory  # Import from icd10.py
 from .geography import Region, RegionalUnit, Municipality
+from .profile import UserProfile
 
 from .lookups import (
     RequestType, RequestStatus, RequestCategory,

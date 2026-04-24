@@ -1,0 +1,334 @@
+{% extends "layouts/base.html" %}
+{% block title %}Στατιστικά{% endblock %}
+
+{% block content %}
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item"><a href="/">Κ3</a></li>
+      <li class="breadcrumb-item active">Στατιστικά</li>
+    </ol>
+  </nav>
+
+  <h1 class="h4 mb-1">Στατιστικά</h1>
+  <p class="text-muted mb-4">Συνολική εικόνα δεδομένων συστήματος</p>
+
+  <!-- Summary cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">👥</div>
+          <div>
+            <div class="text-muted small">Ωφελούμενοι</div>
+            <div class="fw-bold fs-4">{{ total_persons }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">📋</div>
+          <div>
+            <div class="text-muted small">Αιτήματα</div>
+            <div class="fw-bold fs-4">{{ total_requests }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">🧬</div>
+          <div>
+            <div class="text-muted small">Νεοπλάσματα</div>
+            <div class="fw-bold fs-4">{{ total_neoplasms }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="fs-2">🎂</div>
+          <div>
+            <div class="text-muted small">Μέση ηλικία</div>
+            <div class="fw-bold fs-4">{{ avg_age|default:"—" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Gender + Insurance -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Φύλο</div>
+        <div class="card-body">
+          <canvas id="genderChart" style="max-height: 250px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Ασφαλιστική Κατάσταση</div>
+        <div class="card-body">
+          <canvas id="insuranceChart" style="max-height: 250px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Employment + Marital -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Εργασιακή Κατάσταση</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Κατάσταση</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in employment_stats %}
+              <tr>
+                <td>{{ s.status|default:"Μη ορισμένο" }}</td>
+                <td><span class="badge bg-primary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Οικογενειακή Κατάσταση</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Κατάσταση</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in marital_stats %}
+              <tr>
+                <td>{{ s.marital_status|default:"Μη ορισμένο" }}</td>
+                <td><span class="badge bg-primary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Requests -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Κατάσταση Αιτημάτων</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Κατάσταση</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in status_stats %}
+              <tr>
+                <td>{{ s.status__name|default:"Μη ορισμένο" }}</td>
+                <td><span class="badge bg-secondary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Τρόπος Επικοινωνίας</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Τρόπος</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in communication_stats %}
+              <tr>
+                <td>{{ s.communication_method|default:"Μη ορισμένο" }}</td>
+                <td><span class="badge bg-secondary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Προτεραιότητα Αιτημάτων</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Προτεραιότητα</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in priority_stats %}
+              <tr>
+                <td>
+                  {% if s.priority == 1 %}Υψηλή
+                  {% elif s.priority == 2 %}Μέτρια
+                  {% else %}Χαμηλή{% endif %}
+                </td>
+                <td><span class="badge bg-secondary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: Neoplasms + Comorbidities -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Νεοπλάσματα ανά Κατηγορία</div>
+        <div class="card-body">
+          <canvas id="neoplasmChart" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Συνοδά Νοσήματα</div>
+        <div class="card-body">
+          <canvas id="comorbidityChart" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row: BMI + Center -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Κατηγορία ΒΜΙ</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Κατηγορία</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Λιποβαρής (&lt;18.5)</td><td><span class="badge bg-info">{{ bmi_stats.underweight }}</span></td></tr>
+              <tr><td>Φυσιολογικό (18.5–25)</td><td><span class="badge bg-success">{{ bmi_stats.normal }}</span></td></tr>
+              <tr><td>Υπέρβαρος (25–30)</td><td><span class="badge bg-warning text-dark">{{ bmi_stats.overweight }}</span></td></tr>
+              <tr><td>Παχύσαρκος (&gt;30)</td><td><span class="badge bg-danger">{{ bmi_stats.obese }}</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-white fw-semibold">Ωφελούμενοι ανά Δομή</div>
+        <div class="card-body p-0">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr><th>Δομή</th><th>Αριθμός</th></tr>
+            </thead>
+            <tbody>
+              {% for s in center_stats %}
+              <tr>
+                <td>{{ s.center__name|default:"Μη ορισμένο" }}</td>
+                <td><span class="badge bg-primary">{{ s.count }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted text-center py-3">Δεν υπάρχουν δεδομένα</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const palette = ['#c0392b','#1a1a2e','#e74c3c','#2c3e50','#e67e22','#8e44ad','#16a085'];
+
+// Gender chart
+new Chart(document.getElementById('genderChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ gender_labels|safe }},
+    datasets: [{ data: {{ gender_data|safe }}, backgroundColor: palette }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+
+// Insurance chart
+new Chart(document.getElementById('insuranceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ insurance_labels|safe }},
+    datasets: [{ data: {{ insurance_data|safe }}, backgroundColor: palette }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+
+// Neoplasm chart
+new Chart(document.getElementById('neoplasmChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ neoplasm_labels|safe }},
+    datasets: [{
+      label: 'Νεοπλάσματα',
+      data: {{ neoplasm_data|safe }},
+      backgroundColor: '#c0392b',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+  }
+});
+
+// Comorbidity chart
+new Chart(document.getElementById('comorbidityChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ comorbidity_labels|safe }},
+    datasets: [{
+      label: 'Αριθμός',
+      data: {{ comorbidity_data|safe }},
+      backgroundColor: '#1a1a2e',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+  }
+});
+</script>
+{% endblock %}

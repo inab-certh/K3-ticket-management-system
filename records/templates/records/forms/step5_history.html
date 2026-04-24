@@ -90,7 +90,7 @@
     </div>
     <div class="col-md-3" id="kepa-expiry-group" style="display:none;">
       <label class="form-label">Λήξη ΚΕΠΑ</label>
-      <input type="date" class="form-control" name="kepa_expiry" value="{{ mh_form.kepa_expiry.value|default:'' }}">
+      <input type="date" class="form-control" name="kepa_expiry" value="{{ mh_form.instance.kepa_expiry|date:'Y-m-d'|default:'' }}">
     </div>
     <div class="col-md-3" id="kepa-check-group" style="display:none;">
       <label class="form-label">Έλεγχος ΛΗΞΗΣ ΚΕΠΑ</label>

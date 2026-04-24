@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
 from django.db.models import Count, Q, Max
-from django.utils import timezone
-from datetime import timedelta
+from django.utils import timezone as tz
+from datetime import timedelta, datetime, date
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -31,10 +31,20 @@ import json
 
 User = get_user_model()
 
+def can_edit_person(user, person):
+    """Check if user can edit this person based on center match."""
+    if user.is_superuser:
+        return True
+    try:
+        if user.profile.is_admin:
+            return True
+        return user.profile.center == person.center
+    except Exception:
+        return False
 
 # ---------- Alerts helper ----------
 def get_alerts():
-    today = timezone.now().date()
+    today = tz.now().date()
     three_months = today + timedelta(days=90)
     thirty_days_ago = today - timedelta(days=30)
 
@@ -100,20 +110,78 @@ def register(request):
 # ---------- Dashboard ----------
 @login_required
 def dashboard(request):
+    today = tz.now().date()
+    thirty_days = today + timedelta(days=30)
+    ninety_days = today + timedelta(days=90)
+
     total_persons = Person.objects.count()
-    total_requests = Request.objects.count()
-    open_requests = Request.objects.filter(status__is_closed=False).count()
+    total_requests = Request.objects.filter(is_intake=False).count()
+    open_requests = Request.objects.filter(is_intake=False, status__is_closed=False).count()
+    new_this_month = Person.objects.filter(
+        created_at__year=today.year,
+        created_at__month=today.month
+    ).count()
+
     recent_persons = Person.objects.order_by('-created_at')[:5]
-    recent_requests = Request.objects.select_related(
+    recent_requests = Request.objects.filter(is_intake=False).select_related(
         'person', 'status'
     ).order_by('-created_at')[:5]
 
+    # KEPA
+    kepa_expired_list = MedicalHistory.objects.filter(
+        kepa_check=True,
+        kepa_expiry__lt=today,
+    ).select_related('person').order_by('kepa_expiry')[:5]
+
+    kepa_soon = MedicalHistory.objects.filter(
+        kepa_check=True,
+        kepa_expiry__gte=today,
+        kepa_expiry__lte=ninety_days,
+    ).select_related('person').order_by('kepa_expiry')[:10]
+
+    # Chart data: new persons per month last 12 months
+    from collections import defaultdict
+    import calendar
+    
+    cutoff = tz.make_aware(datetime.combine(today.replace(day=1) - timedelta(days=365), datetime.min.time()))
+    
+    monthly_counts = defaultdict(int)
+    for person in Person.objects.filter(
+        created_at__gte=cutoff
+    ).values('created_at'):
+        key = person['created_at'].strftime('%b %Y')
+        monthly_counts[key] += 1
+
+    chart_labels = list(monthly_counts.keys())
+    chart_data = list(monthly_counts.values())
+
+    # Calendar events for KEPA
+    import json as json_module
+    kepa_events = []
+    for mh in MedicalHistory.objects.filter(kepa_check=True, kepa_expiry__isnull=False):
+        color = '#dc3545' if mh.kepa_expiry < today else ('#fd7e14' if mh.kepa_expiry <= thirty_days else '#ffc107')
+        kepa_events.append({
+            'title': str(mh.person),
+            'start': mh.kepa_expiry.strftime('%Y-%m-%d'),
+            'color': color,
+            'url': f'/persons/{mh.person.pk}/',
+        })
+
     context = {
-        "total_persons": total_persons,
-        "total_requests": total_requests,
-        "open_requests": open_requests,
-        "recent_persons": recent_persons,
-        "recent_requests": recent_requests,
+        'total_persons': total_persons,
+        'total_requests': total_requests,
+        'open_requests': open_requests,
+        'new_this_month': new_this_month,
+        'recent_persons': recent_persons,
+        'recent_requests': recent_requests,
+        'kepa_expired_list': kepa_expired_list,
+        'kepa_soon': kepa_soon,
+        'thirty_days': thirty_days,
+        'ninety_days': ninety_days,
+        'chart_labels': json_module.dumps(chart_labels),
+        'chart_data': json_module.dumps(chart_data),
+        'kepa_events': json_module.dumps(kepa_events),
+        'today': today,
     }
     context.update(get_alerts())
     return render(request, "records/dashboard.html", context)
@@ -140,6 +208,86 @@ def new_entry(request):
         if action == 'prev':
             return redirect(f"{reverse('new_entry')}?step={step - 1}&beneficiary_id={beneficiary_id}&request_id={request.POST.get('request_id', '')}")
 
+        if action == 'jump':
+            target_step = int(request.POST.get('target_step', step))
+            print(f"=== JUMP === step={step} target_step={target_step}")
+            request_id = request.POST.get('request_id') or request.GET.get('request_id')
+            # Save current step data first
+            if step == 1:
+                b_form = BeneficiaryForm(request.POST, instance=person)
+                existing_request = None
+                if request_id:
+                    try:
+                        existing_request = Request.objects.get(pk=request_id, person=person)
+                    except (Request.DoesNotExist, ValueError):
+                        pass
+                elif person:
+                    existing_request = person.requests.order_by('created_at').first()
+                r_form = Step1RequestForm(request.POST, instance=existing_request)
+                if b_form.is_valid() and r_form.is_valid():
+                    person = b_form.save()
+                    req = r_form.save(commit=False)
+                    req.person = person
+                    req.created_by = request.user
+                    if not req.pk:
+                        req.status = RequestStatus.objects.get(id=1)
+                        req.is_intake = True
+                    req.save()
+                    request_id = req.pk
+            elif step == 2:
+                s2_form = BeneficiaryExtraForm(request.POST, instance=person)
+                if s2_form.is_valid():
+                    s2_form.save()
+            elif step == 3:
+                s3_form = Step3Form(request.POST, instance=person)
+                if s3_form.is_valid():
+                    s3_form.save()
+            elif step == 4:
+                person.neoplasms.all().delete()
+                i = 0
+                while True:
+                    category = request.POST.get(f'category_id_{i}')
+                    if category is None:
+                        break
+                    neoplasm = Neoplasm.objects.create(
+                        person=person,
+                        icd10_category_id=request.POST.get(f'category_id_{i}') or None,
+                        icd10_subcategory_id=request.POST.get(f'subcategory_id_{i}') or None,
+                        icd10_code_id=request.POST.get(f'icd10_id_{i}') or None,
+                        localization=request.POST.get(f'localization_{i}', ''),
+                        metastasis=bool(request.POST.get(f'metastasis_{i}')),
+                        surgery=bool(request.POST.get(f'surgery_{i}')),
+                        surgery_hospital=request.POST.get(f'surgery_hospital_{i}', ''),
+                        scheduled_surgery=bool(request.POST.get(f'scheduled_surgery_{i}')),
+                    )
+                    if request.POST.get(f'has_therapies_{i}'):
+                        j = 0
+                        while True:
+                            therapy_type = request.POST.get(f'therapy_type_{i}_{j}')
+                            if therapy_type is None:
+                                break
+                            if therapy_type:
+                                Therapy.objects.create(
+                                    neoplasm=neoplasm,
+                                    therapy_type=therapy_type,
+                                    hospital_name=request.POST.get(f'therapy_hospital_{i}_{j}', ''),
+                                )
+                            j += 1
+                    i += 1
+            elif step == 5:
+                from .models import Comorbidity
+                mh, _ = MedicalHistory.objects.get_or_create(person=person)
+                mh_form = Step5MedicalHistoryForm(request.POST, instance=mh)
+                comorbidity, _ = Comorbidity.objects.get_or_create(person=person)
+                comorbidity_form = Step5ComorbidityForm(request.POST, instance=comorbidity)
+                bmi_form = Step5BMIForm(request.POST, instance=person)
+                if mh_form.is_valid() and comorbidity_form.is_valid() and bmi_form.is_valid():
+                    mh_form.save()
+                    comorbidity_form.save()
+                    bmi_form.save()
+
+            return redirect(f"{reverse('new_entry')}?step={target_step}&beneficiary_id={person.pk}&request_id={request_id}")
+    
         # Handle exit from any step
         if action == 'exit' and person:
             messages.success(request, "Η εγγραφή αποθηκεύτηκε.")
@@ -426,7 +574,7 @@ class PersonListView(LoginRequiredMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        today = timezone.now().date()
+        today = tz.now().date()
         thirty_days_ago = today - timedelta(days=30)
 
         qs = Person.objects.all().select_related(
@@ -516,6 +664,9 @@ class PersonUpdateView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         person = self.get_object()
+        if not can_edit_person(request.user, person):
+            messages.error(request, "Δεν έχετε δικαίωμα επεξεργασίας αυτού του ωφελούμενου.")
+            return redirect('person_detail', pk=person.pk)
         existing_request = person.requests.order_by('created_at').first()
         base_url = reverse('new_entry')
         url = f"{base_url}?step=1&beneficiary_id={person.pk}"
@@ -549,7 +700,7 @@ class RequestListView(LoginRequiredMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        today = timezone.now().date()
+        today = tz.now().date()
         qs = Request.objects.filter(is_intake=False).select_related(
             "person", "status", "category", "assigned_to"
         ).prefetch_related("tags")
@@ -667,7 +818,7 @@ class ActionCreateView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['action_date'] = timezone.now().date()
+        initial['action_date'] = tz.now().date()
         return initial
 
     def get_context_data(self, **kwargs):
@@ -735,43 +886,136 @@ class MunicipalitiesAPIView(View):
 # ---------- Statistics ----------
 @login_required
 def statistics_view(request):
-    total_beneficiaries = Person.objects.count()
+    from .models import Comorbidity
+    
+    # --- Ωφελούμενοι ---
+    total_persons = Person.objects.count()
+    
+    gender_stats = Person.objects.values('gender').annotate(count=Count('id')).order_by('gender')
+    
+    marital_stats = Person.objects.values('marital_status').annotate(count=Count('id')).order_by('-count')
+    
+    insurance_stats = Person.objects.values('insurance_status').annotate(count=Count('id')).order_by('-count')
+    
+    employment_stats = Person.objects.values('status').annotate(count=Count('id')).order_by('-count')
+    
+    nationality_stats = Person.objects.values('nationality').annotate(count=Count('id')).order_by('-count')[:10]
 
-    gender_stats = Person.objects.values('gender').annotate(
-        count=Count('id')
-    ).order_by('gender')
+    # Age distribution
+    from django.db.models import Avg, F
+    current_year = tz.now().year
+    age_stats = Person.objects.exclude(birth_year__isnull=True).annotate(
+        age=current_year - F('birth_year')
+    ).values('age').annotate(count=Count('id')).order_by('age')
+    
+    avg_age = Person.objects.exclude(birth_year__isnull=True).aggregate(
+        avg=Avg(current_year - F('birth_year'))
+    )['avg']
 
-    communication_stats = Request.objects.values(
-        'communication_method'
-    ).annotate(count=Count('id')).order_by('-count')
+    # Center breakdown
+    center_stats = Person.objects.values('center__name').annotate(count=Count('id')).order_by('-count')
 
-    status_stats = Request.objects.values(
-        'status__name'
-    ).annotate(count=Count('id')).order_by('-count')
+    # --- Αιτήματα ---
+    total_requests = Request.objects.filter(is_intake=False).count()
+    
+    status_stats = Request.objects.filter(is_intake=False).values('status__name').annotate(count=Count('id')).order_by('-count')
+    
+    communication_stats = Request.objects.filter(is_intake=False).values('communication_method').annotate(count=Count('id')).order_by('-count')
+    
+    priority_stats = Request.objects.filter(is_intake=False).values('priority').annotate(count=Count('id')).order_by('priority')
 
-    insurance_stats = Person.objects.values(
-        'insurance_status'
-    ).annotate(count=Count('id')).order_by('-count')
+    # --- Νεοπλάσματα ---
+    from .models import Neoplasm
+    neoplasm_stats = Neoplasm.objects.values('icd10_category__name').annotate(count=Count('id')).order_by('-count')
+    total_neoplasms = Neoplasm.objects.count()
 
-    tag_stats = RequestTag.objects.annotate(
-        usage=Count('request')
-    ).order_by('-usage')[:10]
+    # --- Συνοδά νοσήματα ---
+    total_comorbidities = Comorbidity.objects.count()
+    comorbidity_stats = {
+        'arterial_disease': Comorbidity.objects.filter(arterial_disease=True).count(),
+        'cardiovascular_disease': Comorbidity.objects.filter(cardiovascular_disease=True).count(),
+        'copd': Comorbidity.objects.filter(copd=True).count(),
+        'diabetes': Comorbidity.objects.filter(diabetes=True).count(),
+        'psychiatric_disorder': Comorbidity.objects.filter(psychiatric_disorder=True).count(),
+        'mobility_issues': Comorbidity.objects.filter(mobility_issues=True).count(),
+        'nephropathy': Comorbidity.objects.filter(nephropathy=True).count(),
+    }
+
+    # --- BMI ---
+    bmi_stats = {
+        'underweight': Person.objects.filter(weight__isnull=False, height__isnull=False).extra(
+            where=["weight/(height*height) < 18.5"]
+        ).count(),
+        'normal': Person.objects.filter(weight__isnull=False, height__isnull=False).extra(
+            where=["weight/(height*height) >= 18.5 AND weight/(height*height) < 25"]
+        ).count(),
+        'overweight': Person.objects.filter(weight__isnull=False, height__isnull=False).extra(
+            where=["weight/(height*height) >= 25 AND weight/(height*height) < 30"]
+        ).count(),
+        'obese': Person.objects.filter(weight__isnull=False, height__isnull=False).extra(
+            where=["weight/(height*height) >= 30"]
+        ).count(),
+    }
+
+    import json as json_module
 
     context = {
-        'total_beneficiaries': total_beneficiaries,
-        'gender_stats': gender_stats,
-        'communication_stats': communication_stats,
-        'status_stats': status_stats,
-        'insurance_stats': insurance_stats,
-        'tag_stats': tag_stats,
+        'total_persons': total_persons,
+        'total_requests': total_requests,
+        'total_neoplasms': total_neoplasms,
+        'avg_age': round(avg_age, 1) if avg_age else None,
+        'gender_stats': list(gender_stats),
+        'marital_stats': list(marital_stats),
+        'insurance_stats': list(insurance_stats),
+        'employment_stats': list(employment_stats),
+        'nationality_stats': list(nationality_stats),
+        'center_stats': list(center_stats),
+        'status_stats': list(status_stats),
+        'communication_stats': list(communication_stats),
+        'priority_stats': list(priority_stats),
+        'neoplasm_stats': list(neoplasm_stats),
+        'comorbidity_stats': comorbidity_stats,
+        'bmi_stats': bmi_stats,
+        # JSON for charts
+        'gender_labels': json_module.dumps([g['gender'] or 'Μη ορισμένο' for g in gender_stats]),
+        'gender_data': json_module.dumps([g['count'] for g in gender_stats]),
+        'insurance_labels': json_module.dumps([i['insurance_status'] or 'Μη ορισμένο' for i in insurance_stats]),
+        'insurance_data': json_module.dumps([i['count'] for i in insurance_stats]),
+        'neoplasm_labels': json_module.dumps([n['icd10_category__name'] or 'Μη ορισμένο' for n in neoplasm_stats]),
+        'neoplasm_data': json_module.dumps([n['count'] for n in neoplasm_stats]),
+        'comorbidity_labels': json_module.dumps(['Αρτηριακές', 'Καρδιαγγειακά', 'ΧΑΠ', 'Διαβήτης', 'Ψυχιατρικά', 'Κινητικά', 'Νεφροπάθεια']),
+        'comorbidity_data': json_module.dumps(list(comorbidity_stats.values())),
     }
     return render(request, "records/statistics.html", context)
 
 
 # ---------- Misc ----------
+@login_required
 def settings_view(request):
-    return render(request, "includes/settings-box.html")
-
+    from .models import UserProfile
+    profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        request.user.first_name = request.POST.get('first_name', '')
+        request.user.last_name = request.POST.get('last_name', '')
+        request.user.email = request.POST.get('email', '')
+        request.user.save()
+        
+        center_id = request.POST.get('center')
+        if center_id:
+            profile.center_id = center_id
+        profile.save()
+        
+        messages.success(request, "Οι ρυθμίσεις αποθηκεύτηκαν.")
+        return redirect('settings_view')
+    
+    centers = Center.objects.all()
+    all_profiles = UserProfile.objects.select_related('user', 'center').order_by('user__username')
+    return render(request, 'records/settings.html', {
+        'profile': profile,
+        'centers': centers,
+        'all_profiles': all_profiles,
+    })
 
 # ---------- Quick Search API ----------
 class QuickSearchAPIView(View):
@@ -795,3 +1039,39 @@ class QuickSearchAPIView(View):
             for p in persons
         ]
         return JsonResponse({'results': results})
+        
+@login_required
+def search_view(request):
+    q = request.GET.get('q', '').strip()
+    persons = []
+    requests_results = []
+    
+    if q and len(q) >= 2:
+        persons = Person.objects.filter(
+            Q(last_name__icontains=q) |
+            Q(first_name__icontains=q) |
+            Q(amka__icontains=q) |
+            Q(vat__icontains=q)
+        ).annotate(
+            open_requests=Count(
+                'requests',
+                filter=Q(requests__status__is_closed=False, requests__is_intake=False),
+                distinct=True
+            )
+        ).order_by('last_name')[:20]
+        
+        requests_results = Request.objects.filter(
+            is_intake=False
+        ).filter(
+            Q(subject__icontains=q) |
+            Q(protocol_number__icontains=q) |
+            Q(person__last_name__icontains=q) |
+            Q(person__first_name__icontains=q)
+        ).select_related('person', 'status').order_by('-created_at')[:20]
+    
+    return render(request, 'records/search_results.html', {
+        'q': q,
+        'persons': persons,
+        'requests_results': requests_results,
+        'total': len(persons) + len(requests_results),
+    })

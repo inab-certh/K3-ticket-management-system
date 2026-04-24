@@ -14,7 +14,13 @@ from django.utils import timezone
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from datetime import datetime, timedelta
+from .models import UserProfile
 
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'center', 'role']
+    list_filter = ['role', 'center']
+    search_fields = ['user__username', 'user__email']
 
 
 # Import all models
