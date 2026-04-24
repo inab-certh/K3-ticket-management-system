@@ -24,6 +24,7 @@ from .forms.step1_basic import BeneficiaryForm, Step1RequestForm
 from .forms.step2_additional import BeneficiaryExtraForm
 from .forms.step2_contact import ContactPersonForm
 from .forms.step3_employment import Step3Form
+from .forms.step5_history import Step5MedicalHistoryForm, Step5ComorbidityForm, Step5BMIForm
 
 import json
 
@@ -177,6 +178,7 @@ def new_entry(request):
                 req.created_by = request.user
                 if not req.pk:
                     req.status = RequestStatus.objects.get(id=1)
+                    req.is_intake = True
                 req.save()
                 base_url = f"{reverse('new_entry')}?beneficiary_id={person.pk}&request_id={req.pk}"
                 if action == 'next':
@@ -295,7 +297,7 @@ def new_entry(request):
                                 )
                             j += 1
                     i += 1
-
+            
             base_url = f"{reverse('new_entry')}?beneficiary_id={person.pk}&request_id={request_id}"
             if action == 'next':
                 return redirect(f"{base_url}&step=5")
@@ -305,7 +307,40 @@ def new_entry(request):
             else:
                 messages.success(request, "Αποθηκεύτηκε ως πρόχειρο.")
                 return redirect(f"{base_url}&step=4")
+        if step == 5:
+            request_id = request.POST.get('request_id') or request.GET.get('request_id')
+            if person:
+                mh, _ = MedicalHistory.objects.get_or_create(person=person)
+                mh_form = Step5MedicalHistoryForm(request.POST, instance=mh)
+                from .models import Comorbidity
+                comorbidity, _ = Comorbidity.objects.get_or_create(person=person)
+                comorbidity_form = Step5ComorbidityForm(request.POST, instance=comorbidity)
+                bmi_form = Step5BMIForm(request.POST, instance=person)
 
+                if mh_form.is_valid() and comorbidity_form.is_valid() and bmi_form.is_valid():
+                    mh_form.save()
+                    comorbidity_form.save()
+                    bmi_form.save()
+                    base_url = f"{reverse('new_entry')}?beneficiary_id={person.pk}&request_id={request_id}"
+                    if action == 'finish':
+                        messages.success(request, "Η εγγραφή ολοκληρώθηκε.")
+                        return redirect('person_detail', pk=person.pk)
+                    elif action == 'exit':
+                        messages.success(request, "Η εγγραφή αποθηκεύτηκε.")
+                        return redirect('person_detail', pk=person.pk)
+                    else:  # draft
+                        messages.success(request, "Αποθηκεύτηκε ως πρόχειρο.")
+                        return redirect(f"{base_url}&step=5")
+                return render(request, 'records/newentry.html', {
+                    'step': 5,
+                    'beneficiary_id': beneficiary_id,
+                    'request_id': request_id,
+                    'beneficiary_form': BeneficiaryForm(instance=person),
+                    'mh_form': mh_form,
+                    'comorbidity_form': comorbidity_form,
+                    'bmi_form': bmi_form,
+                    'person': person,
+                })
 
         # Steps 4–5 stub — just advance/stay
         if action == 'next':
@@ -338,6 +373,11 @@ def new_entry(request):
     third_contact = 'yes' if existing_contact else None
     
     step3_form = Step3Form(instance=person)
+    mh = getattr(person, 'medical_history', None) if person else None
+    comorbidity = getattr(person, 'comorbidity', None) if person else None
+    mh_form = Step5MedicalHistoryForm(instance=mh)
+    comorbidity_form = Step5ComorbidityForm(instance=comorbidity)
+    bmi_form = Step5BMIForm(instance=person)
     
     icd10_categories = list(ICD10Category.objects.values('id', 'name'))
     icd10_subcategories = list(ICD10Subcategory.objects.values('id', 'name', 'category_id'))
@@ -372,6 +412,9 @@ def new_entry(request):
         'icd10_subcategories_json': json.dumps(icd10_subcategories),
         'icd10_codes_json': json.dumps(icd10_codes),
         'existing_neoplasms_json': json.dumps(existing_neoplasms),
+        'mh_form': mh_form,
+        'comorbidity_form': comorbidity_form,
+        'bmi_form': bmi_form,
     })
 
 
@@ -458,9 +501,9 @@ class PersonDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['recent_requests'] = self.object.requests.select_related(
-            'status'
-        ).order_by('-created_at')[:10]
+        context['recent_requests'] = self.object.requests.filter(
+            is_intake=False
+        ).select_related('status').order_by('-created_at')[:10]
         context['documents'] = self.object.documents.order_by('-created_at')[:5]
         context['contact_persons'] = self.object.contacts.order_by('-is_primary')
         return context
@@ -507,7 +550,7 @@ class RequestListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         today = timezone.now().date()
-        qs = Request.objects.select_related(
+        qs = Request.objects.filter(is_intake=False).select_related(
             "person", "status", "category", "assigned_to"
         ).prefetch_related("tags")
 

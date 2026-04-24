@@ -106,6 +106,7 @@ class Request(TimeStampedModel):
                                                validators=[MinValueValidator(1), MaxValueValidator(3)])
     is_accepted = models.BooleanField("Δεκτό αίτημα", default=True)
     protocol_number = models.CharField("Αρ. Πρωτοκόλλου", max_length=50, blank=True)
+    is_intake = models.BooleanField("Εγγραφή εισαγωγής", default=False)
     
     # Assignment and outcome
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
@@ -165,16 +166,6 @@ class Request(TimeStampedModel):
         return dict(self.PRIORITY_CHOICES).get(self.priority, 'Μέτρια')
     
     def save(self, *args, **kwargs):
-        # Auto-set primary_category based on most common tag category
-        if not self.category and self.pk:
-            # Only after the object is saved (so tags can be accessed)
-            tags = self.tags.all()
-            if tags:
-                # Get the most common category among selected tags
-                categories = [tag.category for tag in tags]
-                if categories:
-                    self.category = max(set(categories), key=categories.count)
-        
         # Auto-set closed_date when status changes to closed
         if self.status and hasattr(self.status, 'is_closed') and self.status.is_closed and not self.closed_date:
             self.closed_date = timezone.now().date()
